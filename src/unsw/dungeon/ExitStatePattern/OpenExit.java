@@ -1,4 +1,4 @@
-package unsw.dungeon.ExitCompositePattern;
+package unsw.dungeon.ExitStatePattern;
 
 public class OpenExit implements ExitState {
 

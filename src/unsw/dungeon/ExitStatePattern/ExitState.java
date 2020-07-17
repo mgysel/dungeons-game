@@ -1,4 +1,4 @@
-package unsw.dungeon.ExitCompositePattern;
+package unsw.dungeon.ExitStatePattern;
 
 public interface ExitState {
     void openExit(Exit exit);
