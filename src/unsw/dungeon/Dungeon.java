@@ -19,6 +19,8 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
+    private List<Interactable> interactables;
+    private List<Goal> goals;
     private Player player;
 
     public Dungeon(int width, int height) {
@@ -26,6 +28,9 @@ public class Dungeon {
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
+        this.interactables = new ArrayList<Interactable>();
+        this.goals = new ArrayList<Goal>();
+
     }
 
     public int getWidth() {
@@ -46,5 +51,23 @@ public class Dungeon {
 
     public void addEntity(Entity entity) {
         entities.add(entity);
+    }
+
+    public void addInteractable(Interactable interactable) {
+        interactables.add(interactable);
+    }
+
+    public void addGoal(Goal goal) {
+        goals.add(goal);
+    }
+
+    public boolean checkAllGoalsCompleted() {
+        for (Goal goal : goals) {
+            if (goalIsComplete(goal)) {
+                continue;
+            } else {
+                return false;
+            }
+        } return true;
     }
 }
