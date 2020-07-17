@@ -30,20 +30,12 @@ public class Player extends Entity {
         // this.performInteractionForMove();
     }
 
-    /*public void performInteractionForMove() {
+    public void performInteractionForMove() {
         // Entity entity = getEntityAtPosition(currrentX, currentY);
         // Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
         // newInteraction.performInteractionOnDungeon(dungeon)
-    }*/
+    }
 
-
-    /*
-    * Inside the PortalInteraction
-    *
-    * void performInteractionOnDungeon(dungeon) {
-    *       dungeon.setPlayerPosition(newPositon);
-    * }
-    * */
 
     public void moveDown() {
         if (getY() < dungeon.getHeight() - 1 && !(isObstruction(dungeon, getX(), getY()+1)))

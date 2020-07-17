@@ -14,6 +14,7 @@ public class PortalInteraction implements Interactable {
     @Override
     public void interactOnDungeon(Dungeon dungeon) {
         //TODO: set new coordinate for player
+        //dungeon.setPlayerPosition(newPositon);
     }
 
 
