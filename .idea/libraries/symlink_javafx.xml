@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="symlink_javafx">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/symlink_javafx" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

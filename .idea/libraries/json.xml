@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="json">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/json.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/symlink_javafx" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
