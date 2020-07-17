@@ -6,7 +6,6 @@ package unsw.dungeon.DoorStatePattern;
  */
 public class ClosedDoor implements DoorState {
 
-    p
 
     @Override
     public void openDoor(Door door) {

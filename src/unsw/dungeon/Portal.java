@@ -2,8 +2,8 @@ package unsw.dungeon;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import unsw.dungeon.Dungeon;
-import unsw.dungeon.Subject;
+// import unsw.dungeon.Dungeon;
+// import unsw.dungeon.Subject;
 
 public class Portal extends Entity {
 
