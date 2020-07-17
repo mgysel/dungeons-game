@@ -26,8 +26,15 @@ public class DungeonControllerLoader extends DungeonLoader {
     //Images
     private Image playerImage;
     private Image wallImage;
+    private Image exitImage;
+    private Image treasureImage;
+    private Image keyImage;
     private Image boulderImage;
+    private Image floorSwitchImage;
     private Image portalImage;
+    private Image enemyImage;
+    private Image swordImage;
+    private Image invincibilityPotionImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -35,8 +42,15 @@ public class DungeonControllerLoader extends DungeonLoader {
         entities = new ArrayList<>();
         playerImage = new Image((new File("images/human_new.png")).toURI().toString());
         wallImage = new Image((new File("images/brick_brown_0.png")).toURI().toString());
+        exitImage = new Image((new File("images/exit.png")).toURI().toString());
+        treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
+        keyImage = new Image((new File("images/key.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
+        floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
         portalImage = new Image((new File("images/portal.png")).toURI().toString());
+        treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
+        swordImage = new Image((new File("images/greatsword_1_new.png")).toURI().toString());
+        invincibilityPotionImage = new Image((new File("images/brilliant_blue_new.png")).toURI().toString());
     }
 
     @Override
@@ -49,6 +63,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Wall wall) {
         ImageView view = new ImageView(wallImage);
         addEntity(wall, view);
+    }
+
+    @Override
+    public void onLoad(Treasure treasure) {
+        ImageView view = new ImageView(treasureImage);
+        addEntity(treasure, view);
     }
 
     @Override

@@ -21,7 +21,7 @@ public abstract class DungeonLoader {
     private JSONObject json;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
-        json = new JSONObject(new JSONTokener(new FileReader("dungeons/boulders.json")));
+        json = new JSONObject(new JSONTokener(new FileReader("dungeons/advanced.json")));
         //json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
     }
 
@@ -61,6 +61,11 @@ public abstract class DungeonLoader {
             onLoad(wall);
             entity = wall;
             break;
+        case "treasure": 
+            Treasure treasure = new Treasure(x, y);
+            onLoad(treasure);
+            entity = treasure;
+            break;
         case "boulder":
             Boulder boulder = new Boulder(x, y);
             onLoad(boulder);
@@ -78,6 +83,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Entity player);
 
     public abstract void onLoad(Wall wall);
+
+    public abstract void onLoad(Treasure treasure);
 
     public abstract void onLoad(Boulder boulder);
 
