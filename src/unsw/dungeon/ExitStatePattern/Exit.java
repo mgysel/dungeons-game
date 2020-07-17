@@ -1,10 +1,13 @@
-package unsw.dungeon.ExitCompositePattern;
+package unsw.dungeon.ExitStatePattern;
+
+import unsw.dungeon.InteractableCompositePattern.Interactable;
 
 public class Exit extends Interactable {
 
     private ExitState state;
 
-    public Exit() {
+    public Exit(int x, int y) {
+        super(x,y);
         this.state = new ClosedExit();
     }
 
