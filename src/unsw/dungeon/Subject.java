@@ -6,7 +6,7 @@ package unsw.dungeon;
  */
 public interface Subject {
     // Register, remove, notify observer functions
-    public void registerObserver(o);
-    public void removeObserver(o);
+    public void registerObserver();
+    public void removeObserver();
     public void notifyObservers();
 }
