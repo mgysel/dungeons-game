@@ -52,12 +52,9 @@ public class Dungeon {
         entities.add(entity);
     }
 
-<<<<<<< HEAD
-=======
     public List<Entity> getEntities() {
         return entities;
     }
->>>>>>> 97ef6a16d5f785957cb1f91869c7ad29c603d01c
 
     public void addInteractable(Interactable interactable) {
         interactables.add(interactable);
