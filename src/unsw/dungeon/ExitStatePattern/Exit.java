@@ -23,9 +23,9 @@ public class Exit extends Interactable {
         return state;
     }
 
-
     @Override
     public void update(Subject obj) {
         //TODO: notify observers when state change
     }
+
 }

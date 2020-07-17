@@ -3,6 +3,8 @@
  */
 package unsw.dungeon;
 
+import unsw.dungeon.InteractableCompositePattern.Interactable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,7 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+
 
     public void addInteractable(Interactable interactable) {
         interactables.add(interactable);

@@ -10,10 +10,12 @@ import unsw.dungeon.Subject;
 public class Door extends Interactable {
 
     private DoorState state;
+    private int id;
 
-    public Door(int x, int y) {
+    public Door(int x, int y, int id) {
         super(x,y);
         this.state = new ClosedDoor();
+        this.id = id;
     }
 
     public void openDoor(DoorState openDoor) {
