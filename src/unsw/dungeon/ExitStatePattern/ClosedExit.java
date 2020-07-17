@@ -1,5 +1,9 @@
 package unsw.dungeon.ExitStatePattern;
 
+/**
+ * ClosedExit state for exit
+ * @author Ben Charlton
+ */
 public class ClosedExit implements ExitState {
 
     @Override

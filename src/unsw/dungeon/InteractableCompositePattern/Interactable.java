@@ -1,7 +1,12 @@
 package unsw.dungeon.InteractableCompositePattern;
-import org.w3c.dom.Entity;
+import unsw.dungeon.Entity;
+import unsw.dungeon.Observer;
 
-public abstract class Interactable extends Entity  implements Observer {
+/**
+ * Interactable abstract class that the interactable objects (floor switch, door, exit) will inherit from
+ * @author Ben Charlton
+ */
+public abstract class Interactable extends Entity implements Observer {
 
     public int id;
 

@@ -1,6 +1,12 @@
 package unsw.dungeon.DoorStatePattern;
 import unsw.dungeon.InteractableCompositePattern.Interactable;
+import unsw.dungeon.Subject;
 
+/**
+ * Door that players are able to walk through provided it is unlocked
+ * or unlock if it is locked
+ * @author Ben Charlton
+ */
 public class Door extends Interactable {
 
     private DoorState state;
@@ -19,4 +25,8 @@ public class Door extends Interactable {
     }
 
 
+    @Override
+    public void update(Subject obj) {
+        //TODO: notify observers of state change
+    }
 }
