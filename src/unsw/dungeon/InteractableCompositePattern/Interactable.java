@@ -4,7 +4,7 @@ import unsw.dungeon.Entity;
 import unsw.dungeon.Observer;
 
 /**
- * Interactable abstract class that the interactable objects (floor switch, door, exit) will inherit from
+ * Interactable interface that the interactable objects (floor switch, door, exit, boulder) will inherit from
  * @author Ben Charlton
  */
 public interface Interactable {
