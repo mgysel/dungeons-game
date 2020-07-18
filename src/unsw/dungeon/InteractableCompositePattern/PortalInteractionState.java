@@ -3,11 +3,11 @@ package unsw.dungeon.InteractableCompositePattern;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Portal;
 
-public class PortalInteraction implements Interactable {
+public class PortalInteractionState implements InteractionState {
 
     private Portal portal;
 
-    public PortalInteraction(Portal portal) {
+    public PortalInteractionState(Portal portal) {
         this.portal = portal;
     }
 

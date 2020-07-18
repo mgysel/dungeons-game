@@ -1,8 +1,6 @@
 package unsw.dungeon;
-import unsw.dungeon.DoorStatePattern.ClosedDoor;
-import unsw.dungeon.DoorStatePattern.DoorState;
-import unsw.dungeon.Obstruction;
-import unsw.dungeon.Subject;
+import unsw.dungeon.InteractableCompositePattern.DoorInteractionState;
+import unsw.dungeon.InteractableCompositePattern.InteractionState;
 
 /**
  * Door that players are able to walk through provided it is unlocked
@@ -11,22 +9,40 @@ import unsw.dungeon.Subject;
  */
 public class Door extends Entity {
 
-    private DoorState state;
+    //private DoorState doorState;
     private int doorID;
+    private boolean isOpen;
+    private int idOfUnlockingKey;
 
-    public Door(int x, int y, int id) {
+    public Door(int x, int y, int id, int idOfUnlockingKey) {
         super(x,y);
-        this.state = new ClosedDoor();
+        //this.doorState = new ClosedDoor();
+        this.isOpen = false;
         this.doorID = id;
+        this.idOfUnlockingKey = idOfUnlockingKey;
     }
 
-
-    public void openDoor(DoorState openDoor) {
-        this.state = openDoor;
+    public void attemptToUnlockDoorWithKey(Key key) {
+        int keyID = key.getID();
+        if(keyID == this.idOfUnlockingKey) {
+            this.isOpen = true;
+        }
     }
 
-    public DoorState getState() {
-        return state;
+    public boolean isOpen() {
+        return this.isOpen;
     }
 
+    //public void attemptToGoThroughDoorWithPlayer(Player player) {
+    //    this.doorState.attemptToGoThroughDoorWithPlayer(this, player); // state pattern
+    //}
+
+    //public void setDoorState(DoorState doorState) {
+    //    this.doorState = doorState;
+    //}
+
+    @Override
+    public InteractionState getInteractionForEntity() {
+        return new DoorInteractionState(this);
+    }
 }

@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import unsw.dungeon.InteractableCompositePattern.InteractionState;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,16 +37,6 @@ public class Player extends Entity {
         }
         
     }
-
-    // public void performInteractionForMove(int x, int y) {
-    //     // Entity entity = getEntityAtPosition(currrentX, currentY);
-    //     // Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
-    //     // newInteraction.performInteractionOnDungeon(dungeon)
-    //     List<Entity> entities = returnEntities(x, y);
-
-
-    // }
-
 
     public void moveDown() {
         int newX = getX();
@@ -112,10 +104,20 @@ public class Player extends Entity {
     }
 
     private void performInteractionForMove(int x, int y) {
-        Entity entity = dungeon.getEntityAtPosition(x, y);
+        Entity entity = dungeon.getEntityAtPosition(x, y); //Get non-player entity
         if (entity != null) {
-        //    Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
-        //    newInteraction.performInteractionOnDungeon(dungeon);
+            InteractionState newInteractionState = entity.getInteractionForEntity();
+            dungeon.setCurrentInteractionState(newInteractionState);
+            dungeon.performInteraction();
         }
+    }
+
+    @Override
+    public InteractionState getInteractionForEntity() {
+        return null; // TODO: Ignore if player
+    }
+
+    public List<Key> getKeyList() {
+        return null; // TODO: this
     }
 }

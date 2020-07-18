@@ -1,8 +1,6 @@
 package unsw.dungeon;
 import unsw.dungeon.ExitStatePattern.ClosedExit;
 import unsw.dungeon.ExitStatePattern.ExitState;
-import unsw.dungeon.InteractableCompositePattern.Interactable;
-import unsw.dungeon.Subject;
 
 /**
  * Exit that players move through when goals completed to finish dungeon

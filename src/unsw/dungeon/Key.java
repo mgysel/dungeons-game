@@ -9,4 +9,7 @@ public class Key extends Entity {
         this.keyID = keyID;
     }
 
+    public int getID() {
+        return this.keyID;
+    }
 }

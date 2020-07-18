@@ -2,6 +2,7 @@ package unsw.dungeon;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import unsw.dungeon.InteractableCompositePattern.InteractionState;
 
 /**
  * An entity in the dungeon.
@@ -9,7 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @author Robert Clifton-Everest
  *
  */
-public class Entity {
+public abstract class Entity {
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
@@ -42,8 +43,9 @@ public class Entity {
         return x().get();
     }
 
-    @Override
     public boolean isObstruction(Player player) {
         return false;
     }
+
+    public abstract InteractionState getInteractionForEntity();
 }
