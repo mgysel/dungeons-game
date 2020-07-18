@@ -11,6 +11,11 @@ public class Boulder extends Entity {
         this.dungeon = dungeon;
     }
 
+    public void move(int x, int y) {
+        x().set(x);
+        y().set(y);
+    }
+
     @Override
     public boolean isObstruction(Player player) {
         int playerX = player.getX();
@@ -19,8 +24,6 @@ public class Boulder extends Entity {
         int thisY = getY();
         int nextX = (thisX - playerX) + thisX;
         int nextY = (thisY - playerY) + thisY;
-        System.out.println("NEXT X: " + nextX);
-        System.out.println("NEXT Y: " + nextY);
         List<Entity> xyEntities = dungeon.getEntities(nextX, nextY);
         for (Entity entity : xyEntities) {
             if (entity != null) {
@@ -35,8 +38,28 @@ public class Boulder extends Entity {
 
     @Override
     public void performInteraction(Player player) {
-        
-
+        int playerX = player.getX();
+        int playerY = player.getY();
+        int thisX = getX();
+        int thisY = getY();
+        int nextX = (thisX - playerX) + thisX;
+        int nextY = (thisY - playerY) + thisY;
+        // List<Entity> xyEntities = dungeon.getEntities(nextX, nextY);
+        // for (Entity entity : xyEntities) {
+        //     if (entity != null) {
+        //         if (entity instanceof Boulder || entity instanceof Wall) {
+        //             return;
+        //         }
+        //     }
+            
+        // }
+        System.out.println("PLAYER X: "+thisX);
+        System.out.println("PLAYER Y: "+thisY);
+        System.out.println("THIS X: "+thisX);
+        System.out.println("THIS Y: "+thisY);
+        System.out.println("NEXT X: "+nextX);
+        System.out.println("NEXT Y: "+nextY);
+        move(nextX, nextY);
     }
 
     

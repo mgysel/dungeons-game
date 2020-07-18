@@ -32,8 +32,11 @@ public class Player extends Entity {
         int newY = getY() - 1;
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getY() > 0 && !isObstruction(xyEntities, this)) {
+            for (Entity entity : xyEntities) {
+                entity.performInteraction(this);
+            }
             y().set(getY() - 1);
-            this.performInteractionForMove(newX, newY);
+
         }
         
     }
@@ -43,8 +46,10 @@ public class Player extends Entity {
         int newY = getY() + 1;
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getY() < dungeon.getHeight() - 1 && !(isObstruction(xyEntities, this)))
+            for (Entity entity : xyEntities) {
+                entity.performInteraction(this);
+            }
             y().set(getY() + 1);
-            this.performInteractionForMove(newX, newY);
     }
 
     public void moveLeft() {
@@ -52,8 +57,10 @@ public class Player extends Entity {
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() > 0 && !(isObstruction(xyEntities, this)))
+            for (Entity entity : xyEntities) {
+                entity.performInteraction(this);
+            }
             x().set(getX() - 1);
-            this.performInteractionForMove(newX, newY);
     }
 
     public void moveRight() {
@@ -61,8 +68,11 @@ public class Player extends Entity {
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this)))
+            for (Entity entity : xyEntities) {
+                System.out.println("XY ENTITY: " + entity);
+                entity.performInteraction(this);
+            }
             x().set(getX() + 1);
-            this.performInteractionForMove(newX, newY);
     }
 
     public void addItemToInventory(Entity entity) {
@@ -109,14 +119,14 @@ public class Player extends Entity {
             // InteractionState newInteractionState = entity.getInteractionForEntity();
             // dungeon.setCurrentInteractionState(newInteractionState);
             // dungeon.performInteraction();
-            entity.performInteraction(Player player)
+            entity.performInteraction(player);
         }
     }
 
-    @Override
-    public InteractionState getInteractionForEntity() {
-        return null; // TODO: Ignore if player
-    }
+    // @Override
+    // public InteractionState getInteractionForEntity() {
+    //     return null; // TODO: Ignore if player
+    // }
 
     public List<Key> getKeyList() {
         return null; // TODO: this
