@@ -50,6 +50,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getY() < dungeon.getHeight() - 1 && !(isObstruction(xyEntities, this)))
             y().set(getY() + 1);
+        this.performInteractionForMove(newX, newY);
     }
 
     public void moveLeft() {
@@ -58,6 +59,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() > 0 && !(isObstruction(xyEntities, this)))
             x().set(getX() - 1);
+        this.performInteractionForMove(newX, newY);
     }
 
     public void moveRight() {
@@ -66,6 +68,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this)))
             x().set(getX() + 1);
+        this.performInteractionForMove(newX, newY);
     }
 
     // private void pushBoulder(Boulder boulder, int newX, int newY) {
@@ -97,6 +100,13 @@ public class Player extends Entity {
         return false;
     }
 
+    private void performInteractionForMove(int x, int y) {
+        Entity entity = dungeon.getEntityAtPosition(x, y);
+        if (entity != null) {
+        //    Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
+        //    newInteraction.performInteractionOnDungeon(dungeon);
+        }
+    }
 
 
 }
