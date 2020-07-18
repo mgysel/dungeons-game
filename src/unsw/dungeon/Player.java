@@ -30,8 +30,9 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getY() > 0 && !isObstruction(xyEntities, this)) {
             y().set(getY() - 1);
+            this.performInteractionForMove(newX, newY);
         }
-        // this.performInteractionForMove();
+        
     }
 
     // public void performInteractionForMove(int x, int y) {
@@ -50,7 +51,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getY() < dungeon.getHeight() - 1 && !(isObstruction(xyEntities, this)))
             y().set(getY() + 1);
-        this.performInteractionForMove(newX, newY);
+            this.performInteractionForMove(newX, newY);
     }
 
     public void moveLeft() {
@@ -59,7 +60,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() > 0 && !(isObstruction(xyEntities, this)))
             x().set(getX() - 1);
-        this.performInteractionForMove(newX, newY);
+            this.performInteractionForMove(newX, newY);
     }
 
     public void moveRight() {
@@ -68,7 +69,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this)))
             x().set(getX() + 1);
-        this.performInteractionForMove(newX, newY);
+            this.performInteractionForMove(newX, newY);
     }
 
     // private void pushBoulder(Boulder boulder, int newX, int newY) {

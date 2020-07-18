@@ -1,5 +1,7 @@
 package unsw.dungeon.DoorStatePattern;
+
 import unsw.dungeon.InteractableCompositePattern.Interactable;
+import unsw.dungeon.Obstruction;
 import unsw.dungeon.Subject;
 
 /**
@@ -17,6 +19,7 @@ public class Door extends Interactable {
         this.state = new ClosedDoor();
         this.id = id;
     }
+
 
     public void openDoor(DoorState openDoor) {
         this.state = openDoor;
