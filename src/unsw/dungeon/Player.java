@@ -30,18 +30,8 @@ public class Player extends Entity {
         List<Entity> entities = returnEntities(newX, newY);
         if (getY() > 0 && !isObstruction(entities))
             y().set(getY() - 1);
-        // this.performInteractionForMove();
+        this.performInteractionForMove(newX, newY);
     }
-
-    public void performInteractionForMove(int x, int y) {
-        // Entity entity = getEntityAtPosition(currrentX, currentY);
-        // Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
-        // newInteraction.performInteractionOnDungeon(dungeon)
-        List<Entity> entities = returnEntities(x, y);
-        
-
-    }
-
 
     public void moveDown() {
         int newX = getX();
@@ -49,6 +39,7 @@ public class Player extends Entity {
         List<Entity> entities = returnEntities(newX, newY);
         if (getY() < dungeon.getHeight() - 1 && !(isObstruction(entities)))
             y().set(getY() + 1);
+        this.performInteractionForMove(newX, newY);
     }
 
     public void moveLeft() {
@@ -57,6 +48,7 @@ public class Player extends Entity {
         List<Entity> entities = returnEntities(newX, newY);
         if (getX() > 0 && !(isObstruction(entities)))
             x().set(getX() - 1);
+        this.performInteractionForMove(newX, newY);
     }
 
     public void moveRight() {
@@ -65,6 +57,7 @@ public class Player extends Entity {
         List<Entity> entities = returnEntities(newX, newY);
         if (getX() < dungeon.getWidth() - 1 && !(isObstruction(entities)))
             x().set(getX() + 1);
+        this.performInteractionForMove(newX, newY);
     }
 
     // private void pushBoulder(Boulder boulder, int newX, int newY) {
@@ -97,6 +90,13 @@ public class Player extends Entity {
         return false;
     }
 
+    private void performInteractionForMove(int x, int y) {
+        Entity entity = dungeon.getEntityAtPosition(x, y);
+        if (entity != null) {
+        //    Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
+        //    newInteraction.performInteractionOnDungeon(dungeon);
+        }
+    }
 
 
 }
