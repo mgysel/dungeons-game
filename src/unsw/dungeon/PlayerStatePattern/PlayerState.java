@@ -1,4 +1,6 @@
 package unsw.dungeon.PlayerStatePattern;
+import unsw.dungeon.Player;
 
-public class PlayerState {
+public interface PlayerState {
+        public void changeState(Player player);
 }

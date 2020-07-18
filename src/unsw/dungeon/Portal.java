@@ -2,8 +2,6 @@ package unsw.dungeon;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import unsw.dungeon.InteractableCompositePattern.InteractionState;
-import unsw.dungeon.InteractableCompositePattern.PortalInteractionState;
 // import unsw.dungeon.Dungeon;
 // import unsw.dungeon.Subject;
 
@@ -16,21 +14,31 @@ public class Portal extends Entity {
         super(x, y);
     }
 
-    @Override
-    public InteractionState getInteractionForEntity() {
-        return new PortalInteractionState(this);
-    }
-
     public void setExitCoordinates(int x, int y) {
         this.exitXCoordinate = new SimpleIntegerProperty(x);
         this.exitYCoordinate = new SimpleIntegerProperty(y);
     }
 
-    public IntegerProperty getExitXCoordinate() {
-        return exitXCoordinate;
+    public int getExitXCoordinate() {
+        return exitXCoordinate.get();
     }
 
-    public IntegerProperty getExitYCoordinate() {
-        return exitYCoordinate;
+    public int getExitYCoordinate() {
+        return exitYCoordinate.get();
     }
+
+    public void performInteraction(Player player) {
+        // move player to corresponding portal
+        // need to ensure player doesnt move from this after 'interact' is called
+        // fix logic inside player
+        movePlayerToCorrespondingPortal(player);
+    }
+
+    private void movePlayerToCorrespondingPortal(Player player) {
+        int xToMoveTo = getExitXCoordinate();
+        int yToMoveTo = getExitYCoordinate();
+        player.y().set(yToMoveTo);
+        player.x().set(xToMoveTo);
+    }
+
 }

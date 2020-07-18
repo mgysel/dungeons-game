@@ -1,7 +1,7 @@
 package unsw.dungeon.ExitStatePattern;
 
 import unsw.dungeon.Exit;
-
+import unsw.dungeon.Player;
 /**
  * ClosedExit state for exit
  * @author Ben Charlton
@@ -9,15 +9,13 @@ import unsw.dungeon.Exit;
 public class ClosedExit implements ExitState {
 
     @Override
-    public void openExit(Exit exit) {
-        exit.openExit(new OpenExit());
-    }
-
-    @Override
-    public void enterExit(Exit exit) {
+    public void enterExit(Exit exit, Player player) {
         // error message?
-        // do nothing?
+        restrictMovementThroughExit(player);
     }
 
+    private void restrictMovementThroughExit(Player player) {
+        //TODO
+    }
 
 }

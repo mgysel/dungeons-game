@@ -1,6 +1,7 @@
 package unsw.dungeon.ExitStatePattern;
 
 import unsw.dungeon.Exit;
+import unsw.dungeon.Player;
 
 /**
  * OpenExit state for exit
@@ -9,13 +10,11 @@ import unsw.dungeon.Exit;
 public class OpenExit implements ExitState {
 
     @Override
-    public void openExit(Exit exit) {
-        // do nothing
-        return;
+    public void enterExit(Exit exit, Player player) {
+        finishGame(player);
     }
 
-    @Override
-    public void enterExit(Exit exit) {
-        //TODO: finish game
+    private void finishGame(Player player) {
+        //TODO
     }
 }

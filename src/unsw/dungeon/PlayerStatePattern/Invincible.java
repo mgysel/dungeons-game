@@ -1,4 +1,12 @@
 package unsw.dungeon.PlayerStatePattern;
 
-public class Invincible {
+import unsw.dungeon.Player;
+
+public class Invincible implements PlayerState {
+
+    @Override
+    public void changeState(Player player) {
+        player.setPlayerState(this);
+    }
+
 }

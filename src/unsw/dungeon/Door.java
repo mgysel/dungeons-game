@@ -7,15 +7,12 @@ package unsw.dungeon;
  */
 public class Door extends Entity {
 
-    //private DoorState doorState;
-    // private int doorID;
     private boolean isOpen;
     private int doorID;
     private int idOfUnlockingKey;
 
     public Door(int x, int y, int id, int idOfUnlockingKey) {
         super(x,y);
-        //this.doorState = new ClosedDoor();
         this.isOpen = false;
         this.doorID = id;
         this.idOfUnlockingKey = idOfUnlockingKey;
@@ -32,16 +29,32 @@ public class Door extends Entity {
         return this.isOpen;
     }
 
-    //public void attemptToGoThroughDoorWithPlayer(Player player) {
-    //    this.doorState.attemptToGoThroughDoorWithPlayer(this, player); // state pattern
-    //}
+    public void performInteraction(Player player) {
+        if (isOpen()) {
+            moveThroughDoor(player);
+        } else {
+            if (playerHasKeyForDoor(player) != null) {
+                attemptToUnlockDoorWithKey(playerHasKeyForDoor(player));
+                moveThroughDoor(player);
+            } else {
+                preventPassageThroughDoor(player);
+            }
+        }
+    }
 
-    //public void setDoorState(DoorState doorState) {
-    //    this.doorState = doorState;
-    //}
+    private void preventPassageThroughDoor(Player player) {
 
-    // @Override
-    // public InteractionState getInteractionForEntity() {
-    //     return new DoorInteractionState(this);
-    // }
+    }
+
+    private void moveThroughDoor(Player player) {
+
+    }
+
+    private Key playerHasKeyForDoor(Player player) {
+        for (Key key : player.getKeyList()) {
+            if (key.getID() == idOfUnlockingKey) {
+                return key;
+            }
+        } return null;
+    }
 }

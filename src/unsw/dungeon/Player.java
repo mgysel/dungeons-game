@@ -1,6 +1,9 @@
 package unsw.dungeon;
 
 
+import unsw.dungeon.PlayerStatePattern.PlayerState;
+import unsw.dungeon.PlayerStatePattern.Vulnerable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,7 @@ public class Player extends Entity {
 
     private Dungeon dungeon;
     private ArrayList<Entity> inventory;
+    private PlayerState state;
 
     /**
      * Create a player positioned in square (x,y)
@@ -24,6 +28,7 @@ public class Player extends Entity {
         super(x, y);
         this.dungeon = dungeon;
         this.inventory = new ArrayList<Entity>();
+        this.state = new Vulnerable();
     }
 
     public void moveUp() {
@@ -111,6 +116,17 @@ public class Player extends Entity {
     }
 
     public List<Key> getKeyList() {
-        return null; // TODO: this
+        List<Key> playerKeyList = new ArrayList<Key>();
+        for (Entity entity : inventory) {
+            if (entity instanceof Key) {
+                playerKeyList.add((Key) entity);
+            }
+        }
+        return playerKeyList;
     }
+
+    public void setPlayerState(PlayerState state) {
+        this.state = state;
+    }
+
 }
