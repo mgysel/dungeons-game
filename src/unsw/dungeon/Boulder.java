@@ -24,6 +24,14 @@ public class Boulder extends Entity {
         int thisY = getY();
         int nextX = (thisX - playerX) + thisX;
         int nextY = (thisY - playerY) + thisY;
+
+        System.out.println("PLAYER X: "+thisX);
+        System.out.println("PLAYER Y: "+thisY);
+        System.out.println("THIS X: "+thisX);
+        System.out.println("THIS Y: "+thisY);
+        System.out.println("NEXT X: "+nextX);
+        System.out.println("NEXT Y: "+nextY);
+
         List<Entity> xyEntities = dungeon.getEntities(nextX, nextY);
         for (Entity entity : xyEntities) {
             if (entity != null) {
@@ -59,6 +67,7 @@ public class Boulder extends Entity {
         System.out.println("THIS Y: "+thisY);
         System.out.println("NEXT X: "+nextX);
         System.out.println("NEXT Y: "+nextY);
+
         move(nextX, nextY);
     }
 

@@ -32,9 +32,7 @@ public class Player extends Entity {
         int newY = getY() - 1;
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getY() > 0 && !isObstruction(xyEntities, this)) {
-            for (Entity entity : xyEntities) {
-                entity.performInteraction(this);
-            }
+            interact(xyEntities, this);
             y().set(getY() - 1);
 
         }
@@ -45,10 +43,8 @@ public class Player extends Entity {
         int newX = getX();
         int newY = getY() + 1;
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getY() < dungeon.getHeight() - 1 && !(isObstruction(xyEntities, this)))
-            for (Entity entity : xyEntities) {
-                entity.performInteraction(this);
-            }
+        if ((getY() < dungeon.getHeight() - 1) && (!isObstruction(xyEntities, this)))
+            interact(xyEntities, this);
             y().set(getY() + 1);
     }
 
@@ -57,9 +53,7 @@ public class Player extends Entity {
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() > 0 && !(isObstruction(xyEntities, this)))
-            for (Entity entity : xyEntities) {
-                entity.performInteraction(this);
-            }
+            interact(xyEntities, this);
             x().set(getX() - 1);
     }
 
@@ -68,10 +62,7 @@ public class Player extends Entity {
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this)))
-            for (Entity entity : xyEntities) {
-                System.out.println("XY ENTITY: " + entity);
-                entity.performInteraction(this);
-            }
+            interact(xyEntities, this);
             x().set(getX() + 1);
     }
 
@@ -104,24 +95,32 @@ public class Player extends Entity {
         for (Entity entity : xyEntities) {
             System.out.println("ENTITY: " + entity);
             if (entity != null) {
-                if (entity instanceof Obstruction) {
-                    // System.out.println("obstruction? " + entity.isObstruction(player));
-                    return entity.isObstruction(player);
-                }
+                System.out.println("obstruction? " + entity.isObstruction(player));
+                return entity.isObstruction(player);
             }
         }
         return false;
     }
 
-    private void performInteractionForMove(int x, int y, Player player) {
-        Entity entity = dungeon.getEntityAtPosition(x, y); //Get non-player entity
-        if (entity != null) {
-            // InteractionState newInteractionState = entity.getInteractionForEntity();
-            // dungeon.setCurrentInteractionState(newInteractionState);
-            // dungeon.performInteraction();
-            entity.performInteraction(player);
+    private void interact(List<Entity> xyEntities, Player player) {
+        for (Entity entity : xyEntities) {
+            System.out.println("ENTITY: " + entity);
+            if (entity != null) {
+                System.out.println("obstruction? " + entity.isObstruction(player));
+                entity.performInteraction(player);
+            }
         }
     }
+
+    // private void performInteractionForMove(int x, int y, Player player) {
+    //     Entity entity = dungeon.getEntityAtPosition(x, y); //Get non-player entity
+    //     if (entity != null) {
+    //         // InteractionState newInteractionState = entity.getInteractionForEntity();
+    //         // dungeon.setCurrentInteractionState(newInteractionState);
+    //         // dungeon.performInteraction();
+    //         entity.performInteraction(player);
+    //     }
+    // }
 
     // @Override
     // public InteractionState getInteractionForEntity() {
