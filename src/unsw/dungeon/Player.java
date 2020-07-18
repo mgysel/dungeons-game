@@ -27,43 +27,44 @@ public class Player extends Entity {
     public void moveUp() {
         int newX = getX();
         int newY = getY() - 1;
-        List<Entity> entities = returnEntities(newX, newY);
-        if (getY() > 0 && !isObstruction(entities))
+        List<Entity> xyEntities = returnEntities(newX, newY);
+        if (getY() > 0 && !isObstruction(xyEntities, this)) {
             y().set(getY() - 1);
+        }
         // this.performInteractionForMove();
     }
 
-    public void performInteractionForMove(int x, int y) {
-        // Entity entity = getEntityAtPosition(currrentX, currentY);
-        // Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
-        // newInteraction.performInteractionOnDungeon(dungeon)
-        List<Entity> entities = returnEntities(x, y);
-        
+    // public void performInteractionForMove(int x, int y) {
+    //     // Entity entity = getEntityAtPosition(currrentX, currentY);
+    //     // Interaction newInteraction = InteractionFactory.getInteractionForEntity(entity);
+    //     // newInteraction.performInteractionOnDungeon(dungeon)
+    //     List<Entity> entities = returnEntities(x, y);
 
-    }
+
+    // }
 
 
     public void moveDown() {
         int newX = getX();
         int newY = getY() + 1;
-        List<Entity> entities = returnEntities(newX, newY);
-        if (getY() < dungeon.getHeight() - 1 && !(isObstruction(entities)))
+        List<Entity> xyEntities = returnEntities(newX, newY);
+        if (getY() < dungeon.getHeight() - 1 && !(isObstruction(xyEntities, this)))
             y().set(getY() + 1);
     }
 
     public void moveLeft() {
         int newX = getX() - 1;
         int newY = getY();
-        List<Entity> entities = returnEntities(newX, newY);
-        if (getX() > 0 && !(isObstruction(entities)))
+        List<Entity> xyEntities = returnEntities(newX, newY);
+        if (getX() > 0 && !(isObstruction(xyEntities, this)))
             x().set(getX() - 1);
     }
 
     public void moveRight() {
         int newX = getX() + 1;
         int newY = getY();
-        List<Entity> entities = returnEntities(newX, newY);
-        if (getX() < dungeon.getWidth() - 1 && !(isObstruction(entities)))
+        List<Entity> xyEntities = returnEntities(newX, newY);
+        if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this)))
             x().set(getX() + 1);
     }
 
@@ -85,13 +86,12 @@ public class Player extends Entity {
         return xyEntities;
     }
 
-    private boolean isObstruction(List<Entity> entities) {
-        for (Entity entity : entities) {
-            // System.out.println("ENTITY: " + entity);
+    private boolean isObstruction(List<Entity> xyEntities, Player player) {
+        for (Entity entity : xyEntities) {
+            System.out.println("ENTITY: " + entity);
             if (entity != null) {
-                if (entity instanceof Wall) {
-                    return true;
-                }
+                // System.out.println("obstruction? " + entity.isObstruction(player));
+                return entity.isObstruction(player);
             }
         }
         return false;

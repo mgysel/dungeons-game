@@ -5,10 +5,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * An entity in the dungeon.
+ * 
  * @author Robert Clifton-Everest
  *
  */
-public class Entity {
+public class Entity implements Obstruction {
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
@@ -16,6 +17,7 @@ public class Entity {
 
     /**
      * Create an entity positioned in square (x,y)
+     * 
      * @param x
      * @param y
      */
@@ -38,5 +40,10 @@ public class Entity {
 
     public int getX() {
         return x().get();
+    }
+
+    @Override
+    public boolean isObstruction(Player player) {
+        return false;
     }
 }

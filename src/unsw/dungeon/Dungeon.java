@@ -56,6 +56,20 @@ public class Dungeon {
         return entities;
     }
 
+    public List<Entity> getEntities(int x, int y) {
+        List<Entity> xyEntities = new ArrayList<Entity>();
+        for (Entity entity : entities) {
+            System.out.println("ENTITY: " + entity);
+            if (entity != null) {
+                System.out.println("ENTITY: " + entity);
+                if (entity.getX() == x && entity.getY() == y) {
+                    xyEntities.add(entity);
+                }
+            }
+        }
+        return xyEntities;
+    }
+
     // public void addInteractable(Interactable interactable) {
     //     interactables.add(interactable);
     // }
