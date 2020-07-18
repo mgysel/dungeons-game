@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-import unsw.dungeon.InteractableCompositePattern.InteractionState;
+// import unsw.dungeon.InteractableCompositePattern.InteractionState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,12 +103,13 @@ public class Player extends Entity {
         return false;
     }
 
-    private void performInteractionForMove(int x, int y) {
+    private void performInteractionForMove(int x, int y, Player player) {
         Entity entity = dungeon.getEntityAtPosition(x, y); //Get non-player entity
         if (entity != null) {
-            InteractionState newInteractionState = entity.getInteractionForEntity();
-            dungeon.setCurrentInteractionState(newInteractionState);
-            dungeon.performInteraction();
+            // InteractionState newInteractionState = entity.getInteractionForEntity();
+            // dungeon.setCurrentInteractionState(newInteractionState);
+            // dungeon.performInteraction();
+            entity.performInteraction(Player player)
         }
     }
 

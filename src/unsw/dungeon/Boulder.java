@@ -2,7 +2,7 @@ package unsw.dungeon;
 
 import java.util.List;
 
-public class Boulder extends Entity implements Obstruction {
+public class Boulder extends Entity {
 
     private Dungeon dungeon;
 
@@ -32,6 +32,14 @@ public class Boulder extends Entity implements Obstruction {
 
         return false;
     }
+
+    @Override
+    public void performInteraction(Player player) {
+        
+
+    }
+
+    
 
     // public void move() {
     //     if (getY() > 0)
