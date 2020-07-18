@@ -1,4 +1,5 @@
 package unsw.dungeon.InteractableCompositePattern;
+
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Observer;

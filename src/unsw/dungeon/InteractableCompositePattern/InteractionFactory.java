@@ -1,5 +1,6 @@
 package unsw.dungeon.InteractableCompositePattern;
 
+import unsw.dungeon.Door;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Portal;
 
@@ -16,6 +17,9 @@ public class InteractionFactory {
             return new EnemyInteraction((Enemy) entity);
         } else if (entity instanceof Potion) {
             return new PotionInteraction((Potion) entity);
-        } //else ...
+        } else if (entity instanceof Door) {
+            return new DoorInteraction((Door) entity);
+        }
+        return null;
     }
 }
