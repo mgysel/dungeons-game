@@ -2,13 +2,14 @@ package unsw.dungeon.DoorStatePattern;
 
 import unsw.dungeon.Obstruction;
 import unsw.dungeon.Player;
+import unsw.dungeon.Door;
 
 /**
  * ClosedDoor state for Door
  * 
  * @author Ben Charlton
  */
-public class ClosedDoor implements DoorState {
+public class ClosedDoor implements DoorState, Obstruction {
 
     @Override
     public void openDoor(Door door) {

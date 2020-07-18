@@ -2,6 +2,7 @@ package unsw.dungeon.DoorStatePattern;
 
 import unsw.dungeon.Obstruction;
 import unsw.dungeon.Player;
+import unsw.dungeon.Door;
 
 /**
  * OpenDoor state for Door

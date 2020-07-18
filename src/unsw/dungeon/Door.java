@@ -1,5 +1,11 @@
+<<<<<<< HEAD:src/unsw/dungeon/DoorStatePattern/Door.java
 package unsw.dungeon.DoorStatePattern;
 
+=======
+package unsw.dungeon;
+import unsw.dungeon.DoorStatePattern.ClosedDoor;
+import unsw.dungeon.DoorStatePattern.DoorState;
+>>>>>>> 26740c3e8ba718784d3994b556cd7b8dacdb44f4:src/unsw/dungeon/Door.java
 import unsw.dungeon.InteractableCompositePattern.Interactable;
 import unsw.dungeon.Obstruction;
 import unsw.dungeon.Subject;
@@ -9,15 +15,15 @@ import unsw.dungeon.Subject;
  * or unlock if it is locked
  * @author Ben Charlton
  */
-public class Door extends Interactable {
+public class Door extends Entity {
 
     private DoorState state;
-    private int id;
+    private int doorID;
 
     public Door(int x, int y, int id) {
         super(x,y);
         this.state = new ClosedDoor();
-        this.id = id;
+        this.doorID = id;
     }
 
 
@@ -29,9 +35,4 @@ public class Door extends Interactable {
         return state;
     }
 
-
-    @Override
-    public void update(Subject obj) {
-        //TODO: notify observers of state change
-    }
 }

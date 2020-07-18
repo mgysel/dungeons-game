@@ -1,5 +1,7 @@
 package unsw.dungeon.ExitStatePattern;
 
+import unsw.dungeon.Exit;
+
 /**
  * OpenExit state for exit
  * @author Ben Charlton
