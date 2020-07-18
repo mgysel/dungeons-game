@@ -93,8 +93,10 @@ public class Player extends Entity {
         for (Entity entity : xyEntities) {
             System.out.println("ENTITY: " + entity);
             if (entity != null) {
-                // System.out.println("obstruction? " + entity.isObstruction(player));
-                return entity.isObstruction(player);
+                if (entity instanceof Obstruction) {
+                    // System.out.println("obstruction? " + entity.isObstruction(player));
+                    return entity.isObstruction(player);
+                }
             }
         }
         return false;

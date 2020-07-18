@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Wall extends Entity {
+public class Wall extends Entity implements Obstruction {
 
     private Dungeon dungeon;
 
