@@ -2,7 +2,6 @@
  *
  */
 package unsw.dungeon;
-// import unsw.dungeon.InteractableCompositePattern.InteractionState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,6 @@ public class Dungeon {
     private List<Entity> entities;
     private List<Goal> goals;
     private Player player;
-    // private InteractionState currentInteractionState;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -30,16 +28,8 @@ public class Dungeon {
         this.entities = new ArrayList<>();
         this.player = null;
         this.goals = new ArrayList<Goal>();
-        // this.currentInteractionState = null;
     }
 
-    // public void setCurrentInteractionState(InteractionState interactionState){
-    //     this.currentInteractionState = interactionState;
-    // }
-
-    // public void performInteraction() {
-    //     currentInteractionState.interactOnDungeon(this);
-    // }
 
     public int getWidth() {
         return width;
