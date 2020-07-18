@@ -1,6 +1,4 @@
 package unsw.dungeon;
-import unsw.dungeon.InteractableCompositePattern.DoorInteractionState;
-import unsw.dungeon.InteractableCompositePattern.InteractionState;
 
 /**
  * Door that players are able to walk through provided it is unlocked
@@ -10,8 +8,9 @@ import unsw.dungeon.InteractableCompositePattern.InteractionState;
 public class Door extends Entity {
 
     //private DoorState doorState;
-    private int doorID;
+    // private int doorID;
     private boolean isOpen;
+    private int doorID;
     private int idOfUnlockingKey;
 
     public Door(int x, int y, int id, int idOfUnlockingKey) {
@@ -41,8 +40,8 @@ public class Door extends Entity {
     //    this.doorState = doorState;
     //}
 
-    @Override
-    public InteractionState getInteractionForEntity() {
-        return new DoorInteractionState(this);
-    }
+    // @Override
+    // public InteractionState getInteractionForEntity() {
+    //     return new DoorInteractionState(this);
+    // }
 }
