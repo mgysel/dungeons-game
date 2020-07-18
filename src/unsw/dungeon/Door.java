@@ -1,12 +1,6 @@
-<<<<<<< HEAD:src/unsw/dungeon/DoorStatePattern/Door.java
-package unsw.dungeon.DoorStatePattern;
-
-=======
 package unsw.dungeon;
 import unsw.dungeon.DoorStatePattern.ClosedDoor;
 import unsw.dungeon.DoorStatePattern.DoorState;
->>>>>>> 26740c3e8ba718784d3994b556cd7b8dacdb44f4:src/unsw/dungeon/Door.java
-import unsw.dungeon.InteractableCompositePattern.Interactable;
 import unsw.dungeon.Obstruction;
 import unsw.dungeon.Subject;
 
