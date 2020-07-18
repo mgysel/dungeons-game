@@ -1,5 +1,7 @@
 package unsw.dungeon.DoorStatePattern;
 
+import unsw.dungeon.Door;
+
 /**
  * OpenDoor state for Door
  * @author Ben Charlton

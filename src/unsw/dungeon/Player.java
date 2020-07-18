@@ -12,7 +12,7 @@ import java.util.List;
 public class Player extends Entity {
 
     private Dungeon dungeon;
-
+    private ArrayList<Entity> inventory;
 
     /**
      * Create a player positioned in square (x,y)
@@ -22,6 +22,7 @@ public class Player extends Entity {
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
+        this.inventory = new ArrayList<Entity>();
     }
 
     public void moveUp() {
@@ -71,10 +72,17 @@ public class Player extends Entity {
         this.performInteractionForMove(newX, newY);
     }
 
-    // private void pushBoulder(Boulder boulder, int newX, int newY) {
-    //     List<Entity> entities = returnEntities(dungeon, newX, newY);
+    public void addItemToInventory(Entity entity) {
+        this.inventory.add(entity);
+    }
 
-    // }
+    public void removeItemFromInventory(Entity entity) {
+        this.inventory.remove(entity);
+    }
+
+    public ArrayList<Entity> getListOfItemsInInventory() {
+        return inventory;
+    }
 
     private List<Entity> returnEntities(int x, int y) {
         List<Entity> entities = dungeon.getEntities();
@@ -109,6 +117,4 @@ public class Player extends Entity {
         //    newInteraction.performInteractionOnDungeon(dungeon);
         }
     }
-
-
 }
