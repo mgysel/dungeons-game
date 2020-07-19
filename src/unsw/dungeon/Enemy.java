@@ -9,7 +9,7 @@ import unsw.dungeon.EnemyStatePattern.NotScaredEnemyState;
 import unsw.dungeon.EnemyStatePattern.ScaredEnemyState;
 import unsw.dungeon.PlayerStatePattern.Invincible;
 
-public class Enemy extends Entity implements Observer, Goal {
+public class Enemy extends Entity implements Observer, Goal, Interaction {
 
     Dungeon dungeon;
     EnemyState scaredState;

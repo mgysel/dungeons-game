@@ -4,7 +4,7 @@ package unsw.dungeon;
  * Exit that players move through when goals completed to finish dungeon
  * @author Ben Charlton
  */
-public class Exit extends Entity {
+public class Exit extends Entity implements Interaction{
 
     private Dungeon dungeon;
 

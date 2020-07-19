@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Sword extends Entity {
+public class Sword extends Entity implements Interaction {
 
     private int usesRemaining = 5;
     private Player playerWieldingSword;

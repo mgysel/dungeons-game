@@ -8,12 +8,6 @@ public class FloorSwitch extends Entity implements Goal {
         super(x, y);
     }
 
-    @Override
-    public void performInteraction(Player player) {
-        // no interaction between player and floor switch
-    }
-
-
     public boolean isTriggered() {
         for (Entity entity : this.dungeon.getEntities(getX(), getY())) {
             if (entity instanceof Boulder) {

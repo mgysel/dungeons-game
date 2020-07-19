@@ -5,7 +5,7 @@ package unsw.dungeon;
  * or unlock if it is locked
  * @author Ben Charlton
  */
-public class Door extends Entity {
+public class Door extends Entity implements Obstruction, Interaction {
 
     private boolean isOpen;
     private int doorID;

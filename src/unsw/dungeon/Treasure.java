@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Treasure extends Entity implements Goal {
+public class Treasure extends Entity implements Goal, Interaction {
 
     private Dungeon dungeon;
 

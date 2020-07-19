@@ -2,7 +2,7 @@ package unsw.dungeon;
 
 import java.util.List;
 
-public class Boulder extends Entity {
+public class Boulder extends Entity implements Obstruction, Interaction {
 
     private Dungeon dungeon;
 

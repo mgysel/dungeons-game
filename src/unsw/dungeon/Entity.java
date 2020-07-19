@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @author Robert Clifton-Everest
  *
  */
-public class Entity implements Obstruction, Interaction {
+public class Entity {
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
@@ -45,5 +45,4 @@ public class Entity implements Obstruction, Interaction {
     public boolean isObstruction(Player player) {
         return false;
     }
-
 }

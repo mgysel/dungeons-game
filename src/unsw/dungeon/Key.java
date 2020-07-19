@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Key extends Entity {
+public class Key extends Entity implements Interaction {
 
     private int keyID;
 

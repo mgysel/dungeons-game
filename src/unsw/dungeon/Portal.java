@@ -7,7 +7,7 @@ import javax.sound.sampled.Port;
 // import unsw.dungeon.Dungeon;
 // import unsw.dungeon.Subject;
 
-public class Portal extends Entity {
+public class Portal extends Entity implements Interaction {
 
     private int portalPairID;
     private Dungeon dungeon;
