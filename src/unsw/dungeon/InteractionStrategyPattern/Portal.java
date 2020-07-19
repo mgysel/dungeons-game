@@ -11,9 +11,10 @@ public class Portal extends Entity implements Interaction {
     private int portalPairID;
     private Dungeon dungeon;
 
-    public Portal(int x, int y, int portalPairID) {
+    public Portal(Dungeon dungeon, int x, int y, int portalPairID) {
         super(x, y);
         this.portalPairID = portalPairID;
+        this.dungeon = dungeon;
     }
 
     public void performInteraction(Player player) {
@@ -41,8 +42,8 @@ public class Portal extends Entity implements Interaction {
 
 
     private Portal getCorrespondingPortal() {
-        for (Entity entity : dungeon.getEntities()) {
-            if (entity instanceof Portal) {
+        for (Entity entity : this.dungeon.getEntities()) {
+            if (entity instanceof Portal && entity != this) {
                 if (((Portal) entity).getPortalPairID() == this.portalPairID){
                     return (Portal) entity;
                 }
