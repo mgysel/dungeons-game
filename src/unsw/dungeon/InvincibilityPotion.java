@@ -8,27 +8,26 @@ import java.util.TimerTask;
 
 public class InvincibilityPotion extends Entity {
 
+    private Dungeon dungeon;
+
     public InvincibilityPotion(int x, int y) {
         super(x, y);
     }
 
     @Override
     public void performInteraction(Player player) {
-        // player.addItemToInventory(this);
+        player.addItemToInventory(this);
+        dungeon.removeEntity(this);
+        player.setPlayerState(new Invincible());
+        InvincibilityPotion thisPotion = this;
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             public void run() {
-                player.setPlayerState(new Invincible());
+                player.setPlayerState(new Vulnerable());
+                player.removeItemFromInventory(thisPotion);
             }
         };
-        timer.schedule(task, 3000);
-        // reset back to vulnerable here?
-        //player.setPlayerState(new Vulnerable());
-
-        // Another potential option could be for player to change state if invincibility potion in inventory
-        // Maybe player.addItemToInventory() function inside player can change the player state
-        // player.removeInventory(this);
-        
+        timer.schedule(task, 1500);
+        timer.cancel();
     }
-
 }
