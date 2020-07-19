@@ -40,6 +40,11 @@ public abstract class DungeonLoader {
         JSONArray jsonEntities = json.getJSONArray("entities");
         JSONArray goals = json.getJSONArray("goals");
 
+        // have a list of goal lists
+        // every OR is a new goal list inside the overarching list of goal lists
+        // every AND just adds the goal to the same goal list
+
+
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
@@ -69,7 +74,9 @@ public abstract class DungeonLoader {
             onLoad(wall);
             entity = wall;
             break;
-        case "treasure": 
+        case "treasure":
+            //if (treasure == goal) {
+            // add to goals list
             Treasure treasure = new Treasure(dungeon,x,y);
             onLoad(treasure);
             entity = treasure;
