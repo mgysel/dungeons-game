@@ -7,14 +7,16 @@ package unsw.dungeon;
 public class Enemy extends Entity implements Observer {
 
     Dungeon dungeon;
-    // EnemyState scaredState;
-    // EnemyState normalState;
+    EnemyState scaredState;
+    EnemyState notScaredState;
+
+    EnemyState state = notScaredState;
 
     public Enemy(Dungeon dungeon, int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
-        // scaredState = new ScaredState(this);
-        // normalState = new NormalState(this);
+        scaredState = new ScaredEnemyState(this);
+        notScaredState = new NotScaredEnemyState(this);
 
     }
 
@@ -30,30 +32,42 @@ public class Enemy extends Entity implements Observer {
 
     @Override
     public void update(Player player) {
-        // Check if player has invincibility potion
-        boolean isPlayerInvincible = false;
-        for (Entity entity : player.getListOfItemsInInventory()) {
-            if (entity instanceof InvincibilityPotion) {
-                isPlayerInvincible = true;
-            }
-        }
+        // If player is invincible or has sword, change state to scared
 
-        // Check player coordinates
-        int playerX = player.getX();
-        int playerY = player.getY();
+        // If player does not have invincible or sword, change state to not scared
 
-        if (isPlayerInvincible && playerX == getX() && playerY == getY()) {
-            dungeon.removeEntity(this);
-        } else if (!isPlayerInvincible && playerX == getX() && playerY == getY()) {
-            dungeon.removeEntity(player);
-        } else if (isPlayerInvincible) {
-            this.moveAwayPlayer(playerX, playerY);
-        } else {
-            this.moveTowardPlayer(playerX, playerY);
-        }
 
-        
+        // // Check if player has invincibility potion
+        // boolean isPlayerInvincible = false;
+        // for (Entity entity : player.getListOfItemsInInventory()) {
+        //     if (entity instanceof InvincibilityPotion) {
+        //         isPlayerInvincible = true;
+        //     }
+        // }
 
+        // // Check player coordinates
+        // int playerX = player.getX();
+        // int playerY = player.getY();
+
+        // // Should encapsulate this in different InteractWithPlayer() functions for each
+        // // state
+        // if (isPlayerInvincible && playerX == getX() && playerY == getY()) {
+        //     dungeon.removeEntity(this);
+        // } else if (!isPlayerInvincible && playerX == getX() && playerY == getY()) {
+        //     dungeon.removeEntity(player);
+        // } else if (isPlayerInvincible) {
+        //     this.moveAwayPlayer(playerX, playerY);
+        // } else {
+        //     this.moveTowardPlayer(playerX, playerY);
+        // }
 
     }
+
+    @Override
+    public void performInteraction(Player player) {
+        // TODO Auto-generated method stub
+        state.performInteraction(dungeon, player);
+    }
+
+    
 }
