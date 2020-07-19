@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class FloorSwitch extends Entity {
+public class FloorSwitch extends Entity implements Goal {
 
     private Dungeon dungeon;
 
@@ -14,11 +14,18 @@ public class FloorSwitch extends Entity {
     }
 
 
-    public boolean isTriggered(Dungeon dungeon) {
-        for (Entity entity : dungeon.getEntities(getX(), getY())) {
+    public boolean isTriggered() {
+        for (Entity entity : this.dungeon.getEntities(getX(), getY())) {
             if (entity instanceof Boulder) {
                 return true;
             }
+        } return false;
+    }
+
+    @Override
+    public boolean isComplete() {
+        if (isTriggered()) {
+            return true;
         } return false;
     }
 }
