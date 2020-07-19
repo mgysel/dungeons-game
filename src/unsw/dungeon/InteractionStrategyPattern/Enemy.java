@@ -42,6 +42,16 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
             @Override
             public void run() {
                 state.moveEnemy(player, dungeon);
+                int thisEnemyX = Enemy.super.getX();
+                System.out.println("enemy x = " + thisEnemyX);
+                int thisEnemyY = Enemy.super.getY();
+                for (Entity entity : dungeon.getEntities(thisEnemyX, thisEnemyY)) {
+                    if (entity instanceof Enemy) {
+                        // do nothing
+                    } else {
+                        performInteraction(entity);
+                    }
+                }
             }
         }, 0,1000);
     }
@@ -58,8 +68,13 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
     }
 
     @Override
-    public void performInteraction(Player player) {
-        state.performInteraction(player);
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            state.performInteraction(player);
+        } if (entity instanceof Portal) {
+            ((Portal) entity).performInteraction(this);
+        }
     }
 
     @Override

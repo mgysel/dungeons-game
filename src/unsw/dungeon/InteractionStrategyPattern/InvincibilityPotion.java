@@ -15,18 +15,21 @@ public class InvincibilityPotion extends Entity implements Interaction {
     }
 
     @Override
-    public void performInteraction(Player player) {
-        player.addItemToInventory(this);
-        player.setPlayerState(new Invincible());
-        InvincibilityPotion thisPotion = this;
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            public void run() {
-                player.setPlayerState(new Vulnerable());
-                player.removeItemFromInventory(thisPotion);
-            }
-        };
-        timer.schedule(task, 1500);
-        timer.cancel();
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            player.addItemToInventory(this);
+            player.setPlayerState(new Invincible());
+            InvincibilityPotion thisPotion = this;
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                public void run() {
+                    player.setPlayerState(new Vulnerable());
+                    player.removeItemFromInventory(thisPotion);
+                }
+            };
+            timer.schedule(task, 1500);
+            timer.cancel();
+        }
     }
 }

@@ -1,7 +1,7 @@
 package unsw.dungeon.InteractionStrategyPattern;
 
-import unsw.dungeon.Player;
+import unsw.dungeon.Entity;
 
 public interface Interaction {
-    public void performInteraction(Player player);
+    public void performInteraction(Entity entity);
 }

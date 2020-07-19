@@ -15,8 +15,11 @@ public class Treasure extends Entity implements Goal, Interaction {
     }
 
     @Override
-    public void performInteraction(Player player) {
-        player.addItemToInventory(this);
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            player.addItemToInventory(this);
+        }
     }
 
     @Override

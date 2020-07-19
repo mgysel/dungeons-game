@@ -17,27 +17,37 @@ public class Portal extends Entity implements Interaction {
         this.dungeon = dungeon;
     }
 
-    public void performInteraction(Player player) {
-        player.x().set(getXCoordToMoveTo(player));
-        player.y().set(getYCoordToMoveTo(player));
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player || entity instanceof Boulder || entity instanceof Enemy ) {
+            entity.x().set(getXCoordToMoveTo(entity));
+            entity.y().set(getYCoordToMoveTo(entity));
+        }
     }
 
-    private int getXCoordToMoveTo(Player player) {
-        int playerX = player.getX();
+
+    private int getXCoordToMoveTo(Entity entity) {
+        int entityX = entity.getX();
         int fromPortalX = getX();
         Portal toPortal = getCorrespondingPortal();
-        int toPortalX = toPortal.getX();
+        if (toPortal != null) {
+            int toPortalX = toPortal.getX();
+            return (entityX - fromPortalX + toPortalX);
+        } else {
+            return entityX;
+        }
 
-        return (playerX - fromPortalX + toPortalX);
     }
 
-    private int getYCoordToMoveTo(Player player) {
-        int playerY = player.getY();
+    private int getYCoordToMoveTo(Entity entity) {
+        int entityY = entity.getY();
         int fromPortalY = getY();
         Portal toPortal = getCorrespondingPortal();
-        int toPortalY = toPortal.getY();
-
-        return (playerY - fromPortalY + toPortalY);
+        if (toPortal != null) {
+            int toPortalY = toPortal.getY();
+            return (entityY - fromPortalY + toPortalY);
+        } else {
+            return entityY;
+        }
     }
 
 

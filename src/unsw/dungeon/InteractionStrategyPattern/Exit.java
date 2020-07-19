@@ -19,11 +19,14 @@ public class Exit extends Entity implements Interaction {
     }
 
     @Override
-    public void performInteraction(Player player) {
-        if (dungeon.checkNonExitGoalsCompleted()) {
-            dungeon.winGame();
-        } else {
-            // do nothing while player stands on exit
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            if (dungeon.checkNonExitGoalsCompleted()) {
+                dungeon.winGame();
+            } else {
+                // do nothing while player stands on exit
+            }
         }
     }
 }

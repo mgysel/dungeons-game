@@ -28,9 +28,12 @@ public class Door extends Entity implements Obstruction, Interaction {
     }
 
 
-    public void performInteraction(Player player) {
-        attemptToUnlockDoorWithKey(playerHasKeyForDoor(player));
-        player.removeItemFromInventory(playerHasKeyForDoor(player));
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            attemptToUnlockDoorWithKey(playerHasKeyForDoor(player));
+            player.removeItemFromInventory(playerHasKeyForDoor(player));
+        }
     }
 
 
