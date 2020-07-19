@@ -125,14 +125,6 @@ public class Player extends Entity {
         return playerKeyList;
     }
 
-    public void addInventory(Entity entity) {
-        inventory.add(entity);
-    }
-
-    public void removeInventory(Entity entity) {
-        inventory.remove(entity);
-    }
-
     public void setPlayerState(PlayerState state) {
         this.state = state;
     }

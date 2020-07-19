@@ -8,7 +8,7 @@ public class Treasure extends Entity {
 
     @Override
     public void performInteraction(Player player) {
-        player.addInventory(this);
+        player.addItemToInventory(this);
     }
 
     

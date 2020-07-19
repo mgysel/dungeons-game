@@ -14,7 +14,7 @@ public class InvincibilityPotion extends Entity {
 
     @Override
     public void performInteraction(Player player) {
-        // player.addInventory(this);
+        // player.addItemToInventory(this);
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             public void run() {
@@ -27,7 +27,7 @@ public class InvincibilityPotion extends Entity {
         //player.setPlayerState(new Vulnerable());
 
         // Another potential option could be for player to change state if invincibility potion in inventory
-        // Maybe player.addInventory() function inside player can change the player state
+        // Maybe player.addItemToInventory() function inside player can change the player state
         // player.removeInventory(this);
         
     }
