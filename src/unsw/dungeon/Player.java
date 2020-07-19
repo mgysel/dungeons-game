@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+import unsw.dungeon.PlayerStatePattern.Invincible;
 import unsw.dungeon.PlayerStatePattern.PlayerState;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
 
@@ -17,7 +18,8 @@ public class Player extends Entity implements Subject {
     private Dungeon dungeon;
     private ArrayList<Entity> inventory;
     private List<Enemy> observers;
-    // private PlayerState state;
+    private PlayerState state;
+
 
     /**
      * Create a player positioned in square (x,y)
@@ -29,7 +31,7 @@ public class Player extends Entity implements Subject {
         super(x, y);
         this.dungeon = dungeon;
         this.inventory = new ArrayList<Entity>();
-        // this.state = new Vulnerable();
+        this.state = new Vulnerable();
     }
 
     public void moveUp() {
@@ -39,6 +41,7 @@ public class Player extends Entity implements Subject {
         if (getY() > 0 && !isObstruction(xyEntities, this)) {
             interact(xyEntities, this);
             y().set(getY() - 1);
+            notifyObservers();
         }
     }
 
@@ -46,27 +49,33 @@ public class Player extends Entity implements Subject {
         int newX = getX();
         int newY = getY() + 1;
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if ((getY() < dungeon.getHeight() - 1) && (!isObstruction(xyEntities, this)))
+        if ((getY() < dungeon.getHeight() - 1) && (!isObstruction(xyEntities, this))) {
             interact(xyEntities, this);
             y().set(getY() + 1);
+            notifyObservers();
+        }
     }
 
     public void moveLeft() {
         int newX = getX() - 1;
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getX() > 0 && !(isObstruction(xyEntities, this)))
+        if (getX() > 0 && !(isObstruction(xyEntities, this))) {
             interact(xyEntities, this);
             x().set(getX() - 1);
+            notifyObservers();
+        }
     }
 
     public void moveRight() {
         int newX = getX() + 1;
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this)))
+        if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this))) {
             interact(xyEntities, this);
-        x().set(getX() + 1);
+            x().set(getX() + 1);
+            notifyObservers();
+        }
     }
 
     public void addItemToInventory(Entity entity) {
@@ -127,6 +136,7 @@ public class Player extends Entity implements Subject {
 
     public void setPlayerState(PlayerState state) {
         this.state = state;
+        notifyObservers();
     }
 
     @Override
@@ -149,6 +159,33 @@ public class Player extends Entity implements Subject {
         observers.remove(e);
     }
 
+    public PlayerState getState() {
+        return this.state;
+    }
 
+    public void removeEnemy(Enemy enemy) {
+        dungeon.removeEntity(enemy);
+    }
 
+    public void swingSword(Enemy enemy) {
+        for (Entity entity : getListOfItemsInInventory()) {
+            if (entity instanceof Sword) {
+                Sword sword = (Sword) entity;
+                sword.decrementUsesRemaining();
+                removeEnemy(enemy);
+            }
+        }
+    }
+
+    public boolean hasSword() {
+        for (Entity entity : getListOfItemsInInventory()) {
+            if (entity instanceof Sword) {
+                return true;
+            }
+        } return false;
+    }
+
+    public void dies() {
+        dungeon.removeEntity(this);
+    }
 }

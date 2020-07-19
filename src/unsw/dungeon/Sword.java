@@ -15,16 +15,11 @@ public class Sword extends Entity {
         player.addItemToInventory(this);
     }
 
-    public void swingSword() {
-        decrementUsesRemaining();
-        // kill enemy here?
-    }
-
     public int getUsesRemaining() {
         return usesRemaining;
     }
 
-    private void decrementUsesRemaining(){
+    public void decrementUsesRemaining(){
         this.usesRemaining--;
         if (getUsesRemaining() == 0) {
             playerWieldingSword.removeItemFromInventory(this);
