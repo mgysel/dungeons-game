@@ -1,4 +1,8 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
+
+import unsw.dungeon.Entity;
+import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
+import unsw.dungeon.Player;
 
 /**
  * Door that players are able to walk through provided it is unlocked
@@ -40,11 +44,13 @@ public class Door extends Entity implements Obstruction, Interaction {
         } return null;
     }
 
-    public boolean isObstruction(Player player) {
-        if (playerHasKeyForDoor(player) == null) {
-            return true;
-        } else {
+
+    @Override
+    public boolean isObstruction(Player player, int x, int y) {
+        if (playerHasKeyForDoor(player) != null || this.isOpen == true) {
             return false;
+        } else {
+            return true;
         }
     }
 }

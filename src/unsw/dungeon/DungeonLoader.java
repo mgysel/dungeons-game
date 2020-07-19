@@ -6,6 +6,10 @@ import java.io.FileReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import unsw.dungeon.InteractionStrategyPattern.Boulder;
+import unsw.dungeon.InteractionStrategyPattern.Portal;
+import unsw.dungeon.InteractionStrategyPattern.Treasure;
+import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
 /**
  * Loads a dungeon from a .json file.

@@ -1,11 +1,10 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
-import javax.sound.sampled.Port;
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
+import unsw.dungeon.Player;
 // import unsw.dungeon.Dungeon;
-// import unsw.dungeon.Subject;
+// import unsw.dungeon.ObserverPattern.Subject;
 
 public class Portal extends Entity implements Interaction {
 

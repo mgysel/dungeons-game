@@ -10,6 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import unsw.dungeon.InteractionStrategyPattern.Boulder;
+import unsw.dungeon.InteractionStrategyPattern.Portal;
+import unsw.dungeon.InteractionStrategyPattern.Treasure;
+import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
 import java.io.File;
 

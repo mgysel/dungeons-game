@@ -1,12 +1,14 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
 
+import unsw.dungeon.Entity;
+import unsw.dungeon.Player;
 import unsw.dungeon.PlayerStatePattern.Invincible;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class InvincibilityPotion extends Entity {
+public class InvincibilityPotion extends Entity implements Interaction {
 
     public InvincibilityPotion(int x, int y) {
         super(x, y);

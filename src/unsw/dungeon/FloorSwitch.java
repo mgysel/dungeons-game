@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import unsw.dungeon.InteractionStrategyPattern.Boulder;
+
 public class FloorSwitch extends Entity implements Goal {
 
     private Dungeon dungeon;

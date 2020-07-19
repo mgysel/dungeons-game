@@ -3,6 +3,10 @@
  */
 package unsw.dungeon;
 
+import unsw.dungeon.InteractionStrategyPattern.Enemy;
+import unsw.dungeon.InteractionStrategyPattern.Exit;
+import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,5 +111,15 @@ public class Dungeon {
             }
         }
         return null;
+    }
+
+    public boolean isThereObstructionAtXY(Player player, int x, int y) {
+        for (Entity entity : this.getEntities() ) {
+            if (entity != null && entity instanceof Obstruction) {
+                Obstruction obstructingEntity = (Obstruction) entity;
+                return obstructingEntity.isObstruction(getPlayer(),x, y);
+            }
+        }
+        return false;
     }
 }

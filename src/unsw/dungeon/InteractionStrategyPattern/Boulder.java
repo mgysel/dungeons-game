@@ -1,4 +1,8 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
+
+import unsw.dungeon.*;
+import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
+import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
 import java.util.List;
 
@@ -17,9 +21,9 @@ public class Boulder extends Entity implements Obstruction, Interaction {
     }
 
     @Override
-    public boolean isObstruction(Player player) {
-        int playerX = player.getX();
-        int playerY = player.getY();
+    public boolean isObstruction(Player player, int x, int y) {
+        int playerX = x;
+        int playerY = y;
         int thisX = getX();
         int thisY = getY();
         int nextX = (thisX - playerX) + thisX;

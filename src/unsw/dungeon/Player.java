@@ -1,6 +1,11 @@
 package unsw.dungeon;
 
-import unsw.dungeon.PlayerStatePattern.Invincible;
+import unsw.dungeon.InteractionStrategyPattern.Enemy;
+import unsw.dungeon.InteractionStrategyPattern.Interaction;
+import unsw.dungeon.InteractionStrategyPattern.Key;
+import unsw.dungeon.InteractionStrategyPattern.Sword;
+import unsw.dungeon.ObserverPattern.Subject;
+import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.PlayerStatePattern.PlayerState;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
 
@@ -38,7 +43,7 @@ public class Player extends Entity implements Subject {
         int newX = getX();
         int newY = getY() - 1;
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getY() > 0 && !isObstruction(xyEntities, this)) {
+        if (getY() > 0 && !dungeon.isThereObstructionAtXY(this, newX, newY)) {
             interact(xyEntities, this);
             y().set(getY() - 1);
             notifyObservers();
@@ -49,7 +54,7 @@ public class Player extends Entity implements Subject {
         int newX = getX();
         int newY = getY() + 1;
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if ((getY() < dungeon.getHeight() - 1) && (!isObstruction(xyEntities, this))) {
+        if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(this, newX, newY))) {
             interact(xyEntities, this);
             y().set(getY() + 1);
             notifyObservers();
@@ -60,7 +65,7 @@ public class Player extends Entity implements Subject {
         int newX = getX() - 1;
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getX() > 0 && !(isObstruction(xyEntities, this))) {
+        if (getX() > 0 && !(dungeon.isThereObstructionAtXY(this, newX,newY))) {
             interact(xyEntities, this);
             x().set(getX() - 1);
             notifyObservers();
@@ -71,7 +76,7 @@ public class Player extends Entity implements Subject {
         int newX = getX() + 1;
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this))) {
+        if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(this, newX,newY))) {
             interact(xyEntities, this);
             x().set(getX() + 1);
             notifyObservers();
@@ -104,23 +109,13 @@ public class Player extends Entity implements Subject {
         return xyEntities;
     }
 
-    private boolean isObstruction(List<Entity> xyEntities, Player player) {
-        for (Entity entity : xyEntities) {
-            System.out.println("ENTITY: " + entity);
-            if (entity != null) {
-                System.out.println("obstruction? " + entity.isObstruction(player));
-                return entity.isObstruction(player);
-            }
-        }
-        return false;
-    }
-
     private void interact(List<Entity> xyEntities, Player player) {
         for (Entity entity : xyEntities) {
             System.out.println("ENTITY: " + entity);
-            if (entity != null) {
+            if (entity != null && entity instanceof Interaction) {
+                Interaction interactingEntity = (Interaction) entity;
                 System.out.println("obstruction? " + entity.isObstruction(player));
-                entity.performInteraction(player);
+                interactingEntity.performInteraction(player);
             }
         }
     }
@@ -145,7 +140,6 @@ public class Player extends Entity implements Subject {
         for (Enemy o : observers) {
             o.update(this);
         }
-
     }
 
     @Override

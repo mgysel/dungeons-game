@@ -1,6 +1,6 @@
 package unsw.dungeon.PlayerStatePattern;
 
-import unsw.dungeon.Enemy;
+import unsw.dungeon.InteractionStrategyPattern.Enemy;
 import unsw.dungeon.Player;
 
 public class Invincible implements PlayerState {

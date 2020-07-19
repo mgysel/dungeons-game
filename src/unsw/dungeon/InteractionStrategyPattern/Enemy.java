@@ -1,13 +1,23 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
 
 // import unsw.dungeon.EnemyStatePattern.EnemyState;
 // import unsw.dungeon.EnemyStatePattern.ScaredState;
 // import unsw.dungeon.EnemyStatePattern.NormalState;
 
+import unsw.dungeon.Dungeon;
 import unsw.dungeon.EnemyStatePattern.EnemyState;
 import unsw.dungeon.EnemyStatePattern.NotScaredEnemyState;
 import unsw.dungeon.EnemyStatePattern.ScaredEnemyState;
+import unsw.dungeon.Entity;
+import unsw.dungeon.Goal;
+import unsw.dungeon.ObserverPattern.Observer;
+import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
+import unsw.dungeon.Player;
 import unsw.dungeon.PlayerStatePattern.Invincible;
+
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Enemy extends Entity implements Observer, Goal, Interaction {
 
@@ -22,12 +32,18 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
         scaredState = new ScaredEnemyState(this);
         notScaredState = new NotScaredEnemyState(this);
         this.state = notScaredState;
-        moveEnemy(dungeon.getPlayer());
+        moveEnemy(dungeon.getPlayer(), dungeon);
     }
 
-    public void moveEnemy(Player player) {
+    public void moveEnemy(Player player, Dungeon dungeon) {
         // every second,
-        state.moveEnemy(player);
+        Timer t = new Timer( );
+        t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                state.moveEnemy(player, dungeon);
+            }
+        }, 0,1000);
     }
 
     @Override
@@ -55,5 +71,6 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
             return false;
         } return true;
     }
+
     
 }

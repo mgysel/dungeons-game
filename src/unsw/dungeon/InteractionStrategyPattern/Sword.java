@@ -1,4 +1,7 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
+
+import unsw.dungeon.Entity;
+import unsw.dungeon.Player;
 
 public class Sword extends Entity implements Interaction {
 

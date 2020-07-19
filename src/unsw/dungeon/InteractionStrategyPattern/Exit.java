@@ -1,10 +1,15 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
+
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
+import unsw.dungeon.InteractionStrategyPattern.Interaction;
+import unsw.dungeon.Player;
 
 /**
  * Exit that players move through when goals completed to finish dungeon
  * @author Ben Charlton
  */
-public class Exit extends Entity implements Interaction{
+public class Exit extends Entity implements Interaction {
 
     private Dungeon dungeon;
 

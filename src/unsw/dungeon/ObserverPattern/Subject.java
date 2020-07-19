@@ -1,6 +1,8 @@
-package unsw.dungeon;
+package unsw.dungeon.ObserverPattern;
 
-/**  
+import unsw.dungeon.InteractionStrategyPattern.Enemy;
+
+/**
  * Subject Interface that allows Player, Boulder, Enemies to notify observers of movement
  * @author Mike Gysel
  */

@@ -1,4 +1,9 @@
-package unsw.dungeon;
+package unsw.dungeon.InteractionStrategyPattern;
+
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
+import unsw.dungeon.Goal;
+import unsw.dungeon.Player;
 
 public class Treasure extends Entity implements Goal, Interaction {
 
