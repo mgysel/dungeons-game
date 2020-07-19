@@ -87,15 +87,18 @@ public class Dungeon {
         goals.add(goal);
     }
 
-    // public boolean checkAllGoalsCompleted() {
-    //     for (Goal goal : goals) {
-    //         if (goalIsComplete(goal)) {
-    //             continue;
-    //         } else {
-    //             return false;
-    //         }
-    //     } return true;
-    // }
+     public void winGame() {
+        removeEntity(player);
+     }
+
+    public boolean checkNonExitGoalsCompleted() {
+        for (Goal goal : goals) {
+            if (!(goal instanceof Exit) && goal.isComplete()) {
+                continue;
+            }
+            return false;
+        } return true;
+    }
 
     public Entity getEntityAtPosition(int x, int y) {
         for (Entity entityAtPosition : getEntities()) {

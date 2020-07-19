@@ -4,7 +4,7 @@ package unsw.dungeon;
 // import unsw.dungeon.EnemyStatePattern.ScaredState;
 // import unsw.dungeon.EnemyStatePattern.NormalState;
 
-public class Enemy extends Entity implements Observer {
+public class Enemy extends Entity implements Observer, Goal {
 
     Dungeon dungeon;
     EnemyState scaredState;
@@ -69,5 +69,14 @@ public class Enemy extends Entity implements Observer {
         state.performInteraction(dungeon, player);
     }
 
+    @Override
+    public boolean isComplete() {
+        // if the enemy is in the map still
+        // then it has not been killed so the goal
+        // of killing all enemies is not complete
+        if (dungeon.getEntities().contains(this)) {
+            return false;
+        } return true;
+    }
     
 }
