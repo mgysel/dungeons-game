@@ -17,7 +17,7 @@ public class Player extends Entity {
 
     private Dungeon dungeon;
     private ArrayList<Entity> inventory;
-    private PlayerState state;
+    // private PlayerState state;
 
     /**
      * Create a player positioned in square (x,y)
@@ -28,7 +28,7 @@ public class Player extends Entity {
         super(x, y);
         this.dungeon = dungeon;
         this.inventory = new ArrayList<Entity>();
-        this.state = new Vulnerable();
+        // this.state = new Vulnerable();
     }
 
     public void moveUp() {
@@ -123,6 +123,14 @@ public class Player extends Entity {
             }
         }
         return playerKeyList;
+    }
+
+    public void addInventory(Entity entity) {
+        inventory.add(entity);
+    }
+
+    public void removeInventory(Entity entity) {
+        inventory.remove(entity);
     }
 
     public void setPlayerState(PlayerState state) {
