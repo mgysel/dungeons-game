@@ -16,7 +16,6 @@ public class Enemy extends Entity implements Observer {
 
     }
 
-    // NEED OBSERVER PATTERN TO OBSERVE PLAYER
     public void moveTowardPlayer(int x, int y) {
         // Observe player location, move toward player
 
