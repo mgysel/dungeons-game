@@ -6,11 +6,13 @@ package unsw.dungeon;
 
 public class Enemy extends Entity implements Observer {
 
+    Dungeon dungeon;
     // EnemyState scaredState;
     // EnemyState normalState;
 
-    public Enemy(int x, int y) {
+    public Enemy(Dungeon dungeon, int x, int y) {
         super(x, y);
+        this.dungeon = dungeon;
         // scaredState = new ScaredState(this);
         // normalState = new NormalState(this);
 
@@ -40,11 +42,17 @@ public class Enemy extends Entity implements Observer {
         int playerX = player.getX();
         int playerY = player.getY();
 
-        if (isPlayerInvincible) {
+        if (isPlayerInvincible && playerX == getX() && playerY == getY()) {
+            dungeon.removeEntity(this);
+        } else if (!isPlayerInvincible && playerX == getX() && playerY == getY()) {
+            dungeon.removeEntity(player);
+        } else if (isPlayerInvincible) {
             this.moveAwayPlayer(playerX, playerY);
         } else {
             this.moveTowardPlayer(playerX, playerY);
         }
+
+        
 
 
     }
