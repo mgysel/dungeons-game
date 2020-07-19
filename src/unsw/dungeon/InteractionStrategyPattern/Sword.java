@@ -13,13 +13,16 @@ public class Sword extends Entity implements Interaction {
         this.playerWieldingSword = null;
     }
 
-    public void performInteraction(Player player) {
-        if (player.hasSword()) {
-            // do nothing
-            // only one sword to be picked up at a time
-        } else {
-            playerWieldingSword = player;
-            player.addItemToInventory(this);
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            if (player.hasSword()) {
+                // do nothing
+                // only one sword to be picked up at a time
+            } else {
+                playerWieldingSword = player;
+                player.addItemToInventory(this);
+            }
         }
     }
 

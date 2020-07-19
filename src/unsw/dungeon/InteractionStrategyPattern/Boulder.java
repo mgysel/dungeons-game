@@ -18,6 +18,12 @@ public class Boulder extends Entity implements Obstruction, Interaction {
     public void move(int x, int y) {
         x().set(x);
         y().set(y);
+        for (Entity entity : dungeon.getEntities(x,y)) {
+            if (entity instanceof Portal) {
+                System.out.println("made it");
+                ((Portal) entity).performInteraction(this);
+            }
+        }
     }
 
     @Override
@@ -42,14 +48,13 @@ public class Boulder extends Entity implements Obstruction, Interaction {
     }
 
     @Override
-    public void performInteraction(Player player) {
-        int playerX = player.getX();
-        int playerY = player.getY();
+    public void performInteraction(Entity entity) {
+        int playerX = entity.getX();
+        int playerY = entity.getY();
         int thisX = getX();
         int thisY = getY();
         int nextX = (thisX - playerX) + thisX;
         int nextY = (thisY - playerY) + thisY;
-
         move(nextX, nextY);
     }
 

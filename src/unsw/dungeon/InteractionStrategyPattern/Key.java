@@ -17,7 +17,10 @@ public class Key extends Entity implements Interaction {
     }
 
     @Override
-    public void performInteraction(Player player) {
-        player.addItemToInventory(this);
+    public void performInteraction(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            player.addItemToInventory(this);
+        }
     }
 }

@@ -3,6 +3,7 @@ package unsw.dungeon.EnemyStatePattern;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.InteractionStrategyPattern.Enemy;
+import unsw.dungeon.InteractionStrategyPattern.Portal;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.Player;
 
