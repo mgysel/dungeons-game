@@ -25,30 +25,12 @@ public class Door extends Entity {
         }
     }
 
-    public boolean isOpen() {
-        return this.isOpen;
-    }
 
     public void performInteraction(Player player) {
-        if (isOpen()) {
-            moveThroughDoor(player);
-        } else {
-            if (playerHasKeyForDoor(player) != null) {
-                attemptToUnlockDoorWithKey(playerHasKeyForDoor(player));
-                moveThroughDoor(player);
-            } else {
-                preventPassageThroughDoor(player);
-            }
-        }
+        attemptToUnlockDoorWithKey(playerHasKeyForDoor(player));
+        player.removeItemFromInventory(playerHasKeyForDoor(player));
     }
 
-    private void preventPassageThroughDoor(Player player) {
-
-    }
-
-    private void moveThroughDoor(Player player) {
-
-    }
 
     private Key playerHasKeyForDoor(Player player) {
         for (Key key : player.getKeyList()) {
@@ -56,5 +38,13 @@ public class Door extends Entity {
                 return key;
             }
         } return null;
+    }
+
+    public boolean isObstruction(Player player) {
+        if (playerHasKeyForDoor(player) == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

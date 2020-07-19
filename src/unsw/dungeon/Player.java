@@ -39,7 +39,6 @@ public class Player extends Entity implements Subject {
         if (getY() > 0 && !isObstruction(xyEntities, this)) {
             interact(xyEntities, this);
             y().set(getY() - 1);
-
         }
     }
 
@@ -49,7 +48,7 @@ public class Player extends Entity implements Subject {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if ((getY() < dungeon.getHeight() - 1) && (!isObstruction(xyEntities, this)))
             interact(xyEntities, this);
-        y().set(getY() + 1);
+            y().set(getY() + 1);
     }
 
     public void moveLeft() {
@@ -58,7 +57,7 @@ public class Player extends Entity implements Subject {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() > 0 && !(isObstruction(xyEntities, this)))
             interact(xyEntities, this);
-        x().set(getX() - 1);
+            x().set(getX() - 1);
     }
 
     public void moveRight() {
