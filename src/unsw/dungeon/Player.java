@@ -114,7 +114,6 @@ public class Player extends Entity implements Subject {
             System.out.println("ENTITY: " + entity);
             if (entity != null && entity instanceof Interaction) {
                 Interaction interactingEntity = (Interaction) entity;
-                System.out.println("obstruction? " + entity.isObstruction(player));
                 interactingEntity.performInteraction(player);
             }
         }
@@ -137,8 +136,10 @@ public class Player extends Entity implements Subject {
 
     @Override
     public void notifyObservers() {
-        for (Enemy o : observers) {
-            o.update(this);
+        if (observers != null) {
+            for (Enemy o : observers) {
+                o.update(this);
+            }
         }
     }
 

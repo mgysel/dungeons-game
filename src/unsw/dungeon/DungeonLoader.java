@@ -88,7 +88,7 @@ public abstract class DungeonLoader {
             break;
         case "portal":
             id = json.getInt("id");
-            Portal portal = new Portal(x, y, id);
+            Portal portal = new Portal(dungeon, x, y, id);
             onLoad(portal);
             entity = portal;
             break;
