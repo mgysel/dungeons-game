@@ -69,6 +69,16 @@ public class Dungeon {
         return xyEntities;
     }
 
+    public List<Enemy> getEnemies() {
+        List<Enemy> enemies = new ArrayList<Enemy>();
+        for (Entity entity : entities) {
+            if (entity instanceof Enemy) {
+                enemies.add((Enemy) entity);
+            }
+        }
+        return enemies;
+    }
+
     public void addGoal(Goal goal) {
         goals.add(goal);
     }

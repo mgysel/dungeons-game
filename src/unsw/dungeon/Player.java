@@ -1,6 +1,5 @@
 package unsw.dungeon;
 
-
 import unsw.dungeon.PlayerStatePattern.PlayerState;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
 
@@ -13,14 +12,16 @@ import java.util.List;
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Entity {
+public class Player extends Entity implements Subject {
 
     private Dungeon dungeon;
     private ArrayList<Entity> inventory;
+    private List<Enemy> observers;
     // private PlayerState state;
 
     /**
      * Create a player positioned in square (x,y)
+     * 
      * @param x
      * @param y
      */
@@ -48,7 +49,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if ((getY() < dungeon.getHeight() - 1) && (!isObstruction(xyEntities, this)))
             interact(xyEntities, this);
-            y().set(getY() + 1);
+        y().set(getY() + 1);
     }
 
     public void moveLeft() {
@@ -57,7 +58,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() > 0 && !(isObstruction(xyEntities, this)))
             interact(xyEntities, this);
-            x().set(getX() - 1);
+        x().set(getX() - 1);
     }
 
     public void moveRight() {
@@ -66,7 +67,7 @@ public class Player extends Entity {
         List<Entity> xyEntities = returnEntities(newX, newY);
         if (getX() < dungeon.getWidth() - 1 && !(isObstruction(xyEntities, this)))
             interact(xyEntities, this);
-            x().set(getX() + 1);
+        x().set(getX() + 1);
     }
 
     public void addItemToInventory(Entity entity) {
@@ -128,5 +129,27 @@ public class Player extends Entity {
     public void setPlayerState(PlayerState state) {
         this.state = state;
     }
+
+    @Override
+    public void notifyObservers() {
+        for (Enemy o : observers) {
+            o.update(this);
+        }
+
+    }
+
+    @Override
+    public void registerObserver(Enemy e) {
+        // Register all enemies
+        observers = dungeon.getEnemies();
+
+    }
+
+    @Override
+    public void removeObserver(Enemy e) {
+        observers.remove(e);
+    }
+
+
 
 }
