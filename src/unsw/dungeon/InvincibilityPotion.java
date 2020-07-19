@@ -18,7 +18,6 @@ public class InvincibilityPotion extends Entity {
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             public void run() {
-                
                 player.setPlayerState(new Invincible());
             }
         };
