@@ -55,6 +55,21 @@ public abstract class DungeonLoader {
         return dungeon;
     }
 
+
+    // { "goal": "AND", 
+    //     "subgoals": [ 
+    //         { "goal": "exit" },
+    //         { "goal": "OR", 
+    //             "subgoals": [
+    //                 {"goal": "enemies" }, 
+    //                 {"goal": "treasure" }
+    //             ]
+    //         }
+    //     ]
+    // }
+
+
+
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
         int x = json.getInt("x");
