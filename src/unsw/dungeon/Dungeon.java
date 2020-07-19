@@ -104,14 +104,6 @@ public class Dungeon {
         } return true;
     }
 
-    public Entity getEntityAtPosition(int x, int y) {
-        for (Entity entityAtPosition : getEntities()) {
-            if (entityAtPosition.getX() == x && entityAtPosition.getY() == y) {
-                return entityAtPosition;
-            }
-        }
-        return null;
-    }
 
     public boolean isThereObstructionAtXY(Player player, int x, int y) {
         for (Entity entity : this.getEntities() ) {

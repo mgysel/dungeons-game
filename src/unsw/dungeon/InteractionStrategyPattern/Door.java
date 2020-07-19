@@ -13,18 +13,16 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     private boolean isOpen;
     private int doorID;
-    private int idOfUnlockingKey;
 
-    public Door(int x, int y, int id, int idOfUnlockingKey) {
+    public Door(int x, int y, int id) {
         super(x,y);
         this.isOpen = false;
         this.doorID = id;
-        this.idOfUnlockingKey = idOfUnlockingKey;
     }
 
     public void attemptToUnlockDoorWithKey(Key key) {
         int keyID = key.getID();
-        if(keyID == this.idOfUnlockingKey) {
+        if(keyID == this.doorID) {
             this.isOpen = true;
         }
     }
@@ -38,7 +36,7 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     private Key playerHasKeyForDoor(Player player) {
         for (Key key : player.getKeyList()) {
-            if (key.getID() == idOfUnlockingKey) {
+            if (key.getID() == doorID) {
                 return key;
             }
         } return null;

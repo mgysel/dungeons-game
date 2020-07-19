@@ -6,9 +6,7 @@ import java.io.FileReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import unsw.dungeon.InteractionStrategyPattern.Boulder;
-import unsw.dungeon.InteractionStrategyPattern.Portal;
-import unsw.dungeon.InteractionStrategyPattern.Treasure;
+import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
 /**
@@ -40,9 +38,14 @@ public abstract class DungeonLoader {
         Dungeon dungeon = new Dungeon(width, height);
 
         JSONArray jsonEntities = json.getJSONArray("entities");
+        JSONArray goals = json.getJSONArray("goals");
 
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
+        }
+
+        for (int i = 0; i < goals.length(); i++) {
+            addGoalToGame(goals.get(i));
         }
         return dungeon;
     }
@@ -51,6 +54,7 @@ public abstract class DungeonLoader {
         String type = json.getString("type");
         int x = json.getInt("x");
         int y = json.getInt("y");
+        int id = 0;
 
         Entity entity = null;
         switch (type) {
@@ -66,7 +70,7 @@ public abstract class DungeonLoader {
             entity = wall;
             break;
         case "treasure": 
-            Treasure treasure = new Treasure(x, y);
+            Treasure treasure = new Treasure(dungeon,x,y);
             onLoad(treasure);
             entity = treasure;
             break;
@@ -75,10 +79,23 @@ public abstract class DungeonLoader {
             onLoad(boulder);
             entity = boulder;
             break;
-        case "portal": 
-            Portal portal = new Portal(x, y);
+        case "portal":
+            id = json.getInt("id");
+            Portal portal = new Portal(x, y, id);
             onLoad(portal);
             entity = portal;
+            break;
+        case "door":
+            id = json.getInt("id");
+            Door door = new Door(x,y,id);
+            onLoad(door);
+            entity = door;
+            break;
+        case "key":
+            id = json.getInt("id");
+            Key key = new Key(x,y,id);
+            onLoad(key);
+            entity = key;
             break;
         }
         dungeon.addEntity(entity);
@@ -95,5 +112,11 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Portal portal);
 
     // TODO Create additional abstract methods for the other entities
+    private void addGoalToGame(Object goal) {
+        //switch (type) {
+        //        case "player":
+        //            Player player = new Player(dungeon, x, y);
+        //            dungeon.setPlayer(player);
+    }
 
 }
