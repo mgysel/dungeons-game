@@ -11,8 +11,13 @@ public class Sword extends Entity {
     }
 
     public void performInteraction(Player player) {
-        playerWieldingSword = player;
-        player.addItemToInventory(this);
+        if (player.hasSword()) {
+            // do nothing
+            // only one sword to be picked up at a time
+        } else {
+            playerWieldingSword = player;
+            player.addItemToInventory(this);
+        }
     }
 
     public int getUsesRemaining() {

@@ -8,8 +8,6 @@ import java.util.TimerTask;
 
 public class InvincibilityPotion extends Entity {
 
-    private Dungeon dungeon;
-
     public InvincibilityPotion(int x, int y) {
         super(x, y);
     }
@@ -17,7 +15,6 @@ public class InvincibilityPotion extends Entity {
     @Override
     public void performInteraction(Player player) {
         player.addItemToInventory(this);
-        dungeon.removeEntity(this);
         player.setPlayerState(new Invincible());
         InvincibilityPotion thisPotion = this;
         Timer timer = new Timer();

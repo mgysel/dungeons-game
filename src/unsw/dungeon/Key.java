@@ -12,4 +12,9 @@ public class Key extends Entity {
     public int getID() {
         return this.keyID;
     }
+
+    @Override
+    public void performInteraction(Player player) {
+        player.addItemToInventory(this);
+    }
 }

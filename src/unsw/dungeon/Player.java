@@ -80,6 +80,7 @@ public class Player extends Entity implements Subject {
 
     public void addItemToInventory(Entity entity) {
         this.inventory.add(entity);
+        dungeon.removeEntity(entity);
     }
 
     public void removeItemFromInventory(Entity entity) {

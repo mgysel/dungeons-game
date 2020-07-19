@@ -12,7 +12,6 @@ public class Treasure extends Entity implements Goal {
     @Override
     public void performInteraction(Player player) {
         player.addItemToInventory(this);
-        dungeon.removeEntity(this);
     }
 
     @Override
