@@ -12,7 +12,7 @@ public class FloorSwitch extends Entity implements Goal {
 
     public boolean isTriggered() {
         for (Entity entity : this.dungeon.getEntities(getX(), getY())) {
-            if (entity instanceof Boulder) {
+            if (entity != null && entity instanceof Boulder) {
                 return true;
             }
         } return false;
