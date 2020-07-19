@@ -22,10 +22,30 @@ public class WallTest {
 
     @Test
     public void blockMovement(){
+        // Block right
         Wall wall = new Wall(1, 1);
+        dungeon.addEntity(wall);
         Player player = new Player(dungeon, 0, 1);
         player.moveRight();
         assertEquals(player.getX(), 0);
         assertEquals(player.getY(), 1);
+
+        // Block left
+        player = new Player(dungeon, 2, 1);
+        player.moveLeft();
+        assertEquals(player.getX(), 2);
+        assertEquals(player.getY(), 1);
+
+        // Block up
+        player = new Player(dungeon, 1, 0);
+        player.moveUp();
+        assertEquals(player.getX(), 1);
+        assertEquals(player.getY(), 0);
+
+        // Block down
+        player = new Player(dungeon, 1, 2);
+        player.moveDown();
+        assertEquals(player.getX(), 1);
+        assertEquals(player.getY(), 2);
     }
 }
