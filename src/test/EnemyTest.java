@@ -28,8 +28,8 @@ public class EnemyTest {
     public void NotScaredWhenPlayerVulnerable() {
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 0);
-        Enemy enemy = new Enemy(dungeon, 1, 1);
         dungeon.setPlayer(player);
+        Enemy enemy = new Enemy(dungeon, 1, 1);
         dungeon.addEntity(enemy);
         assert (enemy.getState() instanceof NotScaredEnemyState);
     }
@@ -38,8 +38,8 @@ public class EnemyTest {
     public void ScaredWhenPlayerInvincible() {
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 0);
-        Enemy enemy = new Enemy(dungeon, 1, 1);
         dungeon.setPlayer(player);
+        Enemy enemy = new Enemy(dungeon, 1, 1);
         dungeon.addEntity(enemy);
         PlayerState invincibleState = new Invincible();
         player.setPlayerState(invincibleState);
@@ -54,8 +54,8 @@ public class EnemyTest {
     public void EnemyKillsVulnerablePlayerWithoutSword() {
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 1);
-        Enemy enemy = new Enemy(dungeon, 1, 1);
         dungeon.setPlayer(player);
+        Enemy enemy = new Enemy(dungeon, 1, 1);
         dungeon.addEntity(enemy);
         player.moveRight();
         assert(dungeon.getPlayer() == null);
@@ -66,8 +66,8 @@ public class EnemyTest {
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 1);
         InvincibilityPotion invinciblityPotion = new InvincibilityPotion(1, 1);
-        Enemy enemy = new Enemy(dungeon, 3, 1);
         dungeon.setPlayer(player);
+        Enemy enemy = new Enemy(dungeon, 3, 1);
         dungeon.addEntity(enemy);
         player.moveRight();
         player.moveRight();
@@ -79,8 +79,8 @@ public class EnemyTest {
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 1);
         Sword sword = new Sword(1, 1);
-        Enemy enemy = new Enemy(dungeon, 3, 1);
         dungeon.setPlayer(player);
+        Enemy enemy = new Enemy(dungeon, 3, 1);
         dungeon.addEntity(enemy);
         player.moveRight();
         player.moveRight();

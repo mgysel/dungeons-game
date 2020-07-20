@@ -39,7 +39,7 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
     public void moveEnemy(Player player, Dungeon dungeon) {
         // every second,
         Timer t = new Timer( );
-        t.scheduleAtFixedRate(new TimerTask() {
+        TimerTask tt = new TimerTask() {
             @Override
             public void run() {
                 state.moveEnemy(player, dungeon);
@@ -54,7 +54,8 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
                     }
                 }
             }
-        }, 0,1000);
+        };
+        t.scheduleAtFixedRate(tt,0,1000);
     }
 
     @Override
