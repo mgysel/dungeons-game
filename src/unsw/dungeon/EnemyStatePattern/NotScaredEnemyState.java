@@ -53,12 +53,10 @@ public class NotScaredEnemyState implements EnemyState {
             }
         }
 
-        if (dungeon.isThereObstructionAtXY(player, enemyX, enemyY)) {
-            // do nothing because obstruction in the way)
-        } else {
+        if (!dungeon.isThereObstructionAtXY(player, enemyX, enemyY)) {
             enemy.x().set(enemyX);
             enemy.y().set(enemyY);
-        }
+        } 
     }
 
     private int getPlayerX(Player player) {

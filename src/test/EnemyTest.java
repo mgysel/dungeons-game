@@ -55,7 +55,7 @@ public class EnemyTest {
         dungeon.setPlayer(player);
         Enemy enemy = new Enemy(dungeon, 5, 5);
         dungeon.addEntity(enemy);
-        Thread.sleep(2500);
+        Thread.sleep(4500);
         assert(enemy.getX() < 5);
         assert(enemy.getY() < 5);
 
@@ -65,7 +65,7 @@ public class EnemyTest {
         dungeon.setPlayer(player);
         enemy = new Enemy(dungeon, 0, 0);
         dungeon.addEntity(enemy);
-        Thread.sleep(2500);
+        Thread.sleep(4500);
         assert(enemy.getX() > 0);
         assert(enemy.getY() > 0);
     }
