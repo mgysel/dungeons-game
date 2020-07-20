@@ -30,9 +30,9 @@ public class DoorTest {
         Key key = new Key(1, 2, 3);
         Door door = new Door(2, 2, 3);
         Player player = new Player(dungeon, 0, 2);
+        dungeon.setPlayer(player);
         dungeon.addEntity(key);
         dungeon.addEntity(door);
-        dungeon.setPlayer(player);
         player.moveRight();
         player.moveRight();
         assert(door.getIsOpen() == true);

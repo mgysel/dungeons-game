@@ -3,16 +3,12 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Player;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
 public class WallTest {
-    Dungeon dungeon = new Dungeon(10, 10);
-
     @Test
     public void location(){
         Wall wall = new Wall(1, 1);
@@ -23,29 +19,43 @@ public class WallTest {
     @Test
     public void blockMovement(){
         // Block right
+        Dungeon dungeon = new Dungeon(10, 10);
         Wall wall = new Wall(1, 1);
         dungeon.addEntity(wall);
         Player player = new Player(dungeon, 0, 1);
+        dungeon.setPlayer(player);
         player.moveRight();
-        assertEquals(player.getX(), 0);
-        assertEquals(player.getY(), 1);
+        assertEquals(0, player.getX());
+        assertEquals(1, player.getY());
 
         // Block left
+        dungeon = new Dungeon(10, 10);
+        wall = new Wall(1, 1);
+        dungeon.addEntity(wall);
         player = new Player(dungeon, 2, 1);
+        dungeon.setPlayer(player);
         player.moveLeft();
-        assertEquals(player.getX(), 2);
-        assertEquals(player.getY(), 1);
-
-        // Block up
-        player = new Player(dungeon, 1, 0);
-        player.moveUp();
-        assertEquals(player.getX(), 1);
-        assertEquals(player.getY(), 0);
+        assertEquals(2, player.getX());
+        assertEquals(1, player.getY());
 
         // Block down
-        player = new Player(dungeon, 1, 2);
+        dungeon = new Dungeon(10, 10);
+        wall = new Wall(1, 1);
+        dungeon.addEntity(wall);
+        player = new Player(dungeon, 1, 0);
+        dungeon.setPlayer(player);
         player.moveDown();
-        assertEquals(player.getX(), 1);
-        assertEquals(player.getY(), 2);
+        assertEquals(1, player.getX());
+        assertEquals(0, player.getY());
+
+        // Block up
+        dungeon = new Dungeon(10, 10);
+        wall = new Wall(1, 1);
+        dungeon.addEntity(wall);
+        player = new Player(dungeon, 1, 2);
+        dungeon.setPlayer(player);
+        player.moveUp();
+        assertEquals(1, player.getX());
+        assertEquals(2, player.getY());
     }
 }
