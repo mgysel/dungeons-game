@@ -147,7 +147,6 @@ public class Player extends Entity implements Subject {
     public void registerObserver(Enemy e) {
         // Register all enemies
         observers = dungeon.getEnemies();
-
     }
 
     @Override
