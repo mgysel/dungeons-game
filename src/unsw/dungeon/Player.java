@@ -49,7 +49,7 @@ public class Player extends Entity implements Subject {
         int newY = getY() - 1;
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
         if (getY() > 0 && !dungeon.isThereObstructionAtXY(newX, newY)) {
-            interact(xyEntities, this);
+            interact(xyEntities);
             y().set(getY() - 1);
             notifyObservers();
             didIJustFinishGame();
@@ -64,7 +64,7 @@ public class Player extends Entity implements Subject {
         int newY = getY() + 1;
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
         if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(newX, newY))) {
-            interact(xyEntities, this);
+            interact(xyEntities);
             y().set(getY() + 1);
             notifyObservers();
             didIJustFinishGame();
@@ -79,7 +79,7 @@ public class Player extends Entity implements Subject {
         int newY = getY();
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
         if (getX() > 0 && !(dungeon.isThereObstructionAtXY(newX,newY))) {
-            interact(xyEntities, this);
+            interact(xyEntities);
             x().set(getX() - 1);
             notifyObservers();
             didIJustFinishGame();
@@ -94,7 +94,7 @@ public class Player extends Entity implements Subject {
         int newY = getY();
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
         if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(newX, newY))) {
-            interact(xyEntities, this);
+            interact(xyEntities);
             x().set(getX() + 1);
             notifyObservers();
             didIJustFinishGame();
@@ -130,11 +130,11 @@ public class Player extends Entity implements Subject {
     /**
      * Player interacts with entities at location (x, y)
      */
-    private void interact(List<Entity> xyEntities, Player player) {
+    private void interact(List<Entity> xyEntities) {
         for (Entity entity : xyEntities) {
             if (entity != null && entity instanceof Interaction) {
                 Interaction interactingEntity = (Interaction) entity;
-                interactingEntity.performInteraction(player);
+                interactingEntity.performInteraction(this);
             }
         }
     }
