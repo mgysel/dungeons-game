@@ -25,15 +25,30 @@ public class DoorTest {
     }
 
     @Test
-    public void keyUnlocksDoor() {
+    public void correctKeyUnlocksDoor() {
         Dungeon dungeon = new Dungeon(10, 10);
         Key key = new Key(1, 2, 3);
         Door door = new Door(2, 2, 3);
         Player player = new Player(dungeon, 0, 2);
         dungeon.addEntity(key);
         dungeon.addEntity(door);
-        dungeon.addEntity(player);
+        dungeon.setPlayer(player);
         player.moveRight();
-        // assert(door.getIsOpen() == false);
+        player.moveRight();
+        assert(door.getIsOpen() == true);
+    }
+
+    @Test
+    public void incorrectKeyDoesNotUnlockDoor() {
+        Dungeon dungeon = new Dungeon(10, 10);
+        Key key = new Key(1, 2, 2);
+        Door door = new Door(2, 2, 3);
+        Player player = new Player(dungeon, 0, 2);
+        dungeon.addEntity(key);
+        dungeon.addEntity(door);
+        dungeon.setPlayer(player);
+        player.moveRight();
+        player.moveRight();
+        assert(door.getIsOpen() == false);
     }
 }
