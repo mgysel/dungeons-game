@@ -36,6 +36,9 @@ public class DoorTest {
         player.moveRight();
         player.moveRight();
         assert(door.getIsOpen() == true);
+        player.moveRight();
+        assertEquals(player.getX(), 3);
+        assertEquals(player.getY(), 2);
     }
 
     @Test
