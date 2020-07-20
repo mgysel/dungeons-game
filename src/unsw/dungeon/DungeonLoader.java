@@ -39,18 +39,13 @@ public abstract class DungeonLoader {
         JSONArray jsonEntities = json.getJSONArray("entities");
         JSONArray goals = json.getJSONArray("goals");
 
-        // have a list of goal lists
-        // every OR is a new goal list inside the overarching list of goal lists
-        // every AND just adds the goal to the same goal list
-
-
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
 
-        for (int i = 0; i < goals.length(); i++) {
-            addGoalToGame(goals.get(i));
-        }
+        // for (int i = 0; i < goals.length(); i++) {
+        //     addGoalToGame(goals.get(i));
+        // }
         return dungeon;
     }
 
@@ -92,14 +87,14 @@ public abstract class DungeonLoader {
         case "exit":
             Exit exit = new Exit(dungeon, x, y);
             dungeon.addEntity(exit);
+            dungeon.addGoal(exit);
             onLoad(exit);
             entity = exit;
             break;
         case "treasure":
-            //if (treasure == goal) {
-            // add to goals list
             Treasure treasure = new Treasure(dungeon,x,y);
             dungeon.addEntity(treasure);
+            dungeon.addGoal(treasure);
             onLoad(treasure);
             entity = treasure;
             break;
@@ -126,6 +121,7 @@ public abstract class DungeonLoader {
         case "floor switch":
             FloorSwitch floorSwitch = new FloorSwitch(dungeon, x, y);
             dungeon.addEntity(floorSwitch);
+            dungeon.addGoal(floorSwitch);
             onLoad(floorSwitch);
             entity = floorSwitch;
             break;
@@ -139,6 +135,7 @@ public abstract class DungeonLoader {
         case "enemy":
             Enemy enemy = new Enemy(dungeon, x, y);
             dungeon.addEntity(enemy);
+            dungeon.addGoal(enemy);
             onLoad(enemy);
             entity = enemy;
             break;
@@ -170,13 +167,5 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Enemy enemy);
     public abstract void onLoad(Sword sword);
     public abstract void onLoad(InvincibilityPotion invincibilityPotion);
-
-    // TODO Create additional abstract methods for the other entities
-    private void addGoalToGame(Object goal) {
-        //switch (type) {
-        //        case "player":
-        //            Player player = new Player(dungeon, x, y);
-        //            dungeon.setPlayer(player);
-    }
 
 }
