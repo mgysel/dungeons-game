@@ -93,8 +93,8 @@ public class EnemyTest {
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 1);
         InvincibilityPotion invinciblityPotion = new InvincibilityPotion(1, 1);
-        dungeon.setPlayer(player);
         Enemy enemy = new Enemy(dungeon, 3, 1);
+        dungeon.setPlayer(player);
         dungeon.addEntity(enemy);
         player.moveRight();
         player.moveRight();
@@ -113,10 +113,6 @@ public class EnemyTest {
         player.moveRight();
         assert(!dungeon.getEntities().contains(enemy));
     }
-
-    // Test collision with player kills enemy when enemy has sword    
-
-    // Test collision with player kills enemy when scared
 
 
 }

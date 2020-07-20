@@ -190,15 +190,17 @@ public class Player extends Entity implements Subject {
         dungeon.endGame();
     }
 
+    public void winGame() {
+        dungeon.endGame();
+    }
+
     private void didIJustFinishGame() {
-        // for (Entity entity : dungeon.getEntities()) {
-        
-        //      if (dungeon.checkNonExitGoalsCompleted()) {
-        //         player.winGame();
-        //      } else {
-        //         do nothing
-        //      }
-        //   }
-        // }      
+        // If all goals complete, win the game
+        for (Goal goal : dungeon.getGoals()) {
+            if (!goal.isComplete()) {
+                return;
+            }
+        }
+        winGame();
     }
 }
