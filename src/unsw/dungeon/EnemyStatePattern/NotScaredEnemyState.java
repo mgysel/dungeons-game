@@ -58,7 +58,7 @@ public class NotScaredEnemyState implements EnemyState {
         } else {
             enemy.x().set(enemyX);
             enemy.y().set(enemyY);
-        }
+        } 
     }
 
     private int getPlayerX(Player player) {
