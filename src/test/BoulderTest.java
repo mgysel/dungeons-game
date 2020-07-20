@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,20 @@ public class BoulderTest {
         Boulder boulder = new Boulder(dungeon, 1, 1);
         assertEquals(boulder.getX(), 1);
         assertEquals(boulder.getY(), 1);
+    }
+
+    @Test
+    public void nonPlayerDoesntBreakGame(){
+        Dungeon dungeon = new Dungeon(10, 10);
+        Boulder boulder = new Boulder(dungeon, 1, 1);
+        Boulder boulder2 = new Boulder(dungeon, 2, 1);
+        dungeon.addEntity(boulder);
+        dungeon.addEntity(boulder2);
+        boulder.performInteraction(boulder2);
+        assertEquals(2, boulder2.getX());
+        assertEquals(1, boulder2.getY());
+        assertEquals(1, boulder.getX());
+        assertEquals(1, boulder.getY());
     }
 
     @Test
