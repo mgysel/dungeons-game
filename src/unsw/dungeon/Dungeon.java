@@ -34,7 +34,6 @@ public class Dungeon {
         this.goals = new ArrayList<Goal>();
     }
 
-
     public int getWidth() {
         return width;
     }
