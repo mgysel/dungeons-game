@@ -68,7 +68,6 @@ public class Dungeon {
 
     public List<Entity> getEntities(int x, int y) {
         List<Entity> xyEntities = new ArrayList<Entity>();
-        System.out.println("ENTITIES: " + entities);
         for (Entity entity : entities) {
             if (entity != null) {
                 if (entity.getX() == x && entity.getY() == y) {
@@ -94,16 +93,20 @@ public class Dungeon {
     }
 
      public void winGame() {
-        removeEntity(player);
+        this.player = null;
      }
 
     public boolean checkNonExitGoalsCompleted() {
         for (Goal goal : goals) {
-            if (!(goal instanceof Exit) && goal.isComplete()) {
-                continue;
+            if (!(goal instanceof Exit)) {
+                if (goal.isComplete()) {
+                    continue;
+                } else {
+                    return false;
+                }
             }
-            return false;
-        } return true;
+        }
+        return true;
     }
 
 
@@ -117,5 +120,9 @@ public class Dungeon {
             }
         }
         return false;
+    }
+
+    public List<Goal> getGoals() {
+        return this.goals;
     }
 }
