@@ -76,7 +76,7 @@ public class Player extends Entity implements Subject {
         int newX = getX() + 1;
         int newY = getY();
         List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(this, newX,newY))) {
+        if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(this, newX, newY))) {
             interact(xyEntities, this);
             x().set(getX() + 1);
             notifyObservers();

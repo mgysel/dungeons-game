@@ -20,6 +20,14 @@ public class Door extends Entity implements Obstruction, Interaction {
         this.doorID = id;
     }
 
+    public int getID() {
+        return this.doorID;
+    }
+
+    public boolean getIsOpen() {
+        return this.isOpen;
+    }
+
     public void attemptToUnlockDoorWithKey(Key key) {
         int keyID = key.getID();
         if(keyID == this.doorID) {
