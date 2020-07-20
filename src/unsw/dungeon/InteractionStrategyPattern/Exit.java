@@ -23,7 +23,7 @@ public class Exit extends Entity implements Interaction, Goal {
     public void performInteraction(Entity entity) {
         if (entity instanceof Player) {
             if (isComplete()) {
-                dungeon.winGame();
+                dungeon.endGame();
             } else {
                 // do nothing
             }

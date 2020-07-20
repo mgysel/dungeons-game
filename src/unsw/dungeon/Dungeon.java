@@ -92,7 +92,7 @@ public class Dungeon {
         goals.add(goal);
     }
 
-     public void winGame() {
+     public void endGame() {
         this.player = null;
      }
 
