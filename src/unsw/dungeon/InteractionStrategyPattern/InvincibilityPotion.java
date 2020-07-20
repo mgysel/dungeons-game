@@ -21,15 +21,16 @@ public class InvincibilityPotion extends Entity implements Interaction {
             player.addItemToInventory(this);
             player.setPlayerState(new Invincible());
             InvincibilityPotion thisPotion = this;
-            Timer timer = new Timer();
-            TimerTask task = new TimerTask() {
-                public void run() {
-                    player.setPlayerState(new Vulnerable());
-                    player.removeItemFromInventory(thisPotion);
-                }
-            };
-            timer.schedule(task, 1500);
-            timer.cancel();
+            new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        player.setPlayerState(new Vulnerable());
+                        player.removeItemFromInventory(thisPotion);
+                    }
+                },
+                5000
+            );
         }
     }
 }

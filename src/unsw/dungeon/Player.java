@@ -22,7 +22,7 @@ public class Player extends Entity implements Subject {
 
     private Dungeon dungeon;
     private ArrayList<Entity> inventory;
-    private List<Enemy> observers;
+    private ArrayList<Enemy> observers;
     private PlayerState state;
 
 
@@ -37,6 +37,7 @@ public class Player extends Entity implements Subject {
         this.dungeon = dungeon;
         this.inventory = new ArrayList<Entity>();
         this.state = new Vulnerable();
+        this.observers = new ArrayList<Enemy>();
     }
 
     public void moveUp() {
@@ -111,7 +112,6 @@ public class Player extends Entity implements Subject {
 
     private void interact(List<Entity> xyEntities, Player player) {
         for (Entity entity : xyEntities) {
-            System.out.println("ENTITY: " + entity);
             if (entity != null && entity instanceof Interaction) {
                 Interaction interactingEntity = (Interaction) entity;
                 interactingEntity.performInteraction(player);
@@ -145,8 +145,8 @@ public class Player extends Entity implements Subject {
 
     @Override
     public void registerObserver(Enemy e) {
-        // Register all enemies
-        observers = dungeon.getEnemies();
+        // Register observer
+        observers.add(e);
     }
 
     @Override
@@ -160,6 +160,7 @@ public class Player extends Entity implements Subject {
 
     public void removeEnemy(Enemy enemy) {
         dungeon.removeEntity(enemy);
+        removeObserver(enemy);
     }
 
     public void swingSword(Enemy enemy) {

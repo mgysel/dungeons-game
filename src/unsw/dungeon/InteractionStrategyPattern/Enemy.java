@@ -14,6 +14,7 @@ import unsw.dungeon.ObserverPattern.Observer;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.Player;
 import unsw.dungeon.PlayerStatePattern.Invincible;
+import unsw.dungeon.PlayerStatePattern.PlayerState;
 
 import java.util.List;
 import java.util.Timer;
@@ -85,6 +86,10 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
         if (dungeon.getEntities().contains(this)) {
             return false;
         } return true;
+    }
+
+    public EnemyState getState() {
+        return this.state;
     }
 
     
