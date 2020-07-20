@@ -88,11 +88,12 @@ public class EnemyTest {
     @Test
     public void InvinciblePlayerKillsEnemy() {
         Dungeon dungeon = new Dungeon(10, 10);
-        Player player = new Player(dungeon, 0, 1);
-        InvincibilityPotion invinciblityPotion = new InvincibilityPotion(1, 1);
-        Enemy enemy = new Enemy(dungeon, 3, 1);
+        Player player = new Player(dungeon, 1, 2);
+        InvincibilityPotion invinciblityPotion = new InvincibilityPotion(2, 2);
+        Enemy enemy = new Enemy(dungeon, 3, 2);
         dungeon.setPlayer(player);
         dungeon.addEntity(enemy);
+        dungeon.addEntity(invinciblityPotion);
         player.moveRight();
         player.moveRight();
         assert(!dungeon.getEntities().contains(enemy));
@@ -106,8 +107,10 @@ public class EnemyTest {
         dungeon.setPlayer(player);
         Enemy enemy = new Enemy(dungeon, 3, 1);
         dungeon.addEntity(enemy);
+        dungeon.addEntity(sword);
         player.moveRight();
         player.moveRight();
+        enemy.performInteraction(player);
         assert(!dungeon.getEntities().contains(enemy));
     }
 
