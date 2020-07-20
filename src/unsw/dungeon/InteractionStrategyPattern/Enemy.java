@@ -22,10 +22,10 @@ import java.util.TimerTask;
 
 public class Enemy extends Entity implements Observer, Goal, Interaction {
 
-    Dungeon dungeon;
-    EnemyState scaredState;
-    EnemyState notScaredState;
-    EnemyState state;
+    private Dungeon dungeon;
+    private EnemyState scaredState;
+    private EnemyState notScaredState;
+    private EnemyState state;
 
     public Enemy(Dungeon dungeon, int x, int y) {
         super(x, y);
