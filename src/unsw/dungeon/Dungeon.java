@@ -69,6 +69,7 @@ public class Dungeon {
 
     public List<Entity> getEntities(int x, int y) {
         List<Entity> xyEntities = new ArrayList<Entity>();
+        System.out.println("ENTITIES: " + entities);
         for (Entity entity : entities) {
             if (entity != null) {
                 if (entity.getX() == x && entity.getY() == y) {

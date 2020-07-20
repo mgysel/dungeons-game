@@ -34,7 +34,7 @@ public class Boulder extends Entity implements Obstruction, Interaction {
         int thisY = getY();
         int nextX = (thisX - playerX) + thisX;
         int nextY = (thisY - playerY) + thisY;
-
+        
         List<Entity> xyEntities = dungeon.getEntities(nextX, nextY);
         for (Entity entity : xyEntities) {
             if (entity != null) {

@@ -6,13 +6,15 @@ public class FloorSwitch extends Entity implements Goal {
 
     private Dungeon dungeon;
 
-    public FloorSwitch(int x, int y) {
+    public FloorSwitch(Dungeon dungeon, int x, int y) {
         super(x, y);
+        this.dungeon = dungeon;
     }
 
     public boolean isTriggered() {
-        for (Entity entity : this.dungeon.getEntities(getX(), getY())) {
-            if (entity instanceof Boulder) {
+        System.out.println("ENTITIES: ");
+        for (Entity entity : dungeon.getEntities(getX(), getY())) {
+            if (entity != null && entity instanceof Boulder) {
                 return true;
             }
         } return false;
