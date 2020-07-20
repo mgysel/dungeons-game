@@ -47,9 +47,9 @@ public class Player extends Entity implements Subject {
     public void moveUp() {
         int newX = getX();
         int newY = getY() - 1;
-        List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getY() > 0 && !dungeon.isThereObstructionAtXY(this, newX, newY)) {
-            interact(xyEntities, this);
+        List<Entity> xyEntities = dungeon.getEntities(newX, newY);
+        if (getY() > 0 && !dungeon.isThereObstructionAtXY(newX, newY)) {
+            interact(xyEntities);
             y().set(getY() - 1);
             notifyObservers();
             didIJustFinishGame();
@@ -62,9 +62,9 @@ public class Player extends Entity implements Subject {
     public void moveDown() {
         int newX = getX();
         int newY = getY() + 1;
-        List<Entity> xyEntities = returnEntities(newX, newY);
-        if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(this, newX, newY))) {
-            interact(xyEntities, this);
+        List<Entity> xyEntities = dungeon.getEntities(newX, newY);
+        if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(newX, newY))) {
+            interact(xyEntities);
             y().set(getY() + 1);
             notifyObservers();
             didIJustFinishGame();
@@ -77,9 +77,9 @@ public class Player extends Entity implements Subject {
     public void moveLeft() {
         int newX = getX() - 1;
         int newY = getY();
-        List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getX() > 0 && !(dungeon.isThereObstructionAtXY(this, newX,newY))) {
-            interact(xyEntities, this);
+        List<Entity> xyEntities = dungeon.getEntities(newX, newY);
+        if (getX() > 0 && !(dungeon.isThereObstructionAtXY(newX,newY))) {
+            interact(xyEntities);
             x().set(getX() - 1);
             notifyObservers();
             didIJustFinishGame();
@@ -92,9 +92,9 @@ public class Player extends Entity implements Subject {
     public void moveRight() {
         int newX = getX() + 1;
         int newY = getY();
-        List<Entity> xyEntities = returnEntities(newX, newY);
-        if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(this, newX, newY))) {
-            interact(xyEntities, this);
+        List<Entity> xyEntities = dungeon.getEntities(newX, newY);
+        if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(newX, newY))) {
+            interact(xyEntities);
             x().set(getX() + 1);
             notifyObservers();
             didIJustFinishGame();
@@ -126,33 +126,15 @@ public class Player extends Entity implements Subject {
         return inventory;
     }
 
-    /**
-     * Returns list of entities at location (x, y)
-     * @param x
-     * @param y
-     * @return list of entities
-     */
-    private List<Entity> returnEntities(int x, int y) {
-        List<Entity> entities = dungeon.getEntities();
-        List<Entity> xyEntities = new ArrayList<Entity>();
-        for (Entity entity : entities) {
-            if (entity != null) {
-                if (entity.getX() == x && entity.getY() == y) {
-                    xyEntities.add(entity);
-                }
-            }
-        }
-        return xyEntities;
-    }
 
     /**
      * Player interacts with entities at location (x, y)
      */
-    private void interact(List<Entity> xyEntities, Player player) {
+    private void interact(List<Entity> xyEntities) {
         for (Entity entity : xyEntities) {
             if (entity != null && entity instanceof Interaction) {
                 Interaction interactingEntity = (Interaction) entity;
-                interactingEntity.performInteraction(player);
+                interactingEntity.performInteraction(this);
             }
         }
     }
