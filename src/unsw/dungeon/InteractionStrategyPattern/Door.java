@@ -47,10 +47,8 @@ public class Door extends Entity implements Obstruction, Interaction {
 
 
     private Key playerHasKeyForDoor(Player player) {
-        System.out.println("1");
         System.out.println(player);
         for (Key key : player.getKeyList()) {
-            System.out.println("KEY: " + key);
             if (key.getID() == doorID) {
                 return key;
             }

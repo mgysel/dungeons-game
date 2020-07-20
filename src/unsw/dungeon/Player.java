@@ -125,11 +125,8 @@ public class Player extends Entity implements Subject {
     }
 
     public List<Key> getKeyList() {
-        System.out.println("2");
         List<Key> playerKeyList = new ArrayList<Key>();
-        System.out.println("3");
         for (Entity entity : inventory) {
-            System.out.println("4");
             if (entity instanceof Key) {
                 playerKeyList.add((Key) entity);
             }
