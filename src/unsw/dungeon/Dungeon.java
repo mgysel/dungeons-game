@@ -109,7 +109,7 @@ public class Dungeon {
 
 
     public boolean isThereObstructionAtXY(Player player, int x, int y) {
-        for (Entity entity : this.getEntities() ) {
+        for (Entity entity : this.getEntities()) {
             if (entity != null && entity instanceof Obstruction) {
                 Obstruction obstructingEntity = (Obstruction) entity;
                 return obstructingEntity.isObstruction(getPlayer(),x, y);

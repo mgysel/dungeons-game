@@ -10,9 +10,4 @@ public class Invincible implements PlayerState {
         player.setPlayerState(this);
     }
 
-    @Override
-    public void killEnemy(Player player, Enemy enemy) {
-        player.removeEnemy(enemy);
-    }
-
 }
