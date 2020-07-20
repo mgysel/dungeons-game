@@ -34,6 +34,12 @@ public class PlayerTest {
         PlayerState vulnerableState = new Vulnerable();
         player.setPlayerState(vulnerableState);
         assert(player.getState() instanceof Vulnerable);
+
+        invincibleState.changeState(player);
+        assert(player.getState() instanceof Invincible);
+
+        vulnerableState.changeState(player);
+        assert(player.getState() instanceof Vulnerable);
     }
 
     @Test
