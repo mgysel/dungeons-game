@@ -42,7 +42,4 @@ public class Entity {
         return x().get();
     }
 
-    public boolean isObstruction(Player player) {
-        return false;
-    }
 }
