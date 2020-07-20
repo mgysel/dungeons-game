@@ -11,7 +11,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import unsw.dungeon.InteractionStrategyPattern.Boulder;
+import unsw.dungeon.InteractionStrategyPattern.Door;
+import unsw.dungeon.InteractionStrategyPattern.Enemy;
+import unsw.dungeon.InteractionStrategyPattern.Exit;
+import unsw.dungeon.InteractionStrategyPattern.InvincibilityPotion;
+import unsw.dungeon.InteractionStrategyPattern.Key;
 import unsw.dungeon.InteractionStrategyPattern.Portal;
+import unsw.dungeon.InteractionStrategyPattern.Sword;
 import unsw.dungeon.InteractionStrategyPattern.Treasure;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
@@ -20,6 +26,7 @@ import java.io.File;
 /**
  * A DungeonLoader that also creates the necessary ImageViews for the UI,
  * connects them via listeners to the model, and creates a controller.
+ * 
  * @author Robert Clifton-Everest
  *
  */
@@ -27,11 +34,12 @@ public class DungeonControllerLoader extends DungeonLoader {
 
     private List<ImageView> entities;
 
-    //Images
+    // Images
     private Image playerImage;
     private Image wallImage;
     private Image exitImage;
     private Image treasureImage;
+    private Image doorImage;
     private Image keyImage;
     private Image boulderImage;
     private Image floorSwitchImage;
@@ -40,14 +48,14 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image swordImage;
     private Image invincibilityPotionImage;
 
-    public DungeonControllerLoader(String filename)
-            throws FileNotFoundException {
+    public DungeonControllerLoader(String filename) throws FileNotFoundException {
         super(filename);
         entities = new ArrayList<>();
         playerImage = new Image((new File("images/human_new.png")).toURI().toString());
         wallImage = new Image((new File("images/brick_brown_0.png")).toURI().toString());
         exitImage = new Image((new File("images/exit.png")).toURI().toString());
         treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
+        doorImage = new Image((new File("images/closed_door.png")).toURI().toString());
         keyImage = new Image((new File("images/key.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
         floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
@@ -70,9 +78,27 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
 
     @Override
+    public void onLoad(Exit exit) {
+        ImageView view = new ImageView(exitImage);
+        addEntity(exit, view);
+    }
+
+    @Override
     public void onLoad(Treasure treasure) {
         ImageView view = new ImageView(treasureImage);
         addEntity(treasure, view);
+    }
+
+    @Override
+    public void onLoad(Door door) {
+        ImageView view = new ImageView(doorImage);
+        addEntity(door, view);
+    }
+
+    @Override
+    public void onLoad(Key key) {
+        ImageView view = new ImageView(keyImage);
+        addEntity(key, view);
     }
 
     @Override
@@ -82,9 +108,33 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
 
     @Override
+    public void onLoad(FloorSwitch floorSwitch) {
+        ImageView view = new ImageView(floorSwitchImage);
+        addEntity(floorSwitch, view);
+    }
+
+    @Override
     public void onLoad(Portal portal) {
         ImageView view = new ImageView(portalImage);
         addEntity(portal, view);
+    }
+
+    @Override
+    public void onLoad(Enemy enemy) {
+        ImageView view = new ImageView(enemyImage);
+        addEntity(enemy, view);
+    }
+
+    @Override
+    public void onLoad(Sword sword) {
+        ImageView view = new ImageView(swordImage);
+        addEntity(sword, view);
+    }
+
+    @Override
+    public void onLoad(InvincibilityPotion invincibilityPotion) {
+        ImageView view = new ImageView(invincibilityPotionImage);
+        addEntity(invincibilityPotion, view);
     }
 
     private void addEntity(Entity entity, ImageView view) {
@@ -92,13 +142,15 @@ public class DungeonControllerLoader extends DungeonLoader {
         entities.add(view);
     }
 
+
     /**
-     * Set a node in a GridPane to have its position track the position of an
-     * entity in the dungeon.
+     * Set a node in a GridPane to have its position track the position of an entity
+     * in the dungeon.
      *
      * By connecting the model with the view in this way, the model requires no
-     * knowledge of the view and changes to the position of entities in the
-     * model will automatically be reflected in the view.
+     * knowledge of the view and changes to the position of entities in the model
+     * will automatically be reflected in the view.
+     * 
      * @param entity
      * @param node
      */
@@ -107,15 +159,13 @@ public class DungeonControllerLoader extends DungeonLoader {
         GridPane.setRowIndex(node, entity.getY());
         entity.x().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                    Number oldValue, Number newValue) {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 GridPane.setColumnIndex(node, newValue.intValue());
             }
         });
         entity.y().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                    Number oldValue, Number newValue) {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 GridPane.setRowIndex(node, newValue.intValue());
             }
         });
@@ -124,6 +174,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     /**
      * Create a controller that can be attached to the DungeonView with all the
      * loaded entities.
+     * 
      * @return
      * @throws FileNotFoundException
      */
