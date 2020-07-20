@@ -41,6 +41,9 @@ public class Player extends Entity implements Subject {
         this.observers = new ArrayList<Enemy>();
     }
 
+    /**
+     * Player moves up if not obstruction, interacts with entities
+     */
     public void moveUp() {
         int newX = getX();
         int newY = getY() - 1;
@@ -53,6 +56,9 @@ public class Player extends Entity implements Subject {
         }
     }
 
+    /**
+     * Player moves down if not obstruction, interacts with entities
+     */
     public void moveDown() {
         int newX = getX();
         int newY = getY() + 1;
@@ -65,6 +71,9 @@ public class Player extends Entity implements Subject {
         }
     }
 
+    /**
+     * Player moves left if not obstruction, interacts with entities
+     */
     public void moveLeft() {
         int newX = getX() - 1;
         int newY = getY();
@@ -77,6 +86,9 @@ public class Player extends Entity implements Subject {
         }
     }
 
+    /**
+     * Player moves right if not obstruction, interacts with entities
+     */
     public void moveRight() {
         int newX = getX() + 1;
         int newY = getY();
@@ -89,19 +101,37 @@ public class Player extends Entity implements Subject {
         }
     }
 
+    /**
+     * entity added to player inventory, removed from dungeon
+     * @param entity
+     */
     public void addItemToInventory(Entity entity) {
         this.inventory.add(entity);
         dungeon.removeEntity(entity);
     }
 
+    /**
+     * entity removed from player inventory
+     * @param entity
+     */
     public void removeItemFromInventory(Entity entity) {
         this.inventory.remove(entity);
     }
 
+    /**
+     * Returns list of entities in player inventory
+     * @return inventory
+     */
     public ArrayList<Entity> getListOfItemsInInventory() {
         return inventory;
     }
 
+    /**
+     * Returns list of entities at location (x, y)
+     * @param x
+     * @param y
+     * @return list of entities
+     */
     private List<Entity> returnEntities(int x, int y) {
         List<Entity> entities = dungeon.getEntities();
         List<Entity> xyEntities = new ArrayList<Entity>();
@@ -115,6 +145,9 @@ public class Player extends Entity implements Subject {
         return xyEntities;
     }
 
+    /**
+     * Player interacts with entities at location (x, y)
+     */
     private void interact(List<Entity> xyEntities, Player player) {
         for (Entity entity : xyEntities) {
             if (entity != null && entity instanceof Interaction) {
@@ -124,6 +157,10 @@ public class Player extends Entity implements Subject {
         }
     }
 
+    /**
+     * Returns player key
+     * @return
+     */
     public List<Key> getKeyList() {
         List<Key> playerKeyList = new ArrayList<Key>();
         for (Entity entity : inventory) {
@@ -134,11 +171,17 @@ public class Player extends Entity implements Subject {
         return playerKeyList;
     }
 
+    /**
+     * Sets player state
+     */
     public void setPlayerState(PlayerState state) {
         this.state = state;
         notifyObservers();
     }
 
+    /**
+     * Notifies enemies of location, sword, invincible
+     */
     @Override
     public void notifyObservers() {
         if (observers != null) {
@@ -194,6 +237,9 @@ public class Player extends Entity implements Subject {
         dungeon.endGame();
     }
 
+    /**
+     * Determines if player won game with last move
+     */
     private void didIJustFinishGame() {
         // If all goals complete, win the game
         for (Goal goal : dungeon.getGoals()) {
