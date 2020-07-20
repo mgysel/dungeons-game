@@ -47,8 +47,8 @@ public class InvincibilityPotionTest {
         Dungeon d = new Dungeon(5, 5);
         InvincibilityPotion pot = new InvincibilityPotion(2, 2);
         Player p = new Player(d,1,2);
-        Enemy e = new Enemy(d,5,5);
         d.setPlayer(p);
+        Enemy e = new Enemy(d,5,5);
         d.addEntity(pot);
         d.addEntity(e);
         assert(p.getState() instanceof Vulnerable);
@@ -64,8 +64,8 @@ public class InvincibilityPotionTest {
         Dungeon d = new Dungeon(5, 5);
         InvincibilityPotion pot = new InvincibilityPotion(2, 2);
         Player p = new Player(d,1,2);
-        Enemy e = new Enemy(d,5,5);
         d.setPlayer(p);
+        Enemy e = new Enemy(d,5,5);
         d.addEntity(pot);
         d.addEntity(e);
         p.moveRight();
@@ -74,10 +74,5 @@ public class InvincibilityPotionTest {
         e.performInteraction(p);
         assertEquals(0,d.getEntities().size());
     }
-
-    /*
-    @Test
-    public void enemyRunsWhilePlayerInvincible() {
-    }*/
 
 }
