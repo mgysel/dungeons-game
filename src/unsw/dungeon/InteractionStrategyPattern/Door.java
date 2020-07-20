@@ -39,6 +39,7 @@ public class Door extends Entity implements Obstruction, Interaction {
     public void performInteraction(Entity entity) {
         if (entity instanceof Player) {
             Player player = (Player) entity;
+            System.out.println("Perform Interaction");
             attemptToUnlockDoorWithKey(playerHasKeyForDoor(player));
             player.removeItemFromInventory(playerHasKeyForDoor(player));
         }
@@ -46,6 +47,8 @@ public class Door extends Entity implements Obstruction, Interaction {
 
 
     private Key playerHasKeyForDoor(Player player) {
+        System.out.println("1");
+        System.out.println(player);
         for (Key key : player.getKeyList()) {
             System.out.println("KEY: " + key);
             if (key.getID() == doorID) {
