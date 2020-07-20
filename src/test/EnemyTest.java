@@ -2,21 +2,20 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Timer;
-
 import org.junit.jupiter.api.Test;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Player;
 import unsw.dungeon.EnemyStatePattern.NotScaredEnemyState;
 import unsw.dungeon.EnemyStatePattern.ScaredEnemyState;
-import unsw.dungeon.InteractionStrategyPattern.Door;
 import unsw.dungeon.InteractionStrategyPattern.Enemy;
 import unsw.dungeon.InteractionStrategyPattern.InvincibilityPotion;
-import unsw.dungeon.InteractionStrategyPattern.Key;
 import unsw.dungeon.InteractionStrategyPattern.Sword;
 import unsw.dungeon.PlayerStatePattern.Invincible;
 import unsw.dungeon.PlayerStatePattern.PlayerState;
 
+/**
+ * Test for Enemy entity
+ */
 public class EnemyTest {
     @Test
     public void location() {
@@ -50,17 +49,16 @@ public class EnemyTest {
 
     @Test
     public void enemyMoveTowardPlayerWhenNotScared() throws InterruptedException {
+        // Left
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 0);
         dungeon.setPlayer(player);
         Enemy enemy = new Enemy(dungeon, 5, 0);
         dungeon.addEntity(enemy);
-
-        Thread.sleep(2000);
+        Thread.sleep(2500);
         assert(enemy.getX() < 5);
     }
 
-    // Test move away from player when not scared
     @Test
     public void enemyMoveAwayFromPlayerWhenScared() throws InterruptedException {
         Dungeon dungeon = new Dungeon(10, 10);
@@ -71,9 +69,8 @@ public class EnemyTest {
         dungeon.addEntity(enemy);
         dungeon.addEntity(invincibilityPotion);
         player.moveRight();
-        player.moveRight();
 
-        Thread.sleep(3000);
+        Thread.sleep(3500);
         assert(enemy.getX() > 5);
     }
 
@@ -113,6 +110,5 @@ public class EnemyTest {
         player.moveRight();
         assert(!dungeon.getEntities().contains(enemy));
     }
-
 
 }
