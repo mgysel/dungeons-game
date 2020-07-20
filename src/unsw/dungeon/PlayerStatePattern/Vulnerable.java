@@ -9,9 +9,4 @@ public class Vulnerable implements PlayerState {
         player.setPlayerState(this);
     }
 
-    @Override
-    public void killEnemy(Player player, Enemy enemy) {
-        player.swingSword(enemy);
-    }
-
 }

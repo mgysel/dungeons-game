@@ -115,8 +115,6 @@ public class Dungeon {
                 if (obstructingEntity.isObstruction(getPlayer(), x, y)) {
                     return true;
                 }
-                // return 
-                //return true;
             }
         }
         return false;
