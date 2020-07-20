@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
 import unsw.dungeon.InteractionStrategyPattern.Enemy;
+import unsw.dungeon.InteractionStrategyPattern.Exit;
 import unsw.dungeon.InteractionStrategyPattern.Interaction;
 import unsw.dungeon.InteractionStrategyPattern.Key;
 import unsw.dungeon.InteractionStrategyPattern.Sword;
@@ -48,6 +49,7 @@ public class Player extends Entity implements Subject {
             interact(xyEntities, this);
             y().set(getY() - 1);
             notifyObservers();
+            didIJustFinishGame();
         }
     }
 
@@ -59,6 +61,7 @@ public class Player extends Entity implements Subject {
             interact(xyEntities, this);
             y().set(getY() + 1);
             notifyObservers();
+            didIJustFinishGame();
         }
     }
 
@@ -70,6 +73,7 @@ public class Player extends Entity implements Subject {
             interact(xyEntities, this);
             x().set(getX() - 1);
             notifyObservers();
+            didIJustFinishGame();
         }
     }
 
@@ -81,6 +85,7 @@ public class Player extends Entity implements Subject {
             interact(xyEntities, this);
             x().set(getX() + 1);
             notifyObservers();
+            didIJustFinishGame();
         }
     }
 
@@ -183,5 +188,17 @@ public class Player extends Entity implements Subject {
 
     public void dies() {
         dungeon.endGame();
+    }
+
+    private void didIJustFinishGame() {
+        // for (Entity entity : dungeon.getEntities()) {
+        
+        //      if (dungeon.checkNonExitGoalsCompleted()) {
+        //         player.winGame();
+        //      } else {
+        //         do nothing
+        //      }
+        //   }
+        // }      
     }
 }

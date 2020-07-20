@@ -28,8 +28,8 @@ public class Boulder extends Entity implements Obstruction, Interaction {
 
     @Override
     public boolean isObstruction(Player player, int x, int y) {
-        int playerX = x;
-        int playerY = y;
+        int playerX = player.getX();
+        int playerY = player.getY();
         int thisX = getX();
         int thisY = getY();
         int nextX = (thisX - playerX) + thisX;

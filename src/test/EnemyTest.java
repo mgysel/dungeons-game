@@ -67,10 +67,11 @@ public class EnemyTest {
         Player player = new Player(dungeon, 0, 0);
         InvincibilityPotion invincibilityPotion = new InvincibilityPotion(1, 0);
         dungeon.setPlayer(player);
-        dungeon.addEntity(invincibilityPotion);
-        player.moveRight();
         Enemy enemy = new Enemy(dungeon, 5, 0);
         dungeon.addEntity(enemy);
+        dungeon.addEntity(invincibilityPotion);
+        player.moveRight();
+        player.moveRight();
 
         Thread.sleep(3000);
         assert(enemy.getX() > 5);
@@ -116,5 +117,6 @@ public class EnemyTest {
     // Test collision with player kills enemy when enemy has sword    
 
     // Test collision with player kills enemy when scared
+
 
 }
