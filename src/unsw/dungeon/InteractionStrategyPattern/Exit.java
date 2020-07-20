@@ -2,6 +2,7 @@ package unsw.dungeon.InteractionStrategyPattern;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
+import unsw.dungeon.Goal;
 import unsw.dungeon.InteractionStrategyPattern.Interaction;
 import unsw.dungeon.Player;
 
@@ -9,7 +10,7 @@ import unsw.dungeon.Player;
  * Exit that players move through when goals completed to finish dungeon
  * @author Ben Charlton
  */
-public class Exit extends Entity implements Interaction {
+public class Exit extends Entity implements Interaction, Goal {
 
     private Dungeon dungeon;
 
@@ -21,12 +22,21 @@ public class Exit extends Entity implements Interaction {
     @Override
     public void performInteraction(Entity entity) {
         if (entity instanceof Player) {
-            Player player = (Player) entity;
-            if (dungeon.checkNonExitGoalsCompleted()) {
+            if (isComplete()) {
                 dungeon.winGame();
             } else {
-                // do nothing while player stands on exit
+                // do nothing
             }
         }
     }
+
+    @Override
+    public boolean isComplete() {
+        if (dungeon.checkNonExitGoalsCompleted()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
