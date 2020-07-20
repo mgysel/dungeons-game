@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Timer;
+
 import org.junit.jupiter.api.Test;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Player;
@@ -46,9 +48,33 @@ public class EnemyTest {
         assert(enemy.getState() instanceof ScaredEnemyState);
     }
 
-    // Test move toward player when scared
+    @Test
+    public void enemyMoveTowardPlayerWhenNotScared() throws InterruptedException {
+        Dungeon dungeon = new Dungeon(10, 10);
+        Player player = new Player(dungeon, 0, 0);
+        dungeon.setPlayer(player);
+        Enemy enemy = new Enemy(dungeon, 5, 0);
+        dungeon.addEntity(enemy);
+
+        Thread.sleep(2000);
+        assert(enemy.getX() < 5);
+    }
 
     // Test move away from player when not scared
+    @Test
+    public void enemyMoveAwayFromPlayerWhenScared() throws InterruptedException {
+        Dungeon dungeon = new Dungeon(10, 10);
+        Player player = new Player(dungeon, 0, 0);
+        InvincibilityPotion invincibilityPotion = new InvincibilityPotion(1, 0);
+        dungeon.setPlayer(player);
+        dungeon.addEntity(invincibilityPotion);
+        player.moveRight();
+        Enemy enemy = new Enemy(dungeon, 5, 0);
+        dungeon.addEntity(enemy);
+
+        Thread.sleep(3000);
+        assert(enemy.getX() > 5);
+    }
 
     @Test
     public void EnemyKillsVulnerablePlayerWithoutSword() {
