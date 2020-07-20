@@ -49,29 +49,57 @@ public class EnemyTest {
 
     @Test
     public void enemyMoveTowardPlayerWhenNotScared() throws InterruptedException {
-        // Left
+        // Up/Left
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 0);
         dungeon.setPlayer(player);
-        Enemy enemy = new Enemy(dungeon, 5, 0);
+        Enemy enemy = new Enemy(dungeon, 5, 5);
         dungeon.addEntity(enemy);
         Thread.sleep(2500);
         assert(enemy.getX() < 5);
+        assert(enemy.getY() < 5);
+
+        // Down/Right
+        dungeon = new Dungeon(10, 10);
+        player = new Player(dungeon, 5, 5);
+        dungeon.setPlayer(player);
+        enemy = new Enemy(dungeon, 0, 0);
+        dungeon.addEntity(enemy);
+        Thread.sleep(2500);
+        assert(enemy.getX() > 0);
+        assert(enemy.getY() > 0);
     }
 
     @Test
     public void enemyMoveAwayFromPlayerWhenScared() throws InterruptedException {
+        // Right/Down
         Dungeon dungeon = new Dungeon(10, 10);
         Player player = new Player(dungeon, 0, 0);
         InvincibilityPotion invincibilityPotion = new InvincibilityPotion(1, 0);
         dungeon.setPlayer(player);
-        Enemy enemy = new Enemy(dungeon, 5, 0);
-        dungeon.addEntity(enemy);
+        Enemy enemy = new Enemy(dungeon, 5, 5);
         dungeon.addEntity(invincibilityPotion);
+        dungeon.addEntity(enemy);
         player.moveRight();
-
+        player.moveRight();
         Thread.sleep(3500);
-        assert(enemy.getX() > 5);
+        assert(enemy.getY() > 5);
+        assert(enemy.getY() > 5);
+
+        // Left/Up
+        dungeon = new Dungeon(10, 10);
+        player = new Player(dungeon, 8, 9);
+        invincibilityPotion = new InvincibilityPotion(9, 9);
+        dungeon.setPlayer(player);
+        enemy = new Enemy(dungeon, 5, 5);
+        dungeon.addEntity(invincibilityPotion);
+        dungeon.addEntity(enemy);
+        player.moveRight();
+        player.moveRight();
+        Thread.sleep(3500);
+        assert(enemy.getY() < 5);
+        assert(enemy.getY() < 5);
+        
     }
 
     @Test
