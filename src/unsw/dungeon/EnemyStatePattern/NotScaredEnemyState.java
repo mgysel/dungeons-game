@@ -26,6 +26,7 @@ public class NotScaredEnemyState implements EnemyState {
             player.swingSword(enemy);
         } else {
             // if player doesn't have sword, enemy kills player
+            System.out.println("here");
             player.dies();
         }
 

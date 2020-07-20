@@ -58,7 +58,7 @@ public class EnemyTest {
         dungeon.setPlayer(player);
         dungeon.addEntity(enemy);
         player.moveRight();
-        assert(!dungeon.getEntities().contains(player));
+        assert(dungeon.getPlayer() == null);
     }
 
     @Test
