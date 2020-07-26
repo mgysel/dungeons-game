@@ -28,7 +28,6 @@ public class NotScaredEnemyState implements EnemyState {
             // if player doesn't have sword, enemy kills player
             player.dies();
         }
-
     }
 
     @Override

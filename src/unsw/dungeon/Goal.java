@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+
 /**
  * Goal interface extended to each Goal object
  */
