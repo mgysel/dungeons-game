@@ -2,14 +2,9 @@ package test;
 import unsw.dungeon.Dungeon;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import unsw.dungeon.Goal;
 import unsw.dungeon.InteractionStrategyPattern.Exit;
 import unsw.dungeon.InteractionStrategyPattern.Treasure;
 import unsw.dungeon.Player;
-
-import java.util.Objects;
 
 
 public class ExitTest {

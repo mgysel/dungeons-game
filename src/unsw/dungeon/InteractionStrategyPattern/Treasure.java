@@ -2,10 +2,9 @@ package unsw.dungeon.InteractionStrategyPattern;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
-import unsw.dungeon.Goal;
 import unsw.dungeon.Player;
 
-public class Treasure extends Entity implements Goal, Interaction {
+public class Treasure extends Entity implements Interaction {
 
     private Dungeon dungeon;
 
@@ -22,13 +21,4 @@ public class Treasure extends Entity implements Goal, Interaction {
         }
     }
 
-    @Override
-    public boolean isComplete() {
-        // if the treasure is in the map still
-        // then it has not been collected so the goal
-        // is not complete
-        if (dungeon.getEntities().contains(this)) {
-            return false;
-        } return true;
-    }
 }

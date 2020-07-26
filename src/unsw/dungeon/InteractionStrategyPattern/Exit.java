@@ -2,27 +2,28 @@ package unsw.dungeon.InteractionStrategyPattern;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
-import unsw.dungeon.Goal;
-import unsw.dungeon.InteractionStrategyPattern.Interaction;
 import unsw.dungeon.Player;
 
 /**
  * Exit that players move through when goals completed to finish dungeon
  * @author Ben Charlton
  */
-public class Exit extends Entity implements Interaction, Goal {
+public class Exit extends Entity implements Interaction {
 
     private Dungeon dungeon;
+    private boolean activated;
 
     public Exit(Dungeon dungeon, int x, int y) {
         super(x,y);
         this.dungeon = dungeon;
+        this.activated = false;
     }
 
     @Override
     public void performInteraction(Entity entity) {
         if (entity instanceof Player) {
-            if (isComplete()) {
+            // if all other goals complete
+            if (isActivated()) {
                 dungeon.endGame();
             } else {
                 // do nothing
@@ -30,13 +31,11 @@ public class Exit extends Entity implements Interaction, Goal {
         }
     }
 
-    @Override
-    public boolean isComplete() {
-        if (dungeon.checkNonExitGoalsCompleted()) {
-            return true;
-        } else {
-            return false;
-        }
+    private boolean isActivated() {
+        // if all other goals completed
+        // is activated == true;
+        return false;
     }
+
 
 }

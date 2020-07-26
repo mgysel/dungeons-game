@@ -9,18 +9,14 @@ import unsw.dungeon.EnemyStatePattern.EnemyState;
 import unsw.dungeon.EnemyStatePattern.NotScaredEnemyState;
 import unsw.dungeon.EnemyStatePattern.ScaredEnemyState;
 import unsw.dungeon.Entity;
-import unsw.dungeon.Goal;
 import unsw.dungeon.ObserverPattern.Observer;
-import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.Player;
 import unsw.dungeon.PlayerStatePattern.Invincible;
-import unsw.dungeon.PlayerStatePattern.PlayerState;
 
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Enemy extends Entity implements Observer, Goal, Interaction {
+public class Enemy extends Entity implements Observer, Interaction {
 
     private Dungeon dungeon;
     private EnemyState scaredState;
@@ -77,16 +73,6 @@ public class Enemy extends Entity implements Observer, Goal, Interaction {
         } if (entity instanceof Portal) {
             ((Portal) entity).performInteraction(this);
         }
-    }
-
-    @Override
-    public boolean isComplete() {
-        // if the enemy is in the map still
-        // then it has not been killed so the goal
-        // of killing all enemies is not complete
-        if (dungeon.getEntities().contains(this)) {
-            return false;
-        } return true;
     }
 
     public EnemyState getState() {
