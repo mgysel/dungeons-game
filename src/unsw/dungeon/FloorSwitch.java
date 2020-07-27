@@ -2,9 +2,10 @@ package unsw.dungeon;
 
 import unsw.dungeon.InteractionStrategyPattern.Boulder;
 
-public class FloorSwitch extends Entity implements Goal {
+public class FloorSwitch extends Entity {
 
     private Dungeon dungeon;
+    private boolean triggered;
 
     public FloorSwitch(Dungeon dungeon, int x, int y) {
         super(x, y);
@@ -12,18 +13,14 @@ public class FloorSwitch extends Entity implements Goal {
     }
 
     public boolean isTriggered() {
-        System.out.println("ENTITIES: ");
         for (Entity entity : dungeon.getEntities(getX(), getY())) {
             if (entity != null && entity instanceof Boulder) {
+                this.triggered = true;
                 return true;
             }
-        } return false;
+        }
+        this.triggered = false;
+        return false;
     }
 
-    @Override
-    public boolean isComplete() {
-        if (isTriggered()) {
-            return true;
-        } return false;
-    }
 }

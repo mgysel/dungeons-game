@@ -224,11 +224,6 @@ public class Player extends Entity implements Subject {
      */
     private void didIJustFinishGame() {
         // If all goals complete, win the game
-        for (Goal goal : dungeon.getGoals()) {
-            if (!goal.isComplete()) {
-                return;
-            }
-        }
-        winGame();
+        dungeon.checkGoals();
     }
 }

@@ -6,6 +6,9 @@ import java.io.FileReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import unsw.dungeon.GoalCompositePattern.CompositeGoal;
+import unsw.dungeon.GoalCompositePattern.Goal;
+import unsw.dungeon.GoalCompositePattern.LeafGoal;
 import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
@@ -43,24 +46,24 @@ public abstract class DungeonLoader {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
 
-        // for (int i = 0; i < goals.length(); i++) {
-        //     addGoalToGame(goals.get(i));
-        // }
         return dungeon;
     }
 
 
-    // { "goal": "AND", 
-    //     "subgoals": [ 
-    //         { "goal": "exit" },
-    //         { "goal": "OR", 
-    //             "subgoals": [
-    //                 {"goal": "enemies" }, 
-    //                 {"goal": "treasure" }
-    //             ]
-    //         }
-    //     ]
-    // }
+
+    private Goal loadGoals(JSONObject jsonGoal){
+        String goal = jsonGoal.getString("goal");
+        if (goal.equals("AND") || goal.equals("OR")) {
+            JSONArray jsonGoals = jsonGoal.getJSONArray("subgoals");
+            CompositeGoal curGoal = new CompositeGoal(goal);
+            for(int i = 0; i < jsonGoals.length(); i++){
+                curGoal.addGoal(loadGoals(jsonGoals.getJSONObject(i)));
+            }
+            return curGoal;
+        } else {
+            return new LeafGoal(goal);
+        }
+    }
 
 
 
@@ -87,14 +90,12 @@ public abstract class DungeonLoader {
         case "exit":
             Exit exit = new Exit(dungeon, x, y);
             dungeon.addEntity(exit);
-            dungeon.addGoal(exit);
             onLoad(exit);
             entity = exit;
             break;
         case "treasure":
             Treasure treasure = new Treasure(dungeon,x,y);
             dungeon.addEntity(treasure);
-            dungeon.addGoal(treasure);
             onLoad(treasure);
             entity = treasure;
             break;
@@ -121,7 +122,6 @@ public abstract class DungeonLoader {
         case "floor switch":
             FloorSwitch floorSwitch = new FloorSwitch(dungeon, x, y);
             dungeon.addEntity(floorSwitch);
-            dungeon.addGoal(floorSwitch);
             onLoad(floorSwitch);
             entity = floorSwitch;
             break;
@@ -135,7 +135,6 @@ public abstract class DungeonLoader {
         case "enemy":
             Enemy enemy = new Enemy(dungeon, x, y);
             dungeon.addEntity(enemy);
-            dungeon.addGoal(enemy);
             onLoad(enemy);
             entity = enemy;
             break;

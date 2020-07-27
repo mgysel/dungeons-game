@@ -7,13 +7,11 @@ import unsw.dungeon.InteractionStrategyPattern.Treasure;
 public class TreasureGoal implements GoalStrategy {
 
     @Override
-    public boolean isComplete(Goal goal) {
-        Dungeon dungeon = goal.getDungeon();
+    public boolean isComplete(Dungeon dungeon) {
         for (Entity entity : dungeon.getEntities()) {
             if (entity instanceof Treasure) {
                 return false;
             }
         } return true;
     }
-
 }

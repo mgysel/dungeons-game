@@ -3,6 +3,7 @@
  */
 package unsw.dungeon;
 
+import unsw.dungeon.GoalCompositePattern.Goal;
 import unsw.dungeon.InteractionStrategyPattern.Enemy;
 import unsw.dungeon.InteractionStrategyPattern.Exit;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
@@ -23,7 +24,7 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
-    private List<Goal> goals;
+    private Goal goal;
     private Player player;
 
     public Dungeon(int width, int height) {
@@ -31,7 +32,6 @@ public class Dungeon {
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
-        this.goals = new ArrayList<Goal>();
     }
 
     public int getWidth() {
@@ -78,27 +78,13 @@ public class Dungeon {
         return xyEntities;
     }
 
-
-    public void addGoal(Goal goal) {
-        goals.add(goal);
+    public void setGoal(Goal goal) {
+        this.goal = goal;
     }
 
      public void endGame() {
         this.player = null;
      }
-
-    public boolean checkNonExitGoalsCompleted() {
-        for (Goal goal : goals) {
-            if (!(goal instanceof Exit)) {
-                if (goal.isComplete()) {
-                    continue;
-                } else {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
 
     public boolean isThereObstructionAtXY(int x, int y) {
@@ -113,7 +99,13 @@ public class Dungeon {
         return false;
     }
 
-    public List<Goal> getGoals() {
-        return this.goals;
+    public void checkGoals() {
+        if(goal != null) {
+            boolean areGoalsComplete = goal.goalComplete(this);
+            if (areGoalsComplete) {
+                player.winGame();
+            }
+        }
     }
+
 }

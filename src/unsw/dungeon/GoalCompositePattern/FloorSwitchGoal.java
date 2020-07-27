@@ -7,11 +7,10 @@ import unsw.dungeon.FloorSwitch;
 public class FloorSwitchGoal implements GoalStrategy {
 
     @Override
-    public boolean isComplete(Goal goal) {
-    Dungeon dungeon = goal.getDungeon();
-		for (Entity entity : dungeon.getEntities()) {
+    public boolean isComplete(Dungeon dungeon) {
+        for (Entity entity : dungeon.getEntities()) {
             if (entity instanceof FloorSwitch) {
-                if (((FloorSwitch) entity).isComplete()) {
+                if (((FloorSwitch) entity).isTriggered()) {
                     continue;
                 } else {
                     return false;
@@ -19,6 +18,6 @@ public class FloorSwitchGoal implements GoalStrategy {
             }
 
         }
-		return true;
+        return true;
     }
 }

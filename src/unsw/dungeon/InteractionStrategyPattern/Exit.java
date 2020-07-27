@@ -31,7 +31,7 @@ public class Exit extends Entity implements Interaction {
         }
     }
 
-    private boolean isActivated() {
+    public boolean isActivated() {
         // if all other goals completed
         // is activated == true;
         return false;

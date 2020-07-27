@@ -3,35 +3,49 @@ package unsw.dungeon.GoalCompositePattern;
 import unsw.dungeon.Dungeon;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CompositeGoal extends Goal {
+public class CompositeGoal implements Goal {
 
-    private ArrayList<Goal> subGoals;
+    private String composition;
+    private List<Goal> goals;
 
-    public CompositeGoal(Dungeon dungeon, GoalStrategy strategy) {
-        super(dungeon, strategy);
-        this.subGoals = new ArrayList<Goal>();
+    public CompositeGoal(String operator) {
+        goals = new ArrayList<Goal>();
+        this.composition = operator;
     }
 
-    public void addSubGoal(Goal goal) {
-        this.subGoals.add(goal);
+
+    public void addGoal(Goal goal) {
+        goals.add(goal);
     }
 
-    public void removeSubGoal(Goal goal) {
-        this.subGoals.remove(goal);
+
+    private boolean isAnd() {
+        if (composition.equals("AND")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public ArrayList<Goal> getAllSubGoals() {
-        return this.subGoals;
-    }
-
-    public ArrayList<Goal> getIncompleteGoals() {
-        ArrayList<Goal> incompleteGoals = new ArrayList<Goal>();
-        for (Goal goal : this.subGoals) {
-            if (!goal.isComplete()) {
-                incompleteGoals.add(goal);
+    @Override
+    public boolean goalComplete(Dungeon dungeon) {
+        if (goals.size() == 0) {
+            return true;
+        }
+        for(Goal goal: goals) {
+            if (isAnd()) {
+                if (!goal.goalComplete(dungeon)) {
+                    return false;
+                }
+            } else {
+                if (goal.goalComplete(dungeon)) {
+                    return true;
+                }
             }
         }
-        return incompleteGoals;
+        return isAnd();
     }
+
 }
