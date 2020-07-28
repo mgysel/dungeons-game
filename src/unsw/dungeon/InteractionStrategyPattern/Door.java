@@ -32,6 +32,7 @@ public class Door extends Entity implements Obstruction, Interaction {
         int keyID = key.getID();
         if(keyID == this.doorID) {
             this.isOpen = true;
+            System.out.println("1. Door Open? " + this.isOpen);
         }
     }
 
@@ -48,6 +49,7 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     private Key playerHasKeyForDoor(Player player) {
         System.out.println(player);
+        System.out.println("2. Door Open? " + this.isOpen);
         for (Key key : player.getKeyList()) {
             if (key.getID() == doorID) {
                 return key;

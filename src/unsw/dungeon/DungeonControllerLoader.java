@@ -61,6 +61,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
         portalImage = new Image((new File("images/portal.png")).toURI().toString());
         treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
+        enemyImage = new Image((new File("images/hound.png")).toURI().toString());
         swordImage = new Image((new File("images/greatsword_1_new.png")).toURI().toString());
         invincibilityPotionImage = new Image((new File("images/brilliant_blue_new.png")).toURI().toString());
     }

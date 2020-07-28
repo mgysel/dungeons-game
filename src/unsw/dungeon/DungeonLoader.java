@@ -40,7 +40,7 @@ public abstract class DungeonLoader {
         Dungeon dungeon = new Dungeon(width, height);
 
         JSONArray jsonEntities = json.getJSONArray("entities");
-        JSONArray goals = json.getJSONArray("goals");
+        // JSONArray goals = json.getJSONArray("goals");
 
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
@@ -51,19 +51,19 @@ public abstract class DungeonLoader {
 
 
 
-    private Goal loadGoals(JSONObject jsonGoal){
-        String goal = jsonGoal.getString("goal");
-        if (goal.equals("AND") || goal.equals("OR")) {
-            JSONArray jsonGoals = jsonGoal.getJSONArray("subgoals");
-            CompositeGoal curGoal = new CompositeGoal(goal);
-            for(int i = 0; i < jsonGoals.length(); i++){
-                curGoal.addGoal(loadGoals(jsonGoals.getJSONObject(i)));
-            }
-            return curGoal;
-        } else {
-            return new LeafGoal(goal);
-        }
-    }
+    // private Goal loadGoals(JSONObject jsonGoal){
+    //     String goal = jsonGoal.getString("goal");
+    //     if (goal.equals("AND") || goal.equals("OR")) {
+    //         JSONArray jsonGoals = jsonGoal.getJSONArray("subgoals");
+    //         CompositeGoal curGoal = new CompositeGoal(goal);
+    //         for(int i = 0; i < jsonGoals.length(); i++){
+    //             curGoal.addGoal(loadGoals(jsonGoals.getJSONObject(i)));
+    //         }
+    //         return curGoal;
+    //     } else {
+    //         return new LeafGoal(goal);
+    //     }
+    // }
 
 
 
