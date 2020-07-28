@@ -40,7 +40,8 @@ public abstract class DungeonLoader {
         Dungeon dungeon = new Dungeon(width, height);
 
         JSONArray jsonEntities = json.getJSONArray("entities");
-        // JSONArray goals = json.getJSONArray("goals");
+        //JSONObject jsonGoal = json.getJSONObject("goal-condition");
+        //dungeon.setGoal(loadGoals(jsonGoal));
 
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));

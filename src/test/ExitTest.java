@@ -26,8 +26,8 @@ public class ExitTest {
         d.setPlayer(p);
         d.addEntity(t);
         d.addEntity(exit);
-        d.addGoal(exit);
-        d.addGoal(t);
+      //  d.addGoal(exit);
+     //   d.addGoal(t);
         p.moveRight();
         assert(d.getPlayer() != null);
         assertEquals(2,p.getX());
@@ -43,8 +43,8 @@ public class ExitTest {
         d.setPlayer(p);
         d.addEntity(t);
         d.addEntity(exit);
-        d.addGoal(exit);
-        d.addGoal(t);
+     //   d.addGoal(exit);
+     //   d.addGoal(t);
         p.moveRight();
         p.moveRight();
         assert (d.getPlayer() == null);

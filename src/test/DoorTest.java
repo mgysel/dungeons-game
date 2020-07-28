@@ -39,7 +39,7 @@ public class DoorTest {
         // Must be goal, or player interacting with object ends game
         Treasure treasure = new Treasure(dungeon, 5, 5);
         dungeon.addEntity(treasure);
-        dungeon.addGoal(treasure);
+      //  dungeon.addGoal(treasure);
         
         // Test key/door
         player.moveRight();
@@ -64,7 +64,7 @@ public class DoorTest {
         // Must be goal, or player interacting with object ends game
         Treasure treasure = new Treasure(dungeon, 5, 5);
         dungeon.addEntity(treasure);
-        dungeon.addGoal(treasure);
+    //    dungeon.addGoal(treasure);
 
         // Test key/door
         player.moveRight();
