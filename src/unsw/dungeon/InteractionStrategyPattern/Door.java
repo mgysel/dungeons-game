@@ -11,12 +11,10 @@ import unsw.dungeon.Player;
  */
 public class Door extends Entity implements Obstruction, Interaction {
 
-    private boolean isOpen;
     private int doorID;
 
     public Door(int x, int y, int id) {
         super(x,y);
-        this.isOpen = false;
         this.doorID = id;
     }
 
@@ -25,16 +23,14 @@ public class Door extends Entity implements Obstruction, Interaction {
     }
 
     public boolean getIsOpen() {
-        return this.isOpen;
+        return this.doesExist().get();
     }
 
     public void attemptToUnlockDoorWithKey(Key key) {
         if (key != null) {
             int keyID = key.getID();
             if(keyID == this.doorID) {
-                this.isOpen = true;
                 this.doesExist().set(false);
-                System.out.println("1. Door Open? " + this.isOpen);
             }
         }
     }
@@ -52,7 +48,6 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     private Key playerHasKeyForDoor(Player player) {
         System.out.println(player);
-        System.out.println("2. Door Open? " + this.isOpen);
         for (Key key : player.getKeyList()) {
             if (key.getID() == doorID) {
                 return key;
@@ -63,7 +58,7 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     @Override
     public boolean isObstruction(Player player, int x, int y) {
-        if (playerHasKeyForDoor(player) != null || this.isOpen == true) {
+        if (playerHasKeyForDoor(player) != null || this.doesExist().get() == true) {
             return false;
         } else {
             return true;

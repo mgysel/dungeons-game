@@ -22,6 +22,7 @@ public class Sword extends Entity implements Interaction {
             } else {
                 playerWieldingSword = player;
                 player.addItemToInventory(this);
+                this.doesExist().set(false);
             }
         }
     }

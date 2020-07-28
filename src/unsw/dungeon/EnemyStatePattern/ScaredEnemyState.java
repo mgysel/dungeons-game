@@ -19,6 +19,7 @@ public class ScaredEnemyState implements EnemyState {
         // player is invincible,
         // kills enemy without using sword
         player.removeEnemy(enemy);
+        enemy.doesExist().set(false);
     }
 
     @Override

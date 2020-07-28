@@ -191,6 +191,7 @@ public class Player extends Entity implements Subject {
     public void removeEnemy(Enemy enemy) {
         dungeon.removeEntity(enemy);
         removeObserver(enemy);
+        enemy.doesExist().set(false);
     }
 
     public void swingSword(Enemy enemy) {
@@ -212,6 +213,7 @@ public class Player extends Entity implements Subject {
     }
 
     public void dies() {
+        this.doesExist().set(false);
         dungeon.endGame();
     }
 

@@ -21,6 +21,7 @@ public class Key extends Entity implements Interaction {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             player.addItemToInventory(this);
+            this.doesExist().set(false);
         }
     }
 }
