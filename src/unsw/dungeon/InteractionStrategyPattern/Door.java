@@ -29,10 +29,13 @@ public class Door extends Entity implements Obstruction, Interaction {
     }
 
     public void attemptToUnlockDoorWithKey(Key key) {
-        int keyID = key.getID();
-        if(keyID == this.doorID) {
-            this.isOpen = true;
-            System.out.println("1. Door Open? " + this.isOpen);
+        if (key != null) {
+            int keyID = key.getID();
+            if(keyID == this.doorID) {
+                this.isOpen = true;
+                this.doesExist().set(false);
+                System.out.println("1. Door Open? " + this.isOpen);
+            }
         }
     }
 
