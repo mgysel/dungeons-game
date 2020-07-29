@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import unsw.dungeon.GoalCompositePattern.Goal;
 import unsw.dungeon.GoalCompositePattern.LeafGoal;
+import unsw.dungeon.InteractionStrategyPattern.Exit;
 import unsw.dungeon.InteractionStrategyPattern.Portal;
 import unsw.dungeon.InteractionStrategyPattern.Treasure;
 import unsw.dungeon.Player;
@@ -33,6 +34,17 @@ public class GoalTest {
 
     @Test
     public void testSingleGoalExit() {
+        Dungeon d = new Dungeon(5,5);
+        Goal singleGoal = new LeafGoal("exit");
+        d.setGoal(singleGoal);
+        Exit e = new Exit(d,2,2);
+        Player p = new Player(d,3,2);
+        d.setPlayer(p);
+        d.addEntity(e);
+        d.checkGoals();
+        assertEquals(d.getPlayer(),p);
+        p.moveLeft();
+        assertNull(d.getPlayer());
     }
 
     @Test
@@ -40,7 +52,11 @@ public class GoalTest {
     }
 
     @Test
-    public void testCompositeGoalsExit() {
+    public void testCompositeGoalsFailsWhenIncompleteAtExit() {
+    }
+
+    @Test
+    public void testCompositeGoalsPassWhenCompleteAtExit() {
     }
 
 }

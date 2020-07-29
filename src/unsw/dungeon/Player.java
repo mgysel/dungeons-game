@@ -224,7 +224,7 @@ public class Player extends Entity implements Subject {
     /**
      * Determines if player won game with last move
      */
-    private void didIJustFinishGame() {
+    public void didIJustFinishGame() {
         // If all goals complete, win the game
         dungeon.checkGoals();
     }

@@ -22,20 +22,15 @@ public class Exit extends Entity implements Interaction {
     @Override
     public void performInteraction(Entity entity) {
         if (entity instanceof Player) {
+            System.out.println("here");
             // if all other goals complete
-            if (isActivated()) {
-                dungeon.endGame();
-            } else {
-                // do nothing
-            }
+            // do nothing?
+            // we already check if we finish game
+            // ((Player) entity).didIJustFinishGame();
         }
     }
 
-    public boolean isActivated() {
-        // if all other goals completed
-        // is activated == true;
-        return false;
-    }
+
 
 
 }

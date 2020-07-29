@@ -3,7 +3,9 @@
  */
 package unsw.dungeon;
 
+import unsw.dungeon.GoalCompositePattern.CompositeGoal;
 import unsw.dungeon.GoalCompositePattern.Goal;
+import unsw.dungeon.GoalCompositePattern.LeafGoal;
 import unsw.dungeon.InteractionStrategyPattern.Enemy;
 import unsw.dungeon.InteractionStrategyPattern.Exit;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
@@ -107,5 +109,4 @@ public class Dungeon {
             }
         }
     }
-
 }

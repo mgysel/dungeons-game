@@ -28,6 +28,10 @@ public class LeafGoal implements Goal {
         }
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public boolean goalComplete(Dungeon dungeon) {
         return strategy.isComplete(dungeon);
