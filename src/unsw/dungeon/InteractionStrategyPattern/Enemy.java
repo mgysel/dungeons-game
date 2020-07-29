@@ -13,8 +13,12 @@ import unsw.dungeon.ObserverPattern.Observer;
 import unsw.dungeon.Player;
 import unsw.dungeon.PlayerStatePattern.Invincible;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 
 public class Enemy extends Entity implements Observer, Interaction {
 
@@ -22,6 +26,7 @@ public class Enemy extends Entity implements Observer, Interaction {
     private EnemyState scaredState;
     private EnemyState notScaredState;
     private EnemyState state;
+    private Timeline timeline;
 
     public Enemy(Dungeon dungeon, int x, int y) {
         super(x, y);
@@ -33,11 +38,10 @@ public class Enemy extends Entity implements Observer, Interaction {
     }
 
     public void moveEnemy(Player player, Dungeon dungeon) {
-        // every second,
-        Timer t = new Timer( );
-        TimerTask tt = new TimerTask() {
-            @Override
-            public void run() {
+        timeline = new Timeline();
+
+        EventHandler<ActionEvent> tickGame = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
                 state.moveEnemy(player, dungeon);
                 int thisEnemyX = Enemy.super.getX();
                 System.out.println("enemy x = " + thisEnemyX);
@@ -51,7 +55,12 @@ public class Enemy extends Entity implements Observer, Interaction {
                 }
             }
         };
-        t.scheduleAtFixedRate(tt,0,1000);
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), tickGame); 
+
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     @Override
@@ -77,6 +86,11 @@ public class Enemy extends Entity implements Observer, Interaction {
 
     public EnemyState getState() {
         return this.state;
+    }
+
+    public void dies() {
+        doesExist().set(false);
+        timeline.stop();
     }
 
     
