@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import unsw.dungeon.FloorSwitch;
+import unsw.dungeon.GoalCompositePattern.CompositeGoal;
 import unsw.dungeon.GoalCompositePattern.Goal;
 import unsw.dungeon.GoalCompositePattern.LeafGoal;
-import unsw.dungeon.InteractionStrategyPattern.Exit;
-import unsw.dungeon.InteractionStrategyPattern.Portal;
-import unsw.dungeon.InteractionStrategyPattern.Treasure;
+import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.Player;
 
 public class GoalTest {
@@ -48,7 +48,34 @@ public class GoalTest {
     }
 
     @Test
-    public void testCompositeGoalsNotExit() {
+    public void testOrGoalsNotExit() {
+        Dungeon d = new Dungeon(5,5);
+        Player p = new Player(d,3,3);
+        d.setPlayer(p);
+        Goal treasureGoal = new LeafGoal("treasure");
+        Goal enemyGoal = new LeafGoal("boulders");
+        CompositeGoal compositeGoal = new CompositeGoal("OR");
+        compositeGoal.addGoal(treasureGoal);
+        compositeGoal.addGoal(enemyGoal);
+        d.setGoal(compositeGoal);
+        Treasure t = new Treasure(d,2,2);
+        FloorSwitch f = new FloorSwitch(d,5,5);
+        d.addEntity(t);
+        d.addEntity(f);
+        d.checkGoals();
+        assertEquals(d.getPlayer(),p);
+        t.performInteraction(p);
+        d.checkGoals();
+        assertNull(d.getPlayer());
+        Treasure t2 = new Treasure(d,2,2);
+        d.addEntity(t2);
+        d.setPlayer(p);
+        d.checkGoals();
+        assertEquals(d.getPlayer(),p);
+        Boulder b = new Boulder(d,5,5);
+        d.addEntity(b);
+        d.checkGoals();
+        assertNull(d.getPlayer());
     }
 
     @Test
