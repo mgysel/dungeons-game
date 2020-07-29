@@ -200,6 +200,7 @@ public class Player extends Entity implements Subject {
             if (entity instanceof Sword) {
                 Sword sword = (Sword) entity;
                 sword.decrementUsesRemaining();
+                removeEnemy(enemy);
             }
         }
     }
