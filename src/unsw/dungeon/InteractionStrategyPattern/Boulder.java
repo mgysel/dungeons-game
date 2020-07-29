@@ -20,7 +20,6 @@ public class Boulder extends Entity implements Obstruction, Interaction {
         y().set(y);
         for (Entity entity : dungeon.getEntities(x,y)) {
             if (entity instanceof Portal) {
-                System.out.println("made it");
                 ((Portal) entity).performInteraction(this);
             }
         }
