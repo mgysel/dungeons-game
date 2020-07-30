@@ -58,7 +58,7 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     @Override
     public boolean isObstruction(Player player, int x, int y) {
-        if (playerHasKeyForDoor(player) != null || this.doesExist().get() == true) {
+        if (playerHasKeyForDoor(player) != null || this.doesExist().get() == false) {
             return false;
         } else {
             return true;

@@ -19,7 +19,7 @@ public class InvincibilityPotion extends Entity implements Interaction {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             player.addItemToInventory(this);
-            this.doesExist().set(false);
+            // this.doesExist().set(false);
             player.setPlayerState(new Invincible());
             InvincibilityPotion thisPotion = this;
             new java.util.Timer().schedule(

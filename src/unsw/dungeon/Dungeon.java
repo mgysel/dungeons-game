@@ -62,6 +62,7 @@ public class Dungeon {
 
     public void removeEntity(Entity entity) {
         entities.remove(entity);
+        entity.doesExist().set(false);
     }
 
     public List<Entity> getEntities() {
