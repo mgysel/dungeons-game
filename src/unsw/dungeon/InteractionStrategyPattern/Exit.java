@@ -22,7 +22,7 @@ public class Exit extends Entity implements Interaction {
     @Override
     public void performInteraction(Entity entity) {
         if (entity instanceof Player) {
-            System.out.println("here");
+            //System.out.println("hereee");
             // if all other goals complete
             // do nothing?
             // we already check if we finish game

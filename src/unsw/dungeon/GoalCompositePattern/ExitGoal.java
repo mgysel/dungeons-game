@@ -20,7 +20,7 @@ public class ExitGoal implements GoalStrategy {
     }
 
     private boolean isPlayerAtExit(Dungeon dungeon) {
-        System.out.println("checking");
+        //System.out.println("checking");
         Player p = dungeon.getPlayer();
         int playerX = p.getX();
         int playerY = p.getY();
@@ -30,10 +30,10 @@ public class ExitGoal implements GoalStrategy {
         for (Entity entity : dungeon.getEntities()) {
             if (entity instanceof Exit) {
                 exitX = entity.getX();
-                exitY = entity.getX();
+                exitY = entity.getY();
             }
         }
-        System.out.println("x="+playerX+" y="+playerY+" and x="+exitX+" y="+exitY);
+        //System.out.println("px:"+playerX+" py:"+playerY + " ex:" +exitX+" ey:"+exitY);
         if (playerX == exitX && playerY == exitY) {
             return true;
         } else {
