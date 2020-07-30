@@ -10,6 +10,7 @@ public class TrapUnsetState implements TrapState {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             player.addItemToInventory(trap);
+            trap.doesExist().set(false);
         }
     }
 }

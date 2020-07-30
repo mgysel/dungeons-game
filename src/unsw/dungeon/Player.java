@@ -246,7 +246,12 @@ public class Player extends Entity implements Subject {
     public void setTrap() {
         for (Entity entity : getListOfItemsInInventory()) {
             if (entity instanceof Trap) {
-                //
+                Trap trapToSet = (Trap) entity;
+                trapToSet.x().set(this.getX());
+                trapToSet.y().set(this.getY());
+                trapToSet.doesExist().set(true);
+                trapToSet.changeState();
+                break;
             }
         }
     }

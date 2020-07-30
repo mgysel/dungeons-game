@@ -2,6 +2,7 @@ package unsw.dungeon.InteractionStrategyPattern;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
+import unsw.dungeon.TrapStatePattern.TrapSetState;
 import unsw.dungeon.TrapStatePattern.TrapState;
 import unsw.dungeon.TrapStatePattern.TrapUnsetState;
 
@@ -22,5 +23,13 @@ public class Trap extends Entity implements Interaction {
 
     public void isUsedOnEnemy() {
         this.dungeon.removeEntity(this);
+    }
+
+    public void changeState() {
+        if (state instanceof TrapUnsetState) {
+            this.state = new TrapSetState();
+        } else {
+            this.state = new TrapUnsetState();
+        }
     }
 }
