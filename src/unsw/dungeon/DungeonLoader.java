@@ -142,6 +142,11 @@ public abstract class DungeonLoader {
             onLoad(invincibilityPotion);
             entity = invincibilityPotion;
             break;
+        case "lava":
+            Lava lava = new Lava(dungeon,x, y);
+            onLoad(lava);
+            entity = lava;
+            break;
         }
         dungeon.addEntity(entity);
     }
@@ -158,5 +163,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Enemy enemy);
     public abstract void onLoad(Sword sword);
     public abstract void onLoad(InvincibilityPotion invincibilityPotion);
+    public abstract void onLoad(Lava lava);
 
 }

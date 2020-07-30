@@ -10,15 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import unsw.dungeon.InteractionStrategyPattern.Boulder;
-import unsw.dungeon.InteractionStrategyPattern.Door;
-import unsw.dungeon.InteractionStrategyPattern.Enemy;
-import unsw.dungeon.InteractionStrategyPattern.Exit;
-import unsw.dungeon.InteractionStrategyPattern.InvincibilityPotion;
-import unsw.dungeon.InteractionStrategyPattern.Key;
-import unsw.dungeon.InteractionStrategyPattern.Portal;
-import unsw.dungeon.InteractionStrategyPattern.Sword;
-import unsw.dungeon.InteractionStrategyPattern.Treasure;
+import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
 import java.io.File;
@@ -48,6 +40,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image enemyImage;
     private Image swordImage;
     private Image invincibilityPotionImage;
+    private Image lavaImage;
 
     public DungeonControllerLoader(String filename) throws FileNotFoundException {
         super(filename);
@@ -66,6 +59,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         enemyImage = new Image((new File("images/hound.png")).toURI().toString());
         swordImage = new Image((new File("images/greatsword_1_new.png")).toURI().toString());
         invincibilityPotionImage = new Image((new File("images/brilliant_blue_new.png")).toURI().toString());
+        lavaImage = new Image((new File("images/lava.png")).toURI().toString());
     }
 
     @Override
@@ -139,6 +133,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(InvincibilityPotion invincibilityPotion) {
         ImageView view = new ImageView(invincibilityPotionImage);
         addEntity(invincibilityPotion, view);
+    }
+
+    @Override
+    public void onLoad(Lava lava) {
+        ImageView view = new ImageView(lavaImage);
+        addEntity(lava,view);
     }
 
     private void addEntity(Entity entity, ImageView view) {
