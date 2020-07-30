@@ -83,8 +83,7 @@ public class EnemyTest {
         player.moveRight();
         player.moveRight();
         Thread.sleep(3500);
-        assert(enemy.getY() > 5);
-        assert(enemy.getY() > 5);
+        assert(enemy.getY() > 5 || enemy.getX() > 5);
 
         // Left/Up
         dungeon = new Dungeon(10, 10);
@@ -97,8 +96,7 @@ public class EnemyTest {
         player.moveRight();
         player.moveRight();
         Thread.sleep(3500);
-        assert(enemy.getY() < 5);
-        assert(enemy.getY() < 5);
+        assert(enemy.getY() < 5 || enemy.getX() < 5);
         
     }
 

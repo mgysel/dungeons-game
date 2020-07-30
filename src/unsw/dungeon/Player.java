@@ -140,7 +140,6 @@ public class Player extends Entity implements Subject {
         for (Entity entity : XYEntities) {
             System.out.println(entity);
             if (entity != null && entity instanceof Interaction) {
-                XYEntities.remove(entity);
                 Interaction interactingEntity = (Interaction) entity;
                 interactingEntity.performInteraction(this);
             }

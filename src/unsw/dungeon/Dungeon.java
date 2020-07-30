@@ -71,7 +71,9 @@ public class Dungeon {
 
     public List<Entity> getEntities(int x, int y) {
         List<Entity> xyEntities = new ArrayList<Entity>();
+        System.out.println("****** ENTITIES");
         for (Entity entity : entities) {
+            System.out.println(entity);
             if (entity != null) {
                 if (entity.getX() == x && entity.getY() == y) {
                     xyEntities.add(entity);
@@ -86,6 +88,8 @@ public class Dungeon {
     }
 
      public void endGame() {
+        
+        this.player.doesExist().set(false);
         this.player = null;
      }
 
