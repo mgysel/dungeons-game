@@ -1,6 +1,8 @@
 package unsw.dungeon.EnemyStatePattern;
 
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
+import unsw.dungeon.InteractionStrategyPattern.Boulder;
 import unsw.dungeon.InteractionStrategyPattern.Enemy;
 import unsw.dungeon.Player;
 
@@ -44,7 +46,7 @@ public class ScaredEnemyState implements EnemyState {
             }
         }
 
-        if (dungeon.isThereObstructionAtXY(enemyX, enemyY)) {
+        if (dungeon.isThereObstructionAtXY(enemyX, enemyY) || isBoulder(enemyX, enemyY, dungeon)) {
             // do nothing because obstruction in the way)
         } else {
             enemy.x().set(enemyX);
@@ -60,4 +62,13 @@ public class ScaredEnemyState implements EnemyState {
         return player.getY();
     }
 
+    private boolean isBoulder(int x, int y, Dungeon dungeon) {
+        for (Entity entity : dungeon.getEntities(x,y)) {
+            if (entity instanceof Boulder) {
+                return true;
+            } else {
+                continue;
+            }
+        } return false;
+    }
 }
