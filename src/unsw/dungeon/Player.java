@@ -11,8 +11,10 @@ import unsw.dungeon.PlayerStatePattern.PlayerState;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The player entity
@@ -65,7 +67,9 @@ public class Player extends Entity implements Subject {
         int newY = getY() + 1;
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
         if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(newX, newY))) {
+            System.out.println("1.1 MoveDown " + xyEntities);
             interact(xyEntities);
+            System.out.println("1.2 MoveDown");
             y().set(getY() + 1);
             notifyObservers();
             didIJustFinishGame();
@@ -132,17 +136,22 @@ public class Player extends Entity implements Subject {
      * Player interacts with entities at location (x, y)
      */
     private void interact(List<Entity> xyEntities) {
-        for (Entity entity : xyEntities) {
+        Set<Entity> XYEntities = new HashSet<>(xyEntities);
+        for (Entity entity : XYEntities) {
             System.out.println(entity);
             if (entity != null && entity instanceof Interaction) {
-                xyEntities.remove(entity);
+                XYEntities.remove(entity);
                 Interaction interactingEntity = (Interaction) entity;
                 interactingEntity.performInteraction(this);
             }
         }
+        // System.out.println("2.0 Interact");
         // for (Iterator<Entity> it = xyEntities.iterator(); it.hasNext();) {
         //     Entity entity = it.next();
+        //     System.out.println("2.1 Interact " + entity);
         //     if (entity != null && entity instanceof Interaction) {
+        //         System.out.println("2.2 Interact");
+        //         System.out.println("2.2 (X, Y): " + entity.getX() + ", " + entity.getY());
         //         it.remove();
         //         Interaction interactingEntity = (Interaction) entity;
         //         interactingEntity.performInteraction(this);
