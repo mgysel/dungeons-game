@@ -34,20 +34,4 @@ public class ExitTest {
         assertEquals(2,p.getY());
     }
 
-    @Test
-    public void exitCompletesGameIfGoalsComplete() {
-        Dungeon d = new Dungeon(5, 5);
-        Exit exit = new Exit(d, 3, 2);
-        Treasure t = new Treasure(d,2,2);
-        Player p = new Player(d,1,2);
-        d.setPlayer(p);
-        d.addEntity(t);
-        d.addEntity(exit);
-     //   d.addGoal(exit);
-     //   d.addGoal(t);
-        p.moveRight();
-        p.moveRight();
-        assert (d.getPlayer() == null);
-    }
-
 }
