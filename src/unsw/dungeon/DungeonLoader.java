@@ -143,7 +143,7 @@ public abstract class DungeonLoader {
             entity = invincibilityPotion;
             break;
         case "lava":
-            Lava lava = new Lava(dungeon,x, y);
+            Lava lava = new Lava(x, y);
             onLoad(lava);
             entity = lava;
             break;

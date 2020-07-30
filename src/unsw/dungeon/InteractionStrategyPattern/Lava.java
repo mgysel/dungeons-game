@@ -6,7 +6,7 @@ import unsw.dungeon.Player;
 
 public class Lava extends Entity implements Interaction {
 
-    public Lava(Dungeon dungeon, int x, int y) {
+    public Lava(int x, int y) {
         super(x,y);
     }
 

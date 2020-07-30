@@ -67,9 +67,7 @@ public class Player extends Entity implements Subject {
         int newY = getY() + 1;
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
         if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(newX, newY))) {
-            System.out.println("1.1 MoveDown " + xyEntities);
             interact(xyEntities);
-            System.out.println("1.2 MoveDown");
             y().set(getY() + 1);
             notifyObservers();
             didIJustFinishGame();
@@ -138,7 +136,6 @@ public class Player extends Entity implements Subject {
     private void interact(List<Entity> xyEntities) {
         Set<Entity> XYEntities = new HashSet<>(xyEntities);
         for (Entity entity : XYEntities) {
-            System.out.println(entity);
             if (entity != null && entity instanceof Interaction) {
                 Interaction interactingEntity = (Interaction) entity;
                 interactingEntity.performInteraction(this);
