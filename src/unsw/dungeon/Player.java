@@ -208,7 +208,6 @@ public class Player extends Entity implements Subject {
     }
 
     public void removeEnemy(Enemy enemy) {
-        dungeon.removeEntity(enemy);
         removeObserver(enemy);
         enemy.dies();
     }

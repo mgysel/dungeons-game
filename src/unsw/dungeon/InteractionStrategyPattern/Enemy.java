@@ -91,6 +91,7 @@ public class Enemy extends Entity implements Observer, Interaction {
     public void dies() {
         doesExist().set(false);
         timeline.stop();
+        dungeon.removeEntity(this);
     }
 
     
