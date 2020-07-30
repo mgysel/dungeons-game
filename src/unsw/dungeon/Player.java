@@ -1,10 +1,6 @@
 package unsw.dungeon;
 
-import unsw.dungeon.InteractionStrategyPattern.Enemy;
-import unsw.dungeon.InteractionStrategyPattern.Exit;
-import unsw.dungeon.InteractionStrategyPattern.Interaction;
-import unsw.dungeon.InteractionStrategyPattern.Key;
-import unsw.dungeon.InteractionStrategyPattern.Sword;
+import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.ObserverPattern.Subject;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.PlayerStatePattern.PlayerState;
@@ -242,5 +238,18 @@ public class Player extends Entity implements Subject {
     public void didIJustFinishGame() {
         // If all goals complete, win the game
         dungeon.checkGoals();
+    }
+
+    public void setTrap() {
+        for (Entity entity : getListOfItemsInInventory()) {
+            if (entity instanceof Trap) {
+                Trap trapToSet = (Trap) entity;
+                trapToSet.x().set(this.getX());
+                trapToSet.y().set(this.getY());
+                trapToSet.doesExist().set(true);
+                trapToSet.changeState();
+                break;
+            }
+        }
     }
 }

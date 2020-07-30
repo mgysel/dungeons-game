@@ -41,6 +41,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image swordImage;
     private Image invincibilityPotionImage;
     private Image lavaImage;
+    private Image trapImage;
 
     public DungeonControllerLoader(String filename) throws FileNotFoundException {
         super(filename);
@@ -60,6 +61,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         swordImage = new Image((new File("images/greatsword_1_new.png")).toURI().toString());
         invincibilityPotionImage = new Image((new File("images/brilliant_blue_new.png")).toURI().toString());
         lavaImage = new Image((new File("images/lava.png")).toURI().toString());
+        trapImage = new Image((new File("images/trap.png")).toURI().toString());
     }
 
     @Override
@@ -139,6 +141,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Lava lava) {
         ImageView view = new ImageView(lavaImage);
         addEntity(lava,view);
+    }
+
+    @Override
+    public void onLoad(Trap trap) {
+        ImageView view = new ImageView(trapImage);
+        addEntity(trap,view);
     }
 
     private void addEntity(Entity entity, ImageView view) {
