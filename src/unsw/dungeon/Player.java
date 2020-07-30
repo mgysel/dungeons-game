@@ -11,6 +11,7 @@ import unsw.dungeon.PlayerStatePattern.PlayerState;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -131,10 +132,18 @@ public class Player extends Entity implements Subject {
      * Player interacts with entities at location (x, y)
      */
     private void interact(List<Entity> xyEntities) {
-        for (Entity entity : xyEntities) {
+        /*for (Entity entity : xyEntities) {
             System.out.println(entity);
             if (entity != null && entity instanceof Interaction) {
                 //xyEntities.remove(entity);
+                Interaction interactingEntity = (Interaction) entity;
+                interactingEntity.performInteraction(this);
+            }
+        }*/
+        for (Iterator<Entity> it = xyEntities.iterator(); it.hasNext();) {
+            Entity entity = it.next();
+            if (entity != null && entity instanceof Interaction) {
+                it.remove();
                 Interaction interactingEntity = (Interaction) entity;
                 interactingEntity.performInteraction(this);
             }
