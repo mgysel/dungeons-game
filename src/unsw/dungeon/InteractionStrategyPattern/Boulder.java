@@ -37,7 +37,7 @@ public class Boulder extends Entity implements Obstruction, Interaction {
         List<Entity> xyEntities = dungeon.getEntities(nextX, nextY);
         for (Entity entity : xyEntities) {
             if (entity != null) {
-                if (entity instanceof Boulder || entity instanceof Wall) {
+                if (entity instanceof Boulder || entity instanceof Wall || entity instanceof Enemy) {
                     return true;
                 }
             }

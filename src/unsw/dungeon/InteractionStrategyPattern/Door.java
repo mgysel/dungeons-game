@@ -1,5 +1,7 @@
 package unsw.dungeon.InteractionStrategyPattern;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import unsw.dungeon.Entity;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.Player;
@@ -12,10 +14,12 @@ import unsw.dungeon.Player;
 public class Door extends Entity implements Obstruction, Interaction {
 
     private int doorID;
+    public BooleanProperty isOpen;
 
     public Door(int x, int y, int id) {
         super(x,y);
         this.doorID = id;
+        this.isOpen = new SimpleBooleanProperty(false);
     }
 
     public int getID() {
@@ -23,14 +27,14 @@ public class Door extends Entity implements Obstruction, Interaction {
     }
 
     public boolean getIsOpen() {
-        return this.doesExist().get();
+        return this.isOpen.get();
     }
 
     public void attemptToUnlockDoorWithKey(Key key) {
         if (key != null) {
             int keyID = key.getID();
             if(keyID == this.doorID) {
-                this.doesExist().set(false);
+                this.isOpen.set(true);
             }
         }
     }
@@ -58,7 +62,7 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     @Override
     public boolean isObstruction(Player player, int x, int y) {
-        if (playerHasKeyForDoor(player) != null || this.doesExist().get() == false) {
+        if (playerHasKeyForDoor(player) != null || this.isOpen.get() == true) {
             return false;
         } else {
             return true;

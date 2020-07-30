@@ -32,6 +32,8 @@ public class ScaredEnemyState implements EnemyState {
         int diffX = getPlayerX(player) - enemyX;
         int diffY = getPlayerY(player) - enemyY;
 
+        System.out.println("here");
+
         if ( abs(diffX) > abs(diffY) ) {
             if (diffX < 0) {
                 enemyX++;

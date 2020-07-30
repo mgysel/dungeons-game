@@ -40,6 +40,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image exitImage;
     private Image treasureImage;
     private Image doorImage;
+    private Image openDoorImage;
     private Image keyImage;
     private Image boulderImage;
     private Image floorSwitchImage;
@@ -56,6 +57,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         exitImage = new Image((new File("images/exit.png")).toURI().toString());
         treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
         doorImage = new Image((new File("images/closed_door.png")).toURI().toString());
+        openDoorImage = new Image((new File("images/open_door.png")).toURI().toString());
         keyImage = new Image((new File("images/key.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
         floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
@@ -93,6 +95,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Door door) {
         ImageView view = new ImageView(doorImage);
+        trackDoorOpen(door, view);
         addEntity(door, view);
     }
 
@@ -144,6 +147,8 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
 
 
+
+
     /**
      * Set a node in a GridPane to have its position track the position of an entity
      * in the dungeon.
@@ -174,6 +179,15 @@ public class DungeonControllerLoader extends DungeonLoader {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 node.setVisible(newValue);
+            }
+        });
+    }
+
+    private void trackDoorOpen(Door door, Node node) {
+        door.isOpen.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                ((ImageView) node).imageProperty().set(openDoorImage);
             }
         });
     }
