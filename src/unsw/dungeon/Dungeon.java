@@ -54,9 +54,7 @@ public class Dungeon {
 
     public void addEntity(Entity entity) {
         entities.add(entity);
-        System.out.println("******* ENTITIES ADDED");
         if (entity instanceof Enemy) {
-            System.out.println(entity);
             Enemy enemy = (Enemy) entity;
             getPlayer().registerObserver(enemy);
         }
@@ -74,7 +72,6 @@ public class Dungeon {
     public List<Entity> getEntities(int x, int y) {
         List<Entity> xyEntities = new ArrayList<Entity>();
         for (Entity entity : entities) {
-            System.out.println(entity);
             if (entity != null) {
                 if (entity.getX() == x && entity.getY() == y) {
                     xyEntities.add(entity);

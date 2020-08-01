@@ -152,6 +152,11 @@ public abstract class DungeonLoader {
             onLoad(trap);
             entity = trap;
             break;
+        case "bomb":
+            Bomb bomb = new Bomb(dungeon,x, y);
+            onLoad(bomb);
+            entity = bomb;
+            break;
         }
         dungeon.addEntity(entity);
     }
@@ -170,5 +175,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(InvincibilityPotion invincibilityPotion);
     public abstract void onLoad(Lava lava);
     public abstract void onLoad(Trap trap);
+    public abstract void onLoad(Bomb bomb);
 
 }

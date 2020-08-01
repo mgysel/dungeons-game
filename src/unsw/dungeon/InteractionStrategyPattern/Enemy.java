@@ -40,7 +40,7 @@ public class Enemy extends Entity implements Observer, Interaction {
     public void moveEnemy(Player player, Dungeon dungeon) {
         timeline = new Timeline();
 
-        EventHandler<ActionEvent> tickGame = new EventHandler<ActionEvent>() {
+        EventHandler<ActionEvent> move = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 state.moveEnemy(player, dungeon);
                 int thisEnemyX = Enemy.super.getX();
@@ -56,7 +56,7 @@ public class Enemy extends Entity implements Observer, Interaction {
             }
         };
 
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), tickGame); 
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), move); 
 
         timeline.getKeyFrames().add(keyFrame);
         timeline.setCycleCount(Animation.INDEFINITE);

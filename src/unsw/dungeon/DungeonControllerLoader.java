@@ -42,6 +42,8 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image invincibilityPotionImage;
     private Image lavaImage;
     private Image trapImage;
+    private Image bombImage;
+    private Image bombExplodeImage;
 
     public DungeonControllerLoader(String filename) throws FileNotFoundException {
         super(filename);
@@ -62,6 +64,8 @@ public class DungeonControllerLoader extends DungeonLoader {
         invincibilityPotionImage = new Image((new File("images/brilliant_blue_new.png")).toURI().toString());
         lavaImage = new Image((new File("images/lava.png")).toURI().toString());
         trapImage = new Image((new File("images/trap.png")).toURI().toString());
+        bombImage = new Image((new File("images/bomb.png")).toURI().toString());
+        bombExplodeImage = new Image((new File("images/bomb_explosion.png")).toURI().toString());
     }
 
     @Override
@@ -149,6 +153,13 @@ public class DungeonControllerLoader extends DungeonLoader {
         addEntity(trap,view);
     }
 
+    @Override
+    public void onLoad(Bomb bomb) {
+        ImageView view = new ImageView(bombImage);
+        trackBombExplode(bomb, view);
+        addEntity(bomb,view);
+    }
+
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
@@ -196,6 +207,15 @@ public class DungeonControllerLoader extends DungeonLoader {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 ((ImageView) node).imageProperty().set(openDoorImage);
+            }
+        });
+    }
+
+    private void trackBombExplode(Bomb bomb, Node node) {
+        bomb.didBombExplode.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                ((ImageView) node).imageProperty().set(bombExplodeImage);
             }
         });
     }
