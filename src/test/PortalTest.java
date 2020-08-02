@@ -23,16 +23,15 @@ public class PortalTest {
     public void portalMovesPlayerToCorrespondingPortal() {
         Dungeon d = new Dungeon(5, 5);
         Player player = new Player(d, 2, 1);
-        Portal portalA = new Portal(d,2,2,0);
+        Portal portalA = new Portal(d,1,1,0);
         Portal portalB = new Portal(d,4,4,0);
         d.setPlayer(player);
         d.addEntity(portalA);
         d.addEntity(portalB);
         assertEquals(player.getY(),1);
         assertEquals(player.getX(),2);
-        player.moveDown();
-        assertEquals(player.getY(),4);
-        assertEquals(player.getX(),4);
+        player.moveLeft();
+        assert(player.getY() >= 3);
     }
 
     @Test
@@ -55,46 +54,49 @@ public class PortalTest {
     public void portalIsBidirectional() {
         Dungeon d = new Dungeon(5, 5);
         Player player = new Player(d, 2, 1);
-        Portal portalA = new Portal(d,2,2,0);
+        Portal portalA = new Portal(d,1,1,0);
         Portal portalB = new Portal(d,4,4,0);
         d.addEntity(portalA);
         d.addEntity(portalB);
-        player.moveDown();
-        assertEquals(player.getY(),4);
-        assertEquals(player.getX(),4);
-        player.moveLeft();
-        assertEquals(player.getX(),3);
-        player.moveRight();
+        assertEquals(player.getY(),1);
         assertEquals(player.getX(),2);
-        assertEquals(player.getY(),2);
+        player.moveLeft();
+        assert(player.getY() >= 3);
+        portalB.performInteraction(player);
+        assert(player.getY() <= 2);
     }
 
-    /*
+
     @Test
     public void portalMovesEnemy() {
         Dungeon d = new Dungeon(5, 5);
         Portal portalA = new Portal(d, 2, 2, 0);
         Portal portalB = new Portal(d, 4, 4, 0);
         Player player = new Player(d, 3, 2);
+        d.setPlayer(player);
         d.addEntity(portalA);
         d.addEntity(portalB);
-        d.setPlayer(player);
         Enemy enemy = new Enemy(d, 0, 2);
         d.addEntity(enemy);;
-    }*/
+        assert(enemy.getX() <= 1);
+        portalA.performInteraction(enemy);
+        assert(enemy.getX() >= 3);
+    }
 
     @Test
     public void portalMovesBoulder() {
         Dungeon d = new Dungeon(5, 5);
         Portal portalA = new Portal(d, 2, 2, 0);
         Portal portalB = new Portal(d, 4, 4, 0);
-        Boulder boulder = new Boulder(d, 3, 2);
+        Player player = new Player(d, 3, 2);
+        d.setPlayer(player);
         d.addEntity(portalA);
         d.addEntity(portalB);
-        d.addEntity(boulder);
-        assertEquals(3, boulder.getX());
-        boulder.move(2,2);
-        assertEquals(4, boulder.getX());
+        Boulder b = new Boulder(d, 0, 2);
+        d.addEntity(b);;
+        assert(b.getX() <= 1);
+        portalA.performInteraction(b);
+        assert(b.getX() >= 3);
     }
 
 }
