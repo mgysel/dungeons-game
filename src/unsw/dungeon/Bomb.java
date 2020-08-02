@@ -15,7 +15,7 @@ import unsw.dungeon.InteractionStrategyPattern.Enemy;
 
 public class Bomb extends Entity {
 
-    private int blastRange = 5;
+    private int blastRange = 3;
     private int TTL;
     public BooleanProperty didBombExplode;
     private Dungeon dungeon;
@@ -25,27 +25,27 @@ public class Bomb extends Entity {
         this.dungeon = dungeon;
         this.didBombExplode = new SimpleBooleanProperty(false);
         Random rand = new Random();
-        this.TTL = rand.nextInt(30);
+        this.TTL = rand.nextInt(1);
         startTimer();
     }
-
-    private void startTimer() {
+    
+    public void startTimer() {
         Timeline explodeTimeline = new Timeline();
         Bomb thisBomb = this;
-
         EventHandler<ActionEvent> detonate = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
+                thisBomb.didBombExplode.set(true);
                 List<Entity> entities = dungeon.getEntities();
                 for (Entity entity : entities) {
                     Double distance = Math.sqrt(Math.pow(entity.getX() - getX(), 2) + Math.pow(entity.getY() - getY(), 2));
                     if (distance < blastRange + 1) {
                         killEntity(entity);
-                        thisBomb.didBombExplode.set(true);
+                        
                     }
                 }
             }
         };
-        System.out.println("TTL: " + TTL);
+
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(TTL), detonate); 
         explodeTimeline.getKeyFrames().add(keyFrame);
         explodeTimeline.setCycleCount(1);
@@ -64,7 +64,6 @@ public class Bomb extends Entity {
         removeBombTimeline.getKeyFrames().add(removeBombKeyFrame);
         removeBombTimeline.setCycleCount(1);
         removeBombTimeline.play();
-
     }
 
     private void killEntity(Entity entity) {
@@ -77,5 +76,12 @@ public class Bomb extends Entity {
         }
     }
 
+    public void setTTL(int TTL) {
+        this.TTL = TTL;
+    }
+
+    public BooleanProperty getDidBombExplode() {
+        return didBombExplode;
+    }
 
 }

@@ -437,6 +437,21 @@
       "type": "invincibility"
     },
     {
+      "x": 8,
+      "y": 1,
+      "type": "lava"
+    },
+    {
+      "x": 9,
+      "y": 1,
+      "type": "bomb"
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "type": "bomb"
+    },
+    {
       "x": 17,
       "y": 10,
       "type": "wall"
