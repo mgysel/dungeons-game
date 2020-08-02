@@ -10,6 +10,7 @@ public class FloorSwitch extends Entity {
     public FloorSwitch(Dungeon dungeon, int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
+        this.triggered = false;
     }
 
     public boolean isTriggered() {

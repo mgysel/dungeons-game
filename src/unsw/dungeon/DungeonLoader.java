@@ -116,7 +116,7 @@ public abstract class DungeonLoader {
             onLoad(boulder);
             entity = boulder;
             break;
-        case "floor switch":
+        case "switch":
             FloorSwitch floorSwitch = new FloorSwitch(dungeon, x, y);
             onLoad(floorSwitch);
             entity = floorSwitch;
@@ -137,7 +137,7 @@ public abstract class DungeonLoader {
             onLoad(sword);
             entity = sword;
             break;
-        case "invincibility potion":
+        case "invincibility":
             InvincibilityPotion invincibilityPotion = new InvincibilityPotion(x, y);
             onLoad(invincibilityPotion);
             entity = invincibilityPotion;
