@@ -11,6 +11,7 @@ public class FloorSwitchGoal implements GoalStrategy {
         for (Entity entity : dungeon.getEntities()) {
             if (entity instanceof FloorSwitch) {
                 if (((FloorSwitch) entity).isTriggered()) {
+                    System.out.println("here");
                     continue;
                 } else {
                     return false;
