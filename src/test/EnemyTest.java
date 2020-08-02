@@ -74,8 +74,8 @@ public class EnemyTest {
     public void enemyMoveAwayFromPlayerWhenScared() throws InterruptedException {
         // Right/Down
         Dungeon dungeon = new Dungeon(10, 10);
-        Player player = new Player(dungeon, 0, 0);
-        InvincibilityPotion invincibilityPotion = new InvincibilityPotion(1, 0);
+        Player player = new Player(dungeon, 1, 1);
+        InvincibilityPotion invincibilityPotion = new InvincibilityPotion(2, 1);
         dungeon.setPlayer(player);
         Enemy enemy = new Enemy(dungeon, 5, 5);
         dungeon.addEntity(invincibilityPotion);

@@ -39,9 +39,9 @@ public class Enemy extends Entity implements Observer, Interaction {
 
     public void moveEnemy(Player player, Dungeon dungeon) {
         timeline = new Timeline();
-
         EventHandler<ActionEvent> move = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
+                System.out.println("here3");
                 state.moveEnemy(player, dungeon);
                 int thisEnemyX = Enemy.super.getX();
                 System.out.println("enemy x = " + thisEnemyX);
@@ -79,8 +79,10 @@ public class Enemy extends Entity implements Observer, Interaction {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             state.performInteraction(player);
-        } if (entity instanceof Portal) {
+        } else if (entity instanceof Portal) {
             ((Portal) entity).performInteraction(this);
+        } else if (entity instanceof Lava) {
+            ((Lava) entity).performInteraction(this);
         }
     }
 
