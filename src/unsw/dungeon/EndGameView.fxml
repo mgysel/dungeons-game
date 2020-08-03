@@ -8,18 +8,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="EndGame" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" prefHeight="500.0" prefWidth="500.0" >
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-        <Label fx:id="title" layoutX="150.0" layoutY="100.0" text="You Win">
-        <font>
-            <Font size="30.0" />
-        </font>
-        </Label>
+      <TextField fx:id="title" layoutX="171.0" layoutY="91.0" prefHeight="44.0" prefWidth="222.0" style="-fx-background-color: red;" text="You win!">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </TextField>
    </children>
-</GridPane>
+</Pane>
