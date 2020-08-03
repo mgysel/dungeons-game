@@ -43,9 +43,10 @@ public class Door extends Entity implements Obstruction, Interaction {
 
 
     public void performInteraction(Entity entity) {
+        System.out.println("1. Perform Interaction");
         if (entity instanceof Player) {
             Player player = (Player) entity;
-            System.out.println("Perform Interaction");
+            System.out.println("2. Player");
             attemptToUnlockDoorWithKey(playerHasKeyForDoor(player));
             player.removeItemFromInventory(playerHasKeyForDoor(player));
         }
@@ -63,11 +64,16 @@ public class Door extends Entity implements Obstruction, Interaction {
 
 
     @Override
-    public boolean isObstruction(Player player, int x, int y) {
-        if (playerHasKeyForDoor(player) != null || this.isOpen.get() == true) {
-            return false;
-        } else {
+    public boolean isObstruction(Entity entity) {
+        if (entity instanceof Player && this.isOpen.get() == false) {
+            Player player = (Player) entity;
+            if (playerHasKeyForDoor(player) != null) {
+                return false;
+            } 
+            return true;
+        } else if (this.isOpen.get() == false) {
             return true;
         }
+        return false;
     }
 }

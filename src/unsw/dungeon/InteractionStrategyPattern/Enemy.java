@@ -43,10 +43,8 @@ public class Enemy extends Entity implements Observer, Interaction {
         timeline = new Timeline();
         EventHandler<ActionEvent> move = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
-                System.out.println("here3");
                 state.moveEnemy(player, dungeon);
                 int thisEnemyX = Enemy.super.getX();
-                System.out.println("enemy x = " + thisEnemyX);
                 int thisEnemyY = Enemy.super.getY();
                 for (Entity entity : dungeon.getEntities(thisEnemyX, thisEnemyY)) {
                     if (entity instanceof Enemy) {

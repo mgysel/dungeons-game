@@ -49,7 +49,7 @@ public class Player extends Entity implements Subject {
         int newX = getX();
         int newY = getY() - 1;
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
-        if (getY() > 0 && !dungeon.isThereObstructionAtXY(newX, newY)) {
+        if (getY() > 0 && !dungeon.isThereObstructionAtXY(this, newX, newY)) {
             interact(xyEntities);
             y().set(getY() - 1);
             notifyObservers();
@@ -64,7 +64,7 @@ public class Player extends Entity implements Subject {
         int newX = getX();
         int newY = getY() + 1;
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
-        if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(newX, newY))) {
+        if ((getY() < dungeon.getHeight() - 1) && (!dungeon.isThereObstructionAtXY(this, newX, newY))) {
             interact(xyEntities);
             y().set(getY() + 1);
             notifyObservers();
@@ -79,7 +79,7 @@ public class Player extends Entity implements Subject {
         int newX = getX() - 1;
         int newY = getY();
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
-        if (getX() > 0 && !(dungeon.isThereObstructionAtXY(newX,newY))) {
+        if (getX() > 0 && !(dungeon.isThereObstructionAtXY(this, newX, newY))) {
             interact(xyEntities);
             x().set(getX() - 1);
             notifyObservers();
@@ -94,7 +94,7 @@ public class Player extends Entity implements Subject {
         int newX = getX() + 1;
         int newY = getY();
         List<Entity> xyEntities = dungeon.getEntities(newX, newY);
-        if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(newX, newY))) {
+        if (getX() < dungeon.getWidth() - 1 && !(dungeon.isThereObstructionAtXY(this, newX, newY))) {
             interact(xyEntities);
             x().set(getX() + 1);
             notifyObservers();

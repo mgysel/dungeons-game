@@ -11,7 +11,6 @@ public class FloorSwitch extends Entity {
     public FloorSwitch(Dungeon dungeon, int x, int y) {
         super(x, y);
         this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
-        this.viewOrder().set(1.0);
         this.dungeon = dungeon;
         this.triggered = false;
     }

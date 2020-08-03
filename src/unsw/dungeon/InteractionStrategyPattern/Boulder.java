@@ -29,24 +29,30 @@ public class Boulder extends Entity implements Obstruction, Interaction {
     }
 
     @Override
-    public boolean isObstruction(Player player, int x, int y) {
-        int playerX = player.getX();
-        int playerY = player.getY();
-        int thisX = getX();
-        int thisY = getY();
-        int nextX = (thisX - playerX) + thisX;
-        int nextY = (thisY - playerY) + thisY;
-        
-        List<Entity> xyEntities = dungeon.getEntities(nextX, nextY);
-        for (Entity entity : xyEntities) {
-            if (entity != null) {
-                if (entity instanceof Boulder || entity instanceof Wall || entity instanceof Enemy) {
-                    return true;
+    public boolean isObstruction(Entity entity) {
+        System.out.println("1. Is boulder obstruction " + entity);
+        if (entity instanceof Player) {
+            System.out.println("2. Entity is a player");
+            Player player = (Player) entity;
+            int playerX = player.getX();
+            int playerY = player.getY();
+            int thisX = getX();
+            int thisY = getY();
+            int nextX = (thisX - playerX) + thisX;
+            int nextY = (thisY - playerY) + thisY;
+            
+            List<Entity> xyEntities = dungeon.getEntities(nextX, nextY);
+            for (Entity xyEntity : xyEntities) {
+                if (xyEntity != null) {
+                    System.out.println("3. Going through entities");
+                    if (xyEntity instanceof Boulder || xyEntity instanceof Wall || xyEntity instanceof Enemy) {
+                        return true;
+                    }
                 }
             }
+            return false;
         }
-
-        return false;
+        return true;
     }
 
     @Override

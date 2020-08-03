@@ -53,7 +53,7 @@ public class NotScaredEnemyState implements EnemyState {
             enemyY = moveY(diffY, enemyY);
         }
 
-        if (dungeon.isThereObstructionAtXY(enemyX, enemyY) || isBoulder(enemyX, enemyY, dungeon)) {
+        if (dungeon.isThereObstructionAtXY(enemy, enemyX, enemyY) || isBoulder(enemyX, enemyY, dungeon)) {
             // do nothing because obstruction in the way)
         } else {
             enemy.x().set(enemyX);

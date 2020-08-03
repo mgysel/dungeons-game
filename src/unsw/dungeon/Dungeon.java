@@ -104,11 +104,11 @@ public class Dungeon {
      }
 
 
-    public boolean isThereObstructionAtXY(int x, int y) {
-        for (Entity entity : this.getEntities(x, y) ) {
-            if (entity != null && entity instanceof Obstruction) {
-                Obstruction obstructingEntity = (Obstruction) entity;
-                if (obstructingEntity.isObstruction(getPlayer(), x, y)) {
+    public boolean isThereObstructionAtXY(Entity entity, int x, int y) {
+        for (Entity thisEntity : this.getEntities(x, y) ) {
+            if (thisEntity != null && thisEntity instanceof Obstruction) {
+                Obstruction obstructingEntity = (Obstruction) thisEntity;
+                if (obstructingEntity.isObstruction(entity)) {
                     return true;
                 }
             }
