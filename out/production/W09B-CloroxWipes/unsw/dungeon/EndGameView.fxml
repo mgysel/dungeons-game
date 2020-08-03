@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="title" layoutX="171.0" layoutY="91.0" prefHeight="44.0" prefWidth="222.0" style="-fx-background-color: red; -fx-alignment: center;" text="You win!">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </TextField>
+      <Button id="level1" fx:id="level1" layoutX="252.0" layoutY="162.0" mnemonicParsing="false" onAction="#load1" text="Level 1" />
+      <Button id="level2" fx:id="level2" layoutX="251.0" layoutY="209.0" mnemonicParsing="false" onAction="#load2" text="Level 2" />
+      <Button id="level3" fx:id="level3" layoutX="249.0" layoutY="256.0" mnemonicParsing="false" onAction="#load3" text="Level 3 " />
+   </children>
+</Pane>
