@@ -82,7 +82,6 @@ public class Dungeon {
 
     public void removeEntity(Entity entity) {
         entities.remove(entity);
-        // entity.doesExist().set(false);
     }
 
     public List<Entity> getEntities() {
@@ -108,7 +107,6 @@ public class Dungeon {
      public void endGame() {
         this.isDungeonComplete.set(true);
         this.player.doesExist().set(false);
-        this.player = null;
      }
 
 
