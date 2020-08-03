@@ -2,6 +2,7 @@ package unsw.dungeon.InteractionStrategyPattern;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
+import unsw.dungeon.ObstructionStrategyPattern.Wall;
 import unsw.dungeon.Player;
 import unsw.dungeon.LayerEnum;
 // import unsw.dungeon.Dungeon;
@@ -21,35 +22,45 @@ public class Portal extends Entity implements Interaction {
 
     public void performInteraction(Entity entity) {
         if (entity instanceof Player || entity instanceof Boulder || entity instanceof Enemy ) {
-            entity.x().set(getXCoordToMoveTo(entity));
-            entity.y().set(getYCoordToMoveTo(entity));
+            setCoordsToMoveTo(entity);
         }
     }
 
 
-    private int getXCoordToMoveTo(Entity entity) {
+    private void setCoordsToMoveTo(Entity entity) {
         int entityX = entity.getX();
-        int fromPortalX = getX();
+        int entityY = entity.getY();
         Portal toPortal = getCorrespondingPortal();
         if (toPortal != null) {
-            int toPortalX = toPortal.getX();
-            return (entityX - fromPortalX + toPortalX);
-        } else {
-            return entityX;
+            int PX = toPortal.getX();
+            int PY = toPortal.getY();
+            for (int i = PX-1; i<PX+2; i++) {
+                for (int j = PY-1; j<PY+2; j++) {
+                    if (canTeleportHere(i,j)) {
+                        System.out.println("i"+i+" j"+j);
+                        setNewCoords(entity,i,j);
+                        return;
+                    } else {
+                        continue;
+                    }
+                }
+            }
         }
-
+        setNewCoords(entity, entityX, entityY);
+        return;
     }
 
-    private int getYCoordToMoveTo(Entity entity) {
-        int entityY = entity.getY();
-        int fromPortalY = getY();
-        Portal toPortal = getCorrespondingPortal();
-        if (toPortal != null) {
-            int toPortalY = toPortal.getY();
-            return (entityY - fromPortalY + toPortalY);
-        } else {
-            return entityY;
-        }
+    private void setNewCoords(Entity entity, int x, int y) {
+        entity.x().set(x);
+        entity.y().set(y);
+    }
+
+    private boolean canTeleportHere(int x, int y) {
+        for (Entity entity : dungeon.getEntities(x,y)) {
+            if (entity instanceof Wall || entity instanceof Boulder || entity instanceof Trap || entity instanceof Lava) {
+                return false;
+            }
+        } return true;
     }
 
 
