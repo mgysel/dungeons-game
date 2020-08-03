@@ -16,5 +16,8 @@
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </TextField>
+      <Button id="level1" fx:id="level1" layoutX="252.0" layoutY="162.0" mnemonicParsing="false" onAction="#load1" text="Level 1" />
+      <Button id="level2" fx:id="level2" layoutX="251.0" layoutY="209.0" mnemonicParsing="false" onAction="#load2" text="Level 2" />
+      <Button id="level3" fx:id="level3" layoutX="249.0" layoutY="256.0" mnemonicParsing="false" onAction="#load3" text="Level 3 " />
    </children>
 </Pane>

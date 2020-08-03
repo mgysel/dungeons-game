@@ -10,15 +10,15 @@ import javafx.stage.Stage;
 
 public class EndApplication {
 
-    private Stage endStage;
+    private Stage primaryStage;
     private EndController endController;
     private Scene endScene;
 
     
-    public EndApplication(Stage endStage) throws IOException {
-        this.endStage = endStage;
+    public EndApplication(Stage primaryStage) throws IOException {
+        this.primaryStage = primaryStage;
         // Create new loader and controller
-        endController = new EndController();
+        endController = new EndController(primaryStage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EndGameView.fxml"));
         loader.setController(endController);
         Parent root = loader.load();
@@ -27,10 +27,10 @@ public class EndApplication {
     }
 
     public void endGame(String endMessage) {
-        endStage.setTitle("End of Game");
+        primaryStage.setTitle("End of Game");
         endController.setTitle(endMessage);
-        endStage.setScene(endScene);
-        endStage.show();
+        primaryStage.setScene(endScene);
+        primaryStage.show();
     }
 
 }
