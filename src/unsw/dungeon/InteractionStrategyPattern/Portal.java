@@ -3,6 +3,7 @@ package unsw.dungeon.InteractionStrategyPattern;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
+import unsw.dungeon.LayerEnum;
 // import unsw.dungeon.Dungeon;
 // import unsw.dungeon.ObserverPattern.Subject;
 
@@ -13,6 +14,7 @@ public class Portal extends Entity implements Interaction {
 
     public Portal(Dungeon dungeon, int x, int y, int portalPairID) {
         super(x, y);
+        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
         this.portalPairID = portalPairID;
         this.dungeon = dungeon;
     }

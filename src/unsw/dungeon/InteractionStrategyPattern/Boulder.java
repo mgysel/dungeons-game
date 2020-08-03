@@ -3,6 +3,7 @@ package unsw.dungeon.InteractionStrategyPattern;
 import unsw.dungeon.*;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
+import unsw.dungeon.LayerEnum;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class Boulder extends Entity implements Obstruction, Interaction {
 
     public Boulder(Dungeon dungeon, int x, int y) {
         super(x, y);
+        this.viewOrder().set(LayerEnum.ENEMYBOULDER.getZIndex());
+        this.viewOrder().set(1.0);
         this.dungeon = dungeon;
     }
 

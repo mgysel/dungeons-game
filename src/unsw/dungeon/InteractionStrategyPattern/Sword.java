@@ -2,6 +2,7 @@ package unsw.dungeon.InteractionStrategyPattern;
 
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
+import unsw.dungeon.LayerEnum;
 
 public class Sword extends Entity implements Interaction {
 
@@ -10,6 +11,7 @@ public class Sword extends Entity implements Interaction {
 
     public Sword(int x, int y) {
         super(x, y);
+        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
         this.playerWieldingSword = null;
     }
 

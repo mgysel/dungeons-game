@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import unsw.dungeon.Entity;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.Player;
+import unsw.dungeon.LayerEnum;
 
 /**
  * Door that players are able to walk through provided it is unlocked
@@ -18,6 +19,7 @@ public class Door extends Entity implements Obstruction, Interaction {
 
     public Door(int x, int y, int id) {
         super(x,y);
+        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
         this.doorID = id;
         this.isOpen = new SimpleBooleanProperty(false);
     }

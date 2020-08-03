@@ -5,6 +5,7 @@ import unsw.dungeon.ObserverPattern.Subject;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import unsw.dungeon.PlayerStatePattern.PlayerState;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
+import unsw.dungeon.LayerEnum;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,6 +35,7 @@ public class Player extends Entity implements Subject {
      */
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y);
+        this.viewOrder().set(LayerEnum.PLAYER.getZIndex());
         this.dungeon = dungeon;
         this.inventory = new ArrayList<Entity>();
         this.state = new Vulnerable();

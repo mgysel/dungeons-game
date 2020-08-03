@@ -5,6 +5,7 @@ import unsw.dungeon.Entity;
 import unsw.dungeon.TrapStatePattern.TrapSetState;
 import unsw.dungeon.TrapStatePattern.TrapState;
 import unsw.dungeon.TrapStatePattern.TrapUnsetState;
+import unsw.dungeon.LayerEnum;
 
 public class Trap extends Entity implements Interaction {
 
@@ -13,6 +14,7 @@ public class Trap extends Entity implements Interaction {
 
     public Trap(Dungeon d, int x, int y) {
         super(x,y);
+        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
         this.dungeon = d;
         this.state = new TrapUnsetState();
     }

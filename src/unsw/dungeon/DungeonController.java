@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import unsw.dungeon.LayerEnum;
 
 import java.io.File;
 
@@ -40,7 +41,9 @@ public class DungeonController {
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
-                squares.add(new ImageView(ground), x, y);
+                ImageView groundView = new ImageView(ground);
+                groundView.setViewOrder(LayerEnum.BOTTOM.getZIndex());
+                squares.add(groundView, x, y);
             }
         }
 

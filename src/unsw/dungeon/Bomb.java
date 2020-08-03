@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 import unsw.dungeon.InteractionStrategyPattern.Enemy;
+import unsw.dungeon.LayerEnum;
 
 public class Bomb extends Entity {
 
@@ -22,10 +23,11 @@ public class Bomb extends Entity {
 
     public Bomb(Dungeon dungeon, int x, int y) {
         super(x,y);
+        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
         this.dungeon = dungeon;
         this.didBombExplode = new SimpleBooleanProperty(false);
         Random rand = new Random();
-        this.TTL = rand.nextInt(1);
+        this.TTL = rand.nextInt(30);
         startTimer();
     }
     

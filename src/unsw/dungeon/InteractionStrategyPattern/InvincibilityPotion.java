@@ -4,6 +4,7 @@ import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
 import unsw.dungeon.PlayerStatePattern.Invincible;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
+import unsw.dungeon.LayerEnum;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,6 +13,7 @@ public class InvincibilityPotion extends Entity implements Interaction {
 
     public InvincibilityPotion(int x, int y) {
         super(x, y);
+        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
     }
 
     @Override

@@ -9,9 +9,11 @@ import unsw.dungeon.EnemyStatePattern.EnemyState;
 import unsw.dungeon.EnemyStatePattern.NotScaredEnemyState;
 import unsw.dungeon.EnemyStatePattern.ScaredEnemyState;
 import unsw.dungeon.Entity;
+import unsw.dungeon.LayerEnum;
 import unsw.dungeon.ObserverPattern.Observer;
 import unsw.dungeon.Player;
 import unsw.dungeon.PlayerStatePattern.Invincible;
+import unsw.dungeon.LayerEnum;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -30,6 +32,7 @@ public class Enemy extends Entity implements Observer, Interaction {
 
     public Enemy(Dungeon dungeon, int x, int y) {
         super(x, y);
+        this.viewOrder().set(LayerEnum.ENEMYBOULDER.getZIndex());
         this.dungeon = dungeon;
         scaredState = new ScaredEnemyState(this);
         notScaredState = new NotScaredEnemyState(this);
