@@ -228,10 +228,12 @@ public class Player extends Entity implements Subject {
     public void dies() {
         System.out.println("Did I die?");
         this.doesExist().set(false);
+        dungeon.didPlayerWin.set(false);
         dungeon.endGame();
     }
 
     public void winGame() {
+        dungeon.didPlayerWin.set(true);
         dungeon.endGame();
     }
 

@@ -13,6 +13,8 @@ import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.SimpleBooleanProperty;
+
 /**
  * A dungeon in the interactive dungeon player.
  *
@@ -28,12 +30,18 @@ public class Dungeon {
     private List<Entity> entities;
     private Goal goal;
     private Player player;
+    public SimpleBooleanProperty isDungeonComplete;
+    public SimpleBooleanProperty didPlayerWin;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
+        isDungeonComplete = new SimpleBooleanProperty();
+        isDungeonComplete.set(false);
+        didPlayerWin = new SimpleBooleanProperty();
+        didPlayerWin.set(false);
     }
 
     public int getWidth() {
@@ -98,7 +106,7 @@ public class Dungeon {
     }
 
      public void endGame() {
-        
+        this.isDungeonComplete.set(true);
         this.player.doesExist().set(false);
         this.player = null;
      }

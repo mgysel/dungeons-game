@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
 
@@ -220,6 +221,9 @@ public class DungeonControllerLoader extends DungeonLoader {
             }
         });
     }
+
+
+
 
     /**
      * Create a controller that can be attached to the DungeonView with all the
