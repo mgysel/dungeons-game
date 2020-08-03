@@ -15,9 +15,11 @@ import static java.lang.StrictMath.abs;
 public class NotScaredEnemyState implements EnemyState {
 
     Enemy enemy;
+    Boolean direction;
 
     public NotScaredEnemyState(Enemy enemy) {
         this.enemy = enemy;
+        this.direction = true;
     }
 
     @Override
@@ -39,18 +41,16 @@ public class NotScaredEnemyState implements EnemyState {
         int diffX = getPlayerX(player) - enemyX;
         int diffY = getPlayerY(player) - enemyY;
 
-        if ( abs(diffX) > abs(diffY) ) {
-            if (diffX < 0) {
-                enemyX--;
+        if ( abs(diffX) > 0 && abs(diffY) > 0) {
+            if ( direction ) {
+                enemyX = moveX(diffX, enemyX);
             } else {
-                enemyX++;
+                enemyY = moveY(diffY, enemyY);
             }
-        } else {
-            if (diffY < 0) {
-                enemyY--;
-            } else {
-                enemyY++;
-            }
+        } else if ( abs(diffX) > 0 ) {
+            enemyX = moveX(diffX, enemyX);
+        } else if ( abs(diffY) > 0 ) {
+            enemyY = moveY(diffY, enemyY);
         }
 
         if (dungeon.isThereObstructionAtXY(enemyX, enemyY) || isBoulder(enemyX, enemyY, dungeon)) {
@@ -59,6 +59,26 @@ public class NotScaredEnemyState implements EnemyState {
             enemy.x().set(enemyX);
             enemy.y().set(enemyY);
         } 
+    }
+
+    private int moveX(int diffX, int enemyX) {
+        if (diffX < 0) {
+            enemyX--;
+        } else {
+            enemyX++;
+        }
+        direction = !direction;
+        return enemyX;
+    }
+
+    private int moveY(int diffY, int enemyY) {
+        if (diffY < 0) {
+            enemyY--;
+        } else {
+            enemyY++;
+        }
+        direction = !direction;
+        return enemyY;
     }
 
     private int getPlayerX(Player player) {

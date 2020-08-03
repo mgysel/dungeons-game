@@ -27,7 +27,7 @@ public class Bomb extends Entity {
         this.dungeon = dungeon;
         this.didBombExplode = new SimpleBooleanProperty(false);
         Random rand = new Random();
-        this.TTL = rand.nextInt(30);
+        this.TTL = 5 + rand.nextInt(25);
         startTimer();
     }
     
