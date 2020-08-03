@@ -37,7 +37,6 @@ public class Enemy extends Entity implements Observer, Interaction {
         scaredState = new ScaredEnemyState(this);
         notScaredState = new NotScaredEnemyState(this);
         this.state = notScaredState;
-        moveEnemy(dungeon.getPlayer(), dungeon);
     }
 
     public void moveEnemy(Player player, Dungeon dungeon) {

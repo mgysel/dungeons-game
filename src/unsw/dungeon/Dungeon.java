@@ -50,13 +50,25 @@ public class Dungeon {
 
     public void setPlayer(Player player) {
         this.player = player;
+        // Register existing enemy observers, start enemy movement
+        for (Entity entity : entities) {
+            if (entity instanceof Enemy) {
+                Enemy thisEnemy = (Enemy) entity;
+                player.registerObserver((Enemy) entity);
+                thisEnemy.moveEnemy(player, this);
+            }
+        }
     }
 
     public void addEntity(Entity entity) {
         entities.add(entity);
+        // If player already exists, register observers, start enemy movement
         if (entity instanceof Enemy) {
             Enemy enemy = (Enemy) entity;
-            getPlayer().registerObserver(enemy);
+            if (getPlayer() != null) {
+                getPlayer().registerObserver(enemy);
+                enemy.moveEnemy(player, this);
+            }
         }
     }
 
