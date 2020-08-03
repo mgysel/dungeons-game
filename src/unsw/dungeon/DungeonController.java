@@ -6,8 +6,9 @@ import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -60,6 +61,16 @@ public class DungeonController {
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
 
+    }
+
+    public void startDungeon(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        loader.setController(this);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        root.requestFocus();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     @FXML

@@ -1,31 +1,13 @@
 package unsw.dungeon;
 
 import java.io.IOException;
-
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
 /**
- * A JavaFX controller for the Conway's Game of Live Application.
- * Used to initialize UI elements in GameOfLife.fxml file
- *
- * @author Robert Clifton-Everest
- *
+ * EndController controls the end of game interface
  */
 public class EndController {
     @FXML
@@ -62,13 +44,7 @@ public class EndController {
         primaryStage.setTitle("Dungeon");
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonName);
         DungeonController controller = dungeonLoader.loadController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        root.requestFocus();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        controller.startDungeon(primaryStage);
     }
     
 	public void setTitle(String endMessage) {

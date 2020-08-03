@@ -12,7 +12,6 @@ public class DungeonApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         StartApplication startApplication = new StartApplication(primaryStage);
         startApplication.startGame();
     }
