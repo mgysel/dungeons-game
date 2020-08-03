@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -38,14 +39,17 @@ public class Bomb extends Entity {
             public void handle(ActionEvent t) {
                 thisBomb.didBombExplode.set(true);
                 List<Entity> entities = dungeon.getEntities();
-                for (Entity entity : entities) {
+                for (Iterator<Entity> it = entities.iterator(); it.hasNext();) {
+                    Entity entity = it.next();
                     Double distance = Math.sqrt(Math.pow(entity.getX() - getX(), 2) + Math.pow(entity.getY() - getY(), 2));
-                    if (distance < blastRange + 1) {
+                    if (distance < blastRange) {
                         if (entity instanceof Player) {
                             Player player = (Player) entity;
+                            it.remove();
                             player.dies();
                         } else if (entity instanceof Enemy) {
                             Enemy enemy = (Enemy) entity;
+                            it.remove();
                             enemy.dies();
                         }
                     }
