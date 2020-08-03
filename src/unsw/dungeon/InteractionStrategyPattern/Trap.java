@@ -34,4 +34,8 @@ public class Trap extends Entity implements Interaction {
             this.state = new TrapUnsetState();
         }
     }
+
+    public TrapState getState() {
+        return this.state;
+    }
 }
