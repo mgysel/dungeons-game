@@ -10,6 +10,7 @@ public class TreasureGoal implements GoalStrategy {
     public boolean isComplete(Dungeon dungeon) {
         for (Entity entity : dungeon.getEntities()) {
             if (entity instanceof Treasure) {
+                System.out.println("TREASURE GOAL: " + entity.getX() + ", " + entity.getY());
                 return false;
             }
         } return true;

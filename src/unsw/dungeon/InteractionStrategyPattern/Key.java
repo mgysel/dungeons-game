@@ -10,7 +10,7 @@ public class Key extends Entity implements Interaction {
 
     public Key(int x, int y, int keyID) {
         super(x, y);
-        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
+        this.viewOrder().set(LayerEnum.INVENTORY.getZIndex());
         this.keyID = keyID;
     }
 
@@ -23,7 +23,6 @@ public class Key extends Entity implements Interaction {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             player.addItemToInventory(this);
-            this.doesExist().set(false);
         }
     }
 }

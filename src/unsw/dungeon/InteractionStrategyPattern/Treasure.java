@@ -11,7 +11,7 @@ public class Treasure extends Entity implements Interaction {
 
     public Treasure(Dungeon dungeon, int x, int y) {
         super(x, y);
-        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
+        this.viewOrder().set(LayerEnum.INVENTORY.getZIndex());
         this.dungeon = dungeon;
     }
 
@@ -20,7 +20,6 @@ public class Treasure extends Entity implements Interaction {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             player.addItemToInventory(this);
-            this.doesExist().set(false);
         }
     }
 

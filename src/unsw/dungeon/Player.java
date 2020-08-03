@@ -3,6 +3,7 @@ package unsw.dungeon;
 import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.ObserverPattern.Subject;
 import unsw.dungeon.ObstructionStrategyPattern.Obstruction;
+import unsw.dungeon.ObstructionStrategyPattern.Wall;
 import unsw.dungeon.PlayerStatePattern.PlayerState;
 import unsw.dungeon.PlayerStatePattern.Vulnerable;
 import unsw.dungeon.LayerEnum;
@@ -25,6 +26,7 @@ public class Player extends Entity implements Subject {
     private ArrayList<Entity> inventory;
     private ArrayList<Enemy> observers;
     private PlayerState state;
+    int inventoryTotal;
 
 
     /**
@@ -40,6 +42,7 @@ public class Player extends Entity implements Subject {
         this.inventory = new ArrayList<Entity>();
         this.state = new Vulnerable();
         this.observers = new ArrayList<Enemy>();
+        this.inventoryTotal = 0;
     }
 
     /**
@@ -109,6 +112,9 @@ public class Player extends Entity implements Subject {
     public void addItemToInventory(Entity entity) {
         this.inventory.add(entity);
         dungeon.removeEntity(entity);
+        entity.x().set(0);
+        entity.y().set(inventoryTotal);
+        inventoryTotal++;
     }
 
     /**
@@ -116,6 +122,7 @@ public class Player extends Entity implements Subject {
      * @param entity
      */
     public void removeItemFromInventory(Entity entity) {
+        entity.doesExist().set(false);
         this.inventory.remove(entity);
     }
 
@@ -139,18 +146,6 @@ public class Player extends Entity implements Subject {
                 interactingEntity.performInteraction(this);
             }
         }
-        // System.out.println("2.0 Interact");
-        // for (Iterator<Entity> it = xyEntities.iterator(); it.hasNext();) {
-        //     Entity entity = it.next();
-        //     System.out.println("2.1 Interact " + entity);
-        //     if (entity != null && entity instanceof Interaction) {
-        //         System.out.println("2.2 Interact");
-        //         System.out.println("2.2 (X, Y): " + entity.getX() + ", " + entity.getY());
-        //         it.remove();
-        //         Interaction interactingEntity = (Interaction) entity;
-        //         interactingEntity.performInteraction(this);
-        //     }
-        // }
     }
 
     /**

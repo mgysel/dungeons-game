@@ -41,8 +41,13 @@ public class Bomb extends Entity {
                 for (Entity entity : entities) {
                     Double distance = Math.sqrt(Math.pow(entity.getX() - getX(), 2) + Math.pow(entity.getY() - getY(), 2));
                     if (distance < blastRange + 1) {
-                        killEntity(entity);
-                        
+                        if (entity instanceof Player) {
+                            Player player = (Player) entity;
+                            player.dies();
+                        } else if (entity instanceof Enemy) {
+                            Enemy enemy = (Enemy) entity;
+                            enemy.dies();
+                        }
                     }
                 }
             }
@@ -66,16 +71,6 @@ public class Bomb extends Entity {
         removeBombTimeline.getKeyFrames().add(removeBombKeyFrame);
         removeBombTimeline.setCycleCount(1);
         removeBombTimeline.play();
-    }
-
-    private void killEntity(Entity entity) {
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
-            player.dies();
-        } else if (entity instanceof Enemy) {
-            Enemy enemy = (Enemy) entity;
-            enemy.dies();
-        }
     }
 
     public void setTTL(int TTL) {

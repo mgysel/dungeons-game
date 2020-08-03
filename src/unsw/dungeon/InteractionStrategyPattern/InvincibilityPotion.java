@@ -13,7 +13,7 @@ public class InvincibilityPotion extends Entity implements Interaction {
 
     public InvincibilityPotion(int x, int y) {
         super(x, y);
-        this.viewOrder().set(LayerEnum.BOTTOM.getZIndex());
+        this.viewOrder().set(LayerEnum.INVENTORY.getZIndex());
     }
 
     @Override
@@ -21,7 +21,6 @@ public class InvincibilityPotion extends Entity implements Interaction {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             player.addItemToInventory(this);
-            // this.doesExist().set(false);
             player.setPlayerState(new Invincible());
             InvincibilityPotion thisPotion = this;
             new java.util.Timer().schedule(
