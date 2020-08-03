@@ -83,6 +83,8 @@ public class Enemy extends Entity implements Observer, Interaction {
             ((Portal) entity).performInteraction(this);
         } else if (entity instanceof Lava) {
             ((Lava) entity).performInteraction(this);
+        } else if (entity instanceof Trap) {
+            ((Trap) entity).performInteraction(this);
         }
     }
 

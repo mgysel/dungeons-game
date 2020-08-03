@@ -249,10 +249,12 @@ public class Player extends Entity implements Subject {
         for (Entity entity : getListOfItemsInInventory()) {
             if (entity instanceof Trap) {
                 Trap trapToSet = (Trap) entity;
-                trapToSet.x().set(this.getX());
-                trapToSet.y().set(this.getY());
+                trapToSet.x().set(getX());
+                trapToSet.y().set(getY());
                 trapToSet.doesExist().set(true);
                 trapToSet.changeState();
+                dungeon.addEntity(trapToSet);
+                this.inventory.remove(trapToSet);
                 break;
             }
         }

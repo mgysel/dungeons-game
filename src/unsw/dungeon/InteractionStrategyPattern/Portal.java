@@ -36,8 +36,10 @@ public class Portal extends Entity implements Interaction {
             int PY = toPortal.getY();
             for (int i = PX-1; i<PX+2; i++) {
                 for (int j = PY-1; j<PY+2; j++) {
+                    if (i == j) {
+                        continue;
+                    }
                     if (canTeleportHere(i,j)) {
-                        System.out.println("i"+i+" j"+j);
                         setNewCoords(entity,i,j);
                         return;
                     } else {
@@ -51,6 +53,7 @@ public class Portal extends Entity implements Interaction {
     }
 
     private void setNewCoords(Entity entity, int x, int y) {
+        System.out.println("entity now at" + x + " " + y);
         entity.x().set(x);
         entity.y().set(y);
     }
