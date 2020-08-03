@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import unsw.dungeon.InteractionStrategyPattern.*;
 import unsw.dungeon.ObstructionStrategyPattern.Wall;
 

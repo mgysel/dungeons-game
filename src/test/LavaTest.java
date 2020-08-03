@@ -18,7 +18,7 @@ public class LavaTest {
         d.setPlayer(p);
         d.addEntity(l);
         p.moveRight();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
     }
 
     @Test

@@ -29,7 +29,7 @@ public class GoalTest {
         assertEquals(d.getPlayer(),p);
         t.performInteraction(p);
         d.checkGoals();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class GoalTest {
         d.checkGoals();
         assertEquals(d.getPlayer(),p);
         p.moveLeft();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class GoalTest {
         assertEquals(d.getPlayer(),p);
         t.performInteraction(p);
         d.checkGoals();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
         Treasure t2 = new Treasure(d,2,2);
         d.addEntity(t2);
         d.setPlayer(p);
@@ -75,7 +75,7 @@ public class GoalTest {
         Boulder b = new Boulder(d,5,5);
         d.addEntity(b);
         d.checkGoals();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class GoalTest {
         Boulder b = new Boulder(d,5,5);
         d.addEntity(b);
         d.checkGoals();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
     }
 
     @Test
@@ -124,7 +124,7 @@ public class GoalTest {
         p.moveLeft();
         assertEquals(d.getPlayer(),p);
         p.moveRight();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
     }
 
     @Test
@@ -157,7 +157,7 @@ public class GoalTest {
         d.addEntity(b);
         // boulder AND treasure now complete
         d.checkGoals();
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
         // bring treasure back
         d.addEntity(t2);
         d.setPlayer(p);
@@ -165,7 +165,7 @@ public class GoalTest {
         p.moveLeft();
         p.moveUp();
         // player has moved into exit
-        assertNull(d.getPlayer());
+        assert(d.getPlayer().doesExist().get() == false);
     }
 
 }
