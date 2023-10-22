@@ -103,7 +103,7 @@
       "type": "sword"
     },
     {
-        "x": 3,
+        "x": 7,
         "y": 5,
         "type": "door",
         "id": 1
@@ -118,11 +118,6 @@
         "x": 2,
         "y": 8,
         "type": "switch"
-    },
-    {
-        "x": 3,
-        "y": 12,
-        "type": "exit"
     },
     {
         "x": 3,
@@ -437,6 +432,11 @@
       "type": "invincibility"
     },
     {
+      "x": 16,
+      "y": 14,
+      "type": "exit"
+    },
+    {
       "x": 8,
       "y": 1,
       "type": "lava"
@@ -447,9 +447,9 @@
       "type": "bomb"
     },
     {
-      "x": 3,
+      "x": 14,
       "y": 1,
-      "type": "bomb"
+      "type": "trap"
     },
     {
       "x": 17,
@@ -667,15 +667,16 @@
       "type": "wall"
     }
   ],
-  "goal-condition": {
-    "goal": "AND",
-    "subgoals": [
+  "goal-condition": 
+    { "goal": "OR", "subgoals": 
+      [{"goal": "boulders"},
       {
-        "goal": "enemies"
-      },
-      {
-        "goal": "treasure"
-      }
+        "goal": "AND", "subgoals": 
+        [{"goal": "enemies"},
+        {
+          "goal": "treasure"
+        }]
+        }
     ]
   }
 }
